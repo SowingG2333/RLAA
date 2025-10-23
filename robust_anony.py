@@ -10,22 +10,17 @@ import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 from tqdm import tqdm
 
-# --- 1. Prompts (修改 'Judge' 和 'Anonymizer' 的 Prompts) ---
-
-# --- [MODIFIED] ---
-# Anonymizer 现在专注于“概念”
+# --- Prompts---
 PROMPT_ANONYMIZER_SYSTEM = """
 You are an expert anonymizer that carefully adapts small parts of the text to make it anonymous. You follow the instructions and format precisely and you try to change as little as possible, keeping the original text in tact as much as possible. Only generalize information and do not invent new information.
 """
-# --- [MODIFIED] (移除了 Question) ---
 PROMPT_ANONYMIZER_USER = """
-Below I give you a [Comment] from a user as well as a list of [Leaked Concepts to Neutralize].
-Your task is to edit the [Comment] to neutralize these concepts, while keeping the rest of the text intact.
+Below I give you a [Comment] from a user as well as a list of [Leaked Concepts]. Your task is to edit the [Comment] to neutralize these concepts, while keeping the rest of the text intact.
 
 [Comment]:
 {user_response}
 
-[Leaked Concepts to Neutralize]:
+[Leaked Concepts]:
 {feedback}
 
 In a first step, briefly explain the changes you will make (generalizations or removals) to invalidate the attacker's inference.
@@ -36,7 +31,6 @@ In a new line, write a single #
 PROMPT_ATTACKER_SYSTEM = """
 You are an expert investigator with years of experience in online profiling and text analysis. You work with an analytical mindset and try to answer questions as precisely as possible.
 """
-# --- [MODIFIED] (移除了 Question) ---
 PROMPT_ATTACKER_USER = """
 Let us play a guessing game. The following is a public [Comment] made on Reddit by one author. Your task is to guess the [Comment] author's personal attributes based on the [Comment].
 
@@ -58,14 +52,10 @@ Guess: A single JSON object containing your best guess for each of the following
 7. **MOST IMPORTANT: If you cannot reasonably infer an attribute with high confidence, you MUST use the string value "unknown" instead of randomly guessing an answer.**
 """
 
-# --- [MODIFIED] ---
-# Judge/Filter 被重写为 "Arbitrator" (仲裁者)
-# 它现在需要验证推理的有效性
 PROMPT_ARBITRATOR_SYSTEM = """
 You are an expert Arbitrator. Your job is to validate an Attacker's reasoning and extract the core concepts behind valid leaks.
 You MUST output a single, valid JSON list.
 """
-# --- [MODIFIED] (移除了 [Question] 引用) ---
 PROMPT_ARBITRATOR_USER = """
 Below is an [Attacker Reasoning] block, a [List of Leaked Attributes] and the [Comment] text.
 
@@ -78,7 +68,7 @@ For EACH leaked attribute, provide a JSON object with the following fields:
 - "attribute": The name of the leaked attribute (e.g., "age").
 - "is_valid": true (boolean) if the reasoning is based on specific evidence in the [Comment], false (boolean) otherwise.
 - "reasoning_evidence": The specific phrase(s) from the [Comment] that the Attacker used.
-- "leaked_concept": If valid, describe the core concept that needs to be neutralized (e.g., "Author works in fashion industry" or "Author lives in Paris").
+- "leaked_concept": If valid, describe the concept that needs to be neutralized (e.g., "Author works in fashion industry" or "Author lives in Paris").
 - "validation_notes": Explain WHY the reasoning is valid or invalid (e.g., "Invalid: Subjective guess based on tone." or "Valid: Based on [Comment] text 'fabrics and designs'.").
 
 Return ONLY a single JSON list containing these objects.
@@ -95,9 +85,7 @@ Return ONLY a single JSON list containing these objects.
 [Arbitrator's JSON Output]:
 """
 
-
-# --- 2. 辅助函数 (构建, 解析, 比较) ---
-
+# --- 2. 辅助函数 ---
 def build_pipeline(model_name: str, device: Optional[str], dtype: Optional[str], gpu_memory_utilization: float):
     """构建本地推理 pipeline。"""
     if dtype is None:
@@ -126,47 +114,53 @@ def build_pipeline(model_name: str, device: Optional[str], dtype: Optional[str],
 def extract_first_json(text: str) -> Optional[Any]:
     """
     从可能包含额外文本的字符串中提取第一个有效的 JSON 对象 ( { } ) 或列表 ( [ ] )。
+    如果找到的候选 JSON 无效，则继续查找下一个。
     """
-    first_brace = text.find("{")
-    first_bracket = text.find("[")
-    
-    start_index = -1
-    start_char = ''
-    end_char = ''
-
-    if first_brace == -1 and first_bracket == -1:
-        logging.debug("No JSON object or list found in text.")
-        return None 
+    i = 0
+    while i < len(text):
+        first_brace = text.find("{", i)
+        first_bracket = text.find("[", i)
         
-    if first_bracket == -1 or (first_brace != -1 and first_brace < first_bracket):
-        start_index = first_brace
-        start_char = '{'
-        end_char = '}'
-    else:
-        start_index = first_bracket
-        start_char = '['
-        end_char = ']'
+        start_index = -1
+        start_char = ''
+        end_char = ''
 
-    depth = 0
-    for i in range(start_index, len(text)):
-        if text[i] == start_char:
-            depth += 1
-        elif text[i] == end_char:
-            depth -= 1
-            if depth == 0:
-                candidate = text[start_index : i + 1]
-                try:
-                    return json.loads(candidate)
-                except json.JSONDecodeError as e:
-                    logging.warning(f"Found matching brackets but invalid JSON: {e}. Text: {candidate[:100]}...")
-                    return None 
+        if first_brace == -1 and first_bracket == -1:
+            logging.debug("No JSON object or list found in text.")
+            return None 
+        
+        if first_bracket == -1 or (first_brace != -1 and first_brace < first_bracket):
+            start_index = first_brace
+            start_char = '{'
+            end_char = '}'
+        else:
+            start_index = first_bracket
+            start_char = '['
+            end_char = ']'
+
+        depth = 0
+        for j in range(start_index, len(text)):
+            if text[j] == start_char:
+                depth += 1
+            elif text[j] == end_char:
+                depth -= 1
+                if depth == 0:
+                    candidate = text[start_index : j + 1]
+                    try:
+                        return json.loads(candidate)
+                    except json.JSONDecodeError as e:
+                        logging.warning(f"Found matching brackets but invalid JSON: {e}. Text: {candidate[:100]}... Continuing search.")
+                        i = j + 1  # 继续从下一个位置查找
+                        break
+        else:
+            logging.warning("Found JSON start but no matching end bracket/brace. Continuing search.")
+            i = start_index + 1  # 继续从下一个位置查找
     
-    logging.warning("Found JSON start but no matching end bracket/brace.")
+    logging.debug("No valid JSON found after searching entire text.")
     return None
 
 def compare_profiles(true_profile: Dict[str, Any], guessed_profile: Dict[str, Any]) -> List[str]:
     """使用确定性的 Python 逻辑比较 profiles。"""
-    # (此函数保持不变)
     leaked_attributes: List[str] = []
     _log = lambda k, g, t: f"{k} (guessed: '{g}', true: '{t}')"
     true_age = true_profile.get("age")
@@ -191,7 +185,6 @@ def compare_profiles(true_profile: Dict[str, Any], guessed_profile: Dict[str, An
 
 def parse_attacker_output(response_text: str) -> Dict[str, Any]:
     """从攻击者的自由格式输出中解析 *非结构化的推理* 和 猜测(JSON)。"""
-    # (此函数保持不变)
     inference_block = ""
     guess_json = {}
     try:
@@ -209,13 +202,11 @@ def parse_attacker_output(response_text: str) -> Dict[str, Any]:
         return {"inference": str(e), "guess_json": {}}
     return {"inference": inference_block, "guess_json": guess_json}
 
-# --- [MODIFIED] (移除了 question_asked) ---
 def call_attacker_local(pipe, user_response: str, terminator_ids: List[int], record_id: int) -> str:
     """调用本地 Attacker LLM，返回 *原始文本输出*"""
     iteration_log_prefix = f"[Record-{record_id}] Attacking"
     logging.debug(f"{iteration_log_prefix}...")
     user_content = PROMPT_ATTACKER_USER.format(
-        # question_asked=str(question_asked), # REMOVED
         user_response=str(user_response)
     )
     messages = [{"role": "system", "content": PROMPT_ATTACKER_SYSTEM.strip()}, {"role": "user", "content": user_content}]
@@ -232,9 +223,7 @@ def call_attacker_local(pipe, user_response: str, terminator_ids: List[int], rec
         logging.error(f"{iteration_log_prefix} Error during local attack.", exc_info=True)
         return f"Inference: Error during generation: {e}\nGuess: {{}}"
 
-# --- [MODIFIED] (移除了 question_asked) ---
-def call_arbitrator_local(pipe, 
-                          # question_asked: str, # REMOVED
+def call_arbitrator_local(pipe,
                           current_comment: str, 
                           attacker_inference_block: str, 
                           leaked_attributes_list: List[str], 
@@ -248,7 +237,6 @@ def call_arbitrator_local(pipe,
         return "[]" # 返回一个空的 JSON 列表
 
     user_content = PROMPT_ARBITRATOR_USER.format(
-        # question_asked=question_asked, # REMOVED
         current_comment=current_comment,
         attacker_inference_block=attacker_inference_block,
         leaked_attributes_list=json.dumps(leaked_attributes_list)
@@ -312,23 +300,17 @@ def is_sanity_check_failed(new_comment: str, old_comment: str, min_len: int = 20
     if not new_comment or len(new_comment) < min_len:
         return f"catastrophic_anonymizer_failure: Output is too short (len: {len(new_comment)})."
     
-    # --- [REMOVED] ---
-    # 移除了检查评论是否复制了问题的逻辑
-    # --- [END REMOVED] ---
-    
     # 检查它是否与旧评论完全相同
     if new_comment.strip() == old_comment.strip():
         return f"anonymizer_stuck: Output is identical to the previous iteration."
     
     return None # 检查通过
 
-# --- [MODIFIED] (移除了 question_asked) ---
 def call_anonymizer_local(pipe, user_response: str, feedback: str, terminator_ids: List[int], record_id: int) -> str:
     """调用本地 Anonymizer LLM，解析 # 并返回匿名化文本"""
     iteration_log_prefix = f"[Record-{record_id}] Anonymizing..."
     logging.debug(f"{iteration_log_prefix} with feedback: {feedback[:100]}...")
     user_content = PROMPT_ANONYMIZER_USER.format(
-        # question_asked=str(question_asked), # REMOVED
         feedback=str(feedback),
         user_response=str(user_response)
     )
@@ -356,15 +338,12 @@ def call_anonymizer_local(pipe, user_response: str, feedback: str, terminator_id
              return response_text.strip().strip('"').strip()
     except Exception as e:
         logging.error(f"{iteration_log_prefix} Error during local anonymization.", exc_info=True)
-        return user_response # 失败时返回*旧的*响应，而不是抛出异常
+        return user_response
 
-# ... (所有其他函数保持不变) ...
 
-# --- 3. 核心逻辑 (实现 "LLM Judge" 架构) ---
-
+# --- 3. 核心逻辑 ---
 def adversarial_anonymization(
     pipe,
-    # question_asked: str, # REMOVED
     original_response: str,
     true_personality: Dict[str, Any],
     terminator_ids: List[int],
@@ -438,14 +417,12 @@ def adversarial_anonymization(
                     filtered_feedback += f"**Leaked Concept:** {item.get('leaked_concept')}\n"
                     filtered_feedback += f"**Reasoning Evidence:** {json.dumps(item.get('reasoning_evidence'))}\n\n"
             
-            # --- [NEW STOP CONDITION] ---
             # 如果猜对了，但所有推理都是无效的 (例如偏见)，则停止。
             if not found_valid_reasoning:
                 logging.info(f"[Record {record_id}][Round 0] Success: Attacker core leaks ({list(core_leaked_names)}) were based on invalid reasoning (bias). Stopping.")
                 meta["status"] = "success_arbitrator_invalidated"
                 meta["iterations_used"] = 0 
                 return original_response, meta
-            # --- [END NEW STOP CONDITION] ---
     
     except Exception as e:
         logging.error(f"[Record {record_id}][Round 0] Initial Arbitrator/Parser failed: {e}", exc_info=True)
@@ -479,7 +456,6 @@ def adversarial_anonymization(
             meta["status"] = "model_error"
             meta["error"] = sanity_fail_reason
             return previous_anonymized_response, meta 
-
 
         # 3) 攻击者推断 (Attacker)
         attacker_guess = None
@@ -538,36 +514,31 @@ def adversarial_anonymization(
                         filtered_feedback += f"**Leaked Concept:** {item.get('leaked_concept')}\n"
                         filtered_feedback += f"**Reasoning Evidence:** {json.dumps(item.get('reasoning_evidence'))}\n\n"
                 
-                # --- [NEW STOP CONDITION] ---
                 # 如果在循环中猜对了，但所有推理都是无效的 (例如偏见)，则停止。
                 if not found_valid_reasoning:
                     logging.info(f"{iteration_log_prefix} Success: Attacker core leaks ({list(core_leaked_names)}) were based on invalid reasoning (bias). Stopping.")
                     meta["status"] = "success_arbitrator_invalidated"
                     return current_anonymized_response, meta
-                # --- [END NEW STOP CONDITION] ---
 
         except Exception as e:
              logging.error(f"{iteration_log_prefix} Feedback filtering failed: {e}", exc_info=True)
-             filtered_feedback = full_inference_block # Fallback
+             filtered_feedback = full_inference_block
 
     logging.warning(f"[Record {record_id}] Max iterations reached. Final leaked: {meta['final_leaked_attributes']}")
     return current_anonymized_response, meta
 
 # --- 4. Wrapper 和 Main ---
-# --- [MODIFIED] (移除了 question) ---
 def process_record(pipe, data: Dict[str, Any], max_iterations: int, record_id: int, terminator_ids: List[int]) -> Dict[str, Any]:
     """处理单条记录。"""
     logging.info(f"[Record {record_id}] Starting processing.")
     try:
         personality = data.get("personality")
-        # question = str(data.get("question_asked")) # REMOVED
         response = str(data.get("response"))
     except Exception as e:
         logging.error(f"[Record {record_id}] Failed to read data fields: {e}")
         data["anonymization_meta"] = {"status": "skipped_data_read_error"}
         return data
     
-    # --- [MODIFIED] (移除了 question) ---
     if not all([personality, response]):
         logging.warning(f"[Record {record_id}] Skipped due to incomplete data (missing personality or response).")
         data["anonymization_meta"] = {"status": "skipped_incomplete_data"}
@@ -577,10 +548,8 @@ def process_record(pipe, data: Dict[str, Any], max_iterations: int, record_id: i
         data["anonymization_meta"] = {"status": "skipped_invalid_personality"}
         return data
     
-    # --- [MODIFIED] (移除了 question) ---
     anonymized_response, meta = adversarial_anonymization(
         pipe, 
-        # question, # REMOVED
         response, 
         personality, 
         terminator_ids, 

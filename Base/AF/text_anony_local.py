@@ -24,7 +24,7 @@ Below I give you a [Comment] from a user as well as [Personal Inferences] made a
 
 In a first step, briefly explain the changes you will make (generalizations or removals) to invalidate the attacker's inference.
 In a new line, write a single #
-Then, return the anonymized text without any extra preamble like "Here is the anonymized text:" or suffix like "Note:". 
+**Then, ONLY return the anonymized text without any extra preamble like "Here is the anonymized text:" or suffix like "Note:".**
 """
 
 PROMPT_ATTACKER_SYSTEM = """
@@ -52,7 +52,7 @@ Guess: A single JSON object containing your best guess for each of the following
 """
 
 def build_pipeline(model_name: str, device: Optional[str], dtype: Optional[str], gpu_memory_utilization: float):
-    """构建本地推理 pipeline。(无需修改)"""
+    """构建本地推理 pipeline"""
     if dtype is None:
         if torch.cuda.is_available():
             torch_dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
@@ -75,11 +75,10 @@ def build_pipeline(model_name: str, device: Optional[str], dtype: Optional[str],
     return gen_pipe, tokenizer
 
 def parse_attacker_output(response_text: str) -> Dict[str, Any]:
-    """从攻击者的自由格式输出中解析推理、猜测(JSON)和置信度。(无需修改)"""
+    """从攻击者的自由格式输出中解析推理和猜测(JSON)"""
     inference = ""
     guess_json = {}
-    certainty = 0
-    inference_match = re.search(r"Inference:(.*?)(Guess:|Certainty:|$)", response_text, re.DOTALL | re.IGNORECASE)
+    inference_match = re.search(r"Inference:(.*?)(Guess:|$)", response_text, re.DOTALL | re.IGNORECASE)
     if inference_match: inference = inference_match.group(1).strip()
     json_start = response_text.find('{'); json_end = response_text.rfind('}') + 1
     if json_start != -1 and json_end != -1 and json_end > json_start:
@@ -87,17 +86,11 @@ def parse_attacker_output(response_text: str) -> Dict[str, Any]:
         try: guess_json = json.loads(json_str)
         except json.JSONDecodeError: logging.warning(f"Failed to parse JSON: {json_str[:100]}..."); guess_json = {"error": "Failed to parse JSON"}
     else: logging.warning(f"No JSON found: {response_text[:100]}..."); guess_json = {"error": "No JSON found"}
-    # certainty_match = re.search(r"Certainty:.*?(\d)", response_text, re.IGNORECASE)
-    # if certainty_match:
-    #     try: certainty = int(certainty_match.group(1))
-    #     except ValueError: certainty = 0
 
-    return {"inference": inference, "guess_json": guess_json, "certainty": certainty}
+    return {"inference": inference, "guess_json": guess_json}
 
-# --- 已修改：call_anonymizer (重新加入 question_asked) ---
-def call_anonymizer(pipe, question_asked: str, user_response: str, feedback: str, terminator_ids: List[int], record_id: int) -> str:
+def call_anonymizer(pipe, user_response: str, feedback: str, terminator_ids: List[int], record_id: int) -> str:
     user_content = PROMPT_ANONYMIZER_USER.format(
-        # question_asked=str(question_asked), # 不再传递
         feedback=str(feedback),
         user_response=str(user_response)
     )
@@ -114,10 +107,8 @@ def call_anonymizer(pipe, question_asked: str, user_response: str, feedback: str
     logging.debug(f"[Record {record_id}] --- ANONYMIZER EXPLANATION ---\n{explanation}\n--- End ---")
     return final_response
 
-# --- 已修改：call_attacker (重新加入 question_asked) ---
-def call_attacker(pipe, question_asked: str, user_response: str, terminator_ids: List[int], record_id: int) -> Dict[str, Any]:
+def call_attacker(pipe, user_response: str, terminator_ids: List[int], record_id: int) -> Dict[str, Any]:
     user_content = PROMPT_ATTACKER_USER.format(
-        # question_asked=str(question_asked), # 不再传递
         user_response=str(user_response)
     )
     messages = [{"role": "system", "content": PROMPT_ATTACKER_SYSTEM.strip()}, {"role": "user", "content": user_content}]
@@ -132,12 +123,12 @@ def call_attacker(pipe, question_asked: str, user_response: str, terminator_ids:
     return parsed_data
 
 def compare_profiles(true_profile: Dict[str, Any], guessed_profile: Dict[str, Any]) -> List[str]:
-    """使用确定性的 Python 逻辑比较 profiles。(无需修改)"""
+    """使用确定性的 Python 逻辑比较 profiles"""
     leaked_attributes: List[str] = []
     def _log(key, guess, true): return f"{key} (guessed: '{guess}', true: '{true}')"
     true_age = true_profile.get("age"); guessed_age = guessed_profile.get("age")
     if isinstance(true_age, int) and isinstance(guessed_age, int):
-        if abs(true_age - guessed_age) <= 1: leaked_attributes.append(_log("age", guessed_age, true_age))
+        if abs(true_age - guessed_age) <= 3: leaked_attributes.append(_log("age", guessed_age, true_age))
     simple_keys = ["sex", "relationship_status"]
     for key in simple_keys:
         true_val = true_profile.get(key); guess_val = guessed_profile.get(key)
@@ -153,10 +144,8 @@ def compare_profiles(true_profile: Dict[str, Any], guessed_profile: Dict[str, An
     logging.debug(f"Rule-based comparison complete. Leaked: {leaked_attributes}")
     return leaked_attributes
 
-# --- 已修改：adversarial_anonymization (重新加入 question_asked) ---
 def adversarial_anonymization(
     pipe,
-    question_asked: str, # <--- 重新加入
     original_response: str,
     true_personality: Dict[str, Any],
     terminator_ids: List[int],
@@ -171,7 +160,7 @@ def adversarial_anonymization(
     # --- 步骤 0: 初始攻击 ---
     logging.info(f"[Record {record_id}] Starting initial attack (Round 0)...")
     try:
-        parsed_attack = call_attacker(pipe, question_asked, original_response, terminator_ids, record_id) # <--- 传递
+        parsed_attack = call_attacker(pipe, original_response, terminator_ids, record_id)
         attacker_guess = parsed_attack.get("guess_json", {})
         feedback = parsed_attack.get("inference", "No inference provided by attacker.")
         meta["final_attacker_guess"] = attacker_guess
@@ -199,7 +188,7 @@ def adversarial_anonymization(
         try:
             logging.info(f"{iteration_log_prefix} Calling Anonymizer...")
             current_anonymized_response = call_anonymizer(
-                pipe, question_asked, current_anonymized_response, feedback, terminator_ids, record_id # <--- 传递
+                pipe, current_anonymized_response, feedback, terminator_ids, record_id
             )
         except Exception as e:
             logging.error(f"{iteration_log_prefix} Anonymizer failed: {e}", exc_info=True)
@@ -210,7 +199,7 @@ def adversarial_anonymization(
         attacker_guess = None
         try:
             logging.info(f"{iteration_log_prefix} Calling Attacker...")
-            parsed_attack = call_attacker(pipe, question_asked, current_anonymized_response, terminator_ids, record_id) # <--- 传递
+            parsed_attack = call_attacker(pipe, current_anonymized_response, terminator_ids, record_id)
             attacker_guess = parsed_attack.get("guess_json", {})
             feedback = parsed_attack.get("inference", "No inference provided by attacker.")
             meta["final_attacker_guess"] = attacker_guess
@@ -231,20 +220,18 @@ def adversarial_anonymization(
     logging.warning(f"[Record {record_id}] Max iterations reached. Final leaked: {meta['final_leaked_attributes']}")
     return current_anonymized_response, meta
 
-# --- 已修改：process_record (重新加入 question_asked 传递) ---
 def process_record(pipe, data: Dict[str, Any], max_iterations: int, record_id: int, terminator_ids: List[int]) -> Dict[str, Any]:
     """处理单条记录。"""
     logging.info(f"[Record {record_id}] Starting processing.")
     try:
         personality = data.get("personality")
-        question = str(data.get("question_asked")) # <--- 读取
         response = str(data.get("response"))
     except Exception as e:
         logging.error(f"[Record {record_id}] Failed to read data fields: {e}")
         data["anonymization_meta"] = {"status": "skipped_data_read_error"}
         return data
 
-    if not all([personality, question, response]):
+    if not all([personality, response]):
         logging.warning(f"[Record {record_id}] Skipped due to incomplete data.")
         data["anonymization_meta"] = {"status": "skipped_incomplete_data"}
         return data
@@ -254,10 +241,8 @@ def process_record(pipe, data: Dict[str, Any], max_iterations: int, record_id: i
         data["anonymization_meta"] = {"status": "skipped_invalid_personality"}
         return data
 
-    # 传递 question
     anonymized_response, meta = adversarial_anonymization(
         pipe=pipe,
-        question_asked=question, # <--- 传递
         original_response=response,
         true_personality=personality,
         terminator_ids=terminator_ids,
@@ -286,7 +271,7 @@ def main():
     parser.add_argument("--log_level", type=str, default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR"], help="日志级别")
     args = parser.parse_args()
 
-    # --- Logger Setup (保持不变) ---
+    # --- Logger Setup ---
     log_level = getattr(logging, args.log_level.upper(), logging.INFO)
     log_format = '%(asctime)s - %(levelname)s - %(message)s'
     logging.basicConfig(level=log_level, format=log_format, handlers=[logging.FileHandler(args.log_file, 'w', 'utf-8'), logging.StreamHandler(sys.stdout)])
@@ -295,7 +280,7 @@ def main():
     logging.getLogger("httpcore").setLevel(logging.WARNING)
     logging.info(f"Logging configured at level {args.log_level.upper()}. Library logs suppressed.")
 
-    # --- 数据加载 (保持不变) ---
+    # --- 数据加载 ---
     try:
         with open(args.input_file, 'r', encoding='utf-8') as f: lines = f.readlines()
     except FileNotFoundError:
@@ -303,7 +288,7 @@ def main():
     records_to_process = [json.loads(line) for line in lines if line.strip()]
     if args.limit: records_to_process = records_to_process[:args.limit]
 
-    # --- 模型加载 (保持不变) ---
+    # --- 模型加载 ---
     try:
         gen_pipe, tokenizer = build_pipeline(model_name=args.model_name, device=args.device, dtype=args.dtype, gpu_memory_utilization=args.gpu_memory_utilization)
     except Exception as e:
@@ -311,7 +296,7 @@ def main():
     terminator_ids = [tokenizer.eos_token_id] + [tid for tid in [tokenizer.convert_tokens_to_ids(tok) for tok in ["<|eot_id|>", "<|end_of_text|>", "<|im_end|>"]] if tid is not None and not isinstance(tid, list)]
     logging.info(f"Using terminators: {terminator_ids}")
 
-    # --- 串行处理 (本地版本通常不并行) ---
+    # --- 串行处理 ---
     logging.info(f"Starting sequential processing for {len(records_to_process)} records with model {args.model_name} ...")
     results = []
     counters = {"success": 0, "success_on_original": 0, "max_iterations_reached": 0, "api_error": 0, "skipped_data_read_error": 0, "skipped_incomplete_data": 0, "skipped_invalid_personality": 0, "unknown_fail": 0}
@@ -327,7 +312,7 @@ def main():
             logging.error(f"[Record {i}] Generated an unhandled exception: {exc}", exc_info=True)
             counters["unknown_fail"] += 1
 
-    # --- 结果写入 (保持不变) ---
+    # --- 结果写入 ---
     logging.info(f"\nProcessing complete. Writing {len(results)} results to output files...")
     with open(args.output_file, 'w', encoding='utf-8') as outfile, \
          open(args.success_file, 'w', encoding='utf-8') if args.success_file else open(os.devnull, 'w') as success_out, \
@@ -338,7 +323,7 @@ def main():
             if status in ("success", "success_on_original"): success_out.write(json.dumps(result, ensure_ascii=False) + '\n')
             else: failed_out.write(json.dumps(result, ensure_ascii=False) + '\n')
 
-    # --- 记录最终摘要 (保持不变) ---
+    # --- 记录最终摘要 ---
     logging.info("--- Processing Summary ---")
     logging.info(f"Total records processed: {len(results)}")
     for status, count in counters.items():
