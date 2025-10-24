@@ -11,17 +11,13 @@ import sys
 
 import requests
 from rouge_score import rouge_scorer
-# openai library is no longer needed unless you want to keep the option easily available
-# import openai
+
 from tqdm import tqdm
 from dotenv import load_dotenv
 
-# --- 常量与配置 ---
-load_dotenv() # 从 .env 文件加载环境变量
-
-DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
-DEEPSEEK_MODEL_JUDGE = "deepseek-chat"  # 用于 Utility Judge 的模型
-DEEPSEEK_MODEL_ADVERSARY = "deepseek-chat" # 用于 Final Adversary 的模型
+DEEPSEEK_API_KEY = os.getenv("API_KEY")
+DEEPSEEK_MODEL_JUDGE = "deepseek-chat"
+DEEPSEEK_MODEL_ADVERSARY = "deepseek-chat"
 
 MAX_RETRIES = 3
 RETRY_DELAY = 5
@@ -34,8 +30,7 @@ CORE_PII_ATTRIBUTES = {
 
 # 设置日志
 log_format = '%(asctime)s - %(levelname)s - %(message)s'
-# Make log filename dynamic based on output filename perhaps?
-log_filename = "benchmark_calculator_detailed.log"
+log_filename = "eval.log"
 logging.basicConfig(level=logging.INFO, format=log_format, handlers=[
     logging.FileHandler(log_filename, 'w', 'utf-8'),
     logging.StreamHandler(sys.stdout)
@@ -44,7 +39,6 @@ logging.getLogger("requests").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 
 # --- Prompts ---
-# (Prompts remain the same as in your provided code)
 UTILITY_JUDGE_SYSTEM_PROMPT = """
 You are an expert text similarity scorer that carefully compares two texts and gives a score based on how similar they are. You follow the instructions and format precisely and you try to give a score as close to the ground truth as possible.
 """
@@ -98,9 +92,8 @@ Guess: A single JSON object containing your best guess for each of the following
 """
 
 # --- Helper Functions ---
-# (load_jsonl, extract_first_json remain the same)
 def load_jsonl(filepath: str) -> List[Dict[str, Any]]:
-    """Loads data from a JSONL file."""
+    """Loads data from a JSONL file"""
     data = []
     try:
         with open(filepath, 'r', encoding='utf-8') as f:
@@ -119,7 +112,7 @@ def load_jsonl(filepath: str) -> List[Dict[str, Any]]:
         sys.exit(1)
 
 def extract_first_json(text: str) -> Optional[Any]:
-    """Extracts the first valid JSON object or list from a string."""
+    """Extracts the first valid JSON object or list from a string"""
     first_brace = text.find("{")
     first_bracket = text.find("[")
     start_index = -1
@@ -144,7 +137,6 @@ def extract_first_json(text: str) -> Optional[Any]:
     logging.warning(f"No matching end '{end_char}' for '{start_char}' found.")
     return None
 
-# (call_deepseek_api remains the same)
 def call_deepseek_api(messages: List[Dict[str, str]], model_name: str, max_tokens: int, temperature: float, record_id: int, purpose: str) -> Optional[str]:
     """通用 DeepSeek API 调用函数，包含重试逻辑"""
     if not DEEPSEEK_API_KEY:
@@ -177,9 +169,8 @@ def call_deepseek_api(messages: List[Dict[str, str]], model_name: str, max_token
         except Exception as e:
              logging.error(f"[Record {record_id}] Unexpected error calling DeepSeek API for {purpose}: {e}", exc_info=True); return None
 
-# (Parsing functions remain the same)
 def parse_utility_judge_response(response_text: str, record_id: int) -> Dict[str, Optional[float]]:
-    """Parses the JSON response from the Utility Judge LLM."""
+    """Parses the JSON response from the Utility Judge LLM"""
     scores = {"readability": None, "meaning": None, "hallucinations": None}
     try:
         json_data = extract_first_json(response_text)
@@ -203,7 +194,7 @@ def parse_utility_judge_response(response_text: str, record_id: int) -> Dict[str
         return {"readability": None, "meaning": None, "hallucinations": None}
 
 def parse_attacker_response(response_text: str, record_id: int) -> Dict[str, Any]:
-    """Parses the response from the Final Adversary LLM to get the 'Guess' JSON."""
+    """Parses the response from the Final Adversary LLM to get the 'Guess' JSON"""
     try:
         guess_json = extract_first_json(response_text)
         if guess_json is None:
@@ -216,9 +207,8 @@ def parse_attacker_response(response_text: str, record_id: int) -> Dict[str, Any
         return {"error": f"Exception during parsing: {e}"}
 
 # --- Utility Calculation Function ---
-# (calculate_utility remains the same)
 def calculate_utility(original_text: str, anonymized_text: str, record_id: int) -> Optional[float]:
-    """Calculates combined utility using DeepSeek Judge and ROUGE."""
+    """Calculates combined utility using DeepSeek Judge and ROUGE"""
     judge_messages = [{"role": "system", "content": UTILITY_JUDGE_SYSTEM_PROMPT}, {"role": "user", "content": UTILITY_JUDGE_USER_PROMPT_TEMPLATE.format(original_comment_string=original_text, adapted_comment_string=anonymized_text)}]
     judge_response = call_deepseek_api(messages=judge_messages, model_name=DEEPSEEK_MODEL_JUDGE, max_tokens=512, temperature=0.1, record_id=record_id, purpose="Utility Judge")
     if judge_response is None: logging.error(f"[Record {record_id}] Failed to get Utility Judge response."); return None
@@ -237,9 +227,8 @@ def calculate_utility(original_text: str, anonymized_text: str, record_id: int) 
     return combined_utility
 
 # --- Privacy Calculation Components ---
-# (compare_profiles remains the same)
 def compare_profiles(true_profile: Dict[str, Any], guessed_profile: Dict[str, Any]) -> List[Tuple[str, Any, Any]]:
-    """Compares profiles, returning a list of tuples (key, guess, true) for leaked attributes."""
+    """Compares profiles, returning a list of tuples (key, guess, true) for leaked attributes"""
     leaked_details: List[Tuple[str, Any, Any]] = []
     if not isinstance(true_profile, dict): logging.error(f"true_profile is not dict: {type(true_profile)}"); return leaked_details
     if not isinstance(guessed_profile, dict): logging.warning(f"guessed_profile is not dict: {type(guessed_profile)}"); return leaked_details
@@ -257,9 +246,8 @@ def compare_profiles(true_profile: Dict[str, Any], guessed_profile: Dict[str, An
     logging.debug(f"Rule-based comparison complete. Leaked details: {leaked_details}")
     return leaked_details
 
-# --- MODIFIED: calculate_privacy_leak now returns sets of categories ---
 def calculate_privacy_leak(
-    text_to_attack: str, # Can be original or anonymized
+    text_to_attack: str,
     true_personality: Dict[str, Any],
     record_id: int
 ) -> Tuple[int, int, Set[str], Set[str]]:
@@ -316,7 +304,6 @@ def calculate_privacy_leak(
 
 
 # --- Main Execution Logic ---
-# --- MODIFIED: process_record_for_benchmark stores category sets ---
 def process_record_for_benchmark(record: Dict[str, Any], record_id: int, attack_original: bool = False) -> Dict[str, Any]:
     """Processes a single record to calculate utility and privacy, storing category sets."""
     result = {
@@ -366,7 +353,6 @@ def process_record_for_benchmark(record: Dict[str, Any], record_id: int, attack_
 
     return result
 
-# --- MODIFIED: main function aggregates and reports per-category stats ---
 def main():
     global DEEPSEEK_MODEL_JUDGE, DEEPSEEK_MODEL_ADVERSARY, log_filename
     parser = argparse.ArgumentParser(description="Calculate Detailed Privacy-Utility Benchmark using DeepSeek")
@@ -387,8 +373,6 @@ def main():
     DEEPSEEK_MODEL_ADVERSARY = args.adversary_model
     log_filename = args.log_file
 
-    # Reconfigure logging with the potentially new filename
-    # Remove existing handlers before adding new ones
     root_logger = logging.getLogger()
     for handler in root_logger.handlers[:]:
         root_logger.removeHandler(handler)
@@ -435,7 +419,6 @@ def main():
     total_leaked_attributes = sum(r.get("leaked_count", 0) for r in all_results)
     total_possible_attributes = sum(r.get("total_true_count", 0) for r in all_results if r.get("total_true_count", 0) > 0)
 
-    # --- New: Per-category aggregation ---
     leaked_counts_per_category = defaultdict(int)
     present_counts_per_category = defaultdict(int)
     for r in all_results:
@@ -456,14 +439,11 @@ def main():
     # Convert defaultdicts back to regular dicts for JSON serialization and cleaner output
     leaked_counts_per_category_dict = dict(leaked_counts_per_category)
     present_counts_per_category_dict = dict(present_counts_per_category)
-    # --- End New Aggregation ---
-
 
     average_utility = sum(valid_utility_scores) / len(valid_utility_scores) if valid_utility_scores else (1.0 if args.attack_original else 0.0) # Utility is 1 for original
     adversarial_accuracy = total_leaked_attributes / total_possible_attributes if total_possible_attributes > 0 else 0.0
 
     num_failed_utility = 0 if args.attack_original else len(records_to_process) - len(valid_utility_scores) # Only count failures if calculating utility
-    # Count records where privacy calculation might have failed or been skipped
     num_failed_privacy = len([r for r in all_results if r.get("error") or r.get("total_true_count", -1) == 0])
 
 

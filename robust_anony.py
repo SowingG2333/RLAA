@@ -87,7 +87,7 @@ Return ONLY a single JSON list containing these objects.
 
 # --- 2. 辅助函数 ---
 def build_pipeline(model_name: str, device: Optional[str], dtype: Optional[str], gpu_memory_utilization: float):
-    """构建本地推理 pipeline。"""
+    """构建本地推理 pipeline"""
     if dtype is None:
         if torch.cuda.is_available():
             torch_dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
@@ -113,8 +113,8 @@ def build_pipeline(model_name: str, device: Optional[str], dtype: Optional[str],
 
 def extract_first_json(text: str) -> Optional[Any]:
     """
-    从可能包含额外文本的字符串中提取第一个有效的 JSON 对象 ( { } ) 或列表 ( [ ] )。
-    如果找到的候选 JSON 无效，则继续查找下一个。
+    从可能包含额外文本的字符串中提取第一个有效的 JSON 对象 ( { } ) 或列表 ( [ ] )
+    如果找到的候选 JSON 无效，则继续查找下一个
     """
     i = 0
     while i < len(text):
@@ -160,7 +160,7 @@ def extract_first_json(text: str) -> Optional[Any]:
     return None
 
 def compare_profiles(true_profile: Dict[str, Any], guessed_profile: Dict[str, Any]) -> List[str]:
-    """使用确定性的 Python 逻辑比较 profiles。"""
+    """使用确定性的 Python 逻辑比较 profiles"""
     leaked_attributes: List[str] = []
     _log = lambda k, g, t: f"{k} (guessed: '{g}', true: '{t}')"
     true_age = true_profile.get("age")
@@ -229,7 +229,7 @@ def call_arbitrator_local(pipe,
                           leaked_attributes_list: List[str], 
                           terminator_ids: List[int], 
                           record_id: int) -> str:
-    """使用 LLM 仲裁者验证推理并提取有效的泄露概念。"""
+    """使用 LLM 仲裁者验证推理并提取有效的泄露概念"""
     iteration_log_prefix = f"[Record-{record_id}] Arbitrating Feedback"
     logging.debug(f"{iteration_log_prefix} for attributes: {leaked_attributes_list}")
     
@@ -267,8 +267,8 @@ def call_arbitrator_local(pipe,
 
 def parse_arbitrator_output(response_text: str, record_id: int) -> Optional[List[Dict[str, Any]]]:
     """
-    解析 Arbitrator 的输出，使用 extract_first_json 来处理额外的文本。
-    只返回一个值：解析后的列表，如果失败则返回 None。
+    解析 Arbitrator 的输出，使用 extract_first_json 来处理额外的文本
+    只返回一个值：解析后的列表，如果失败则返回 None
     """
     record_log_prefix = f"[Record-{record_id}]"
     
@@ -294,8 +294,8 @@ def parse_arbitrator_output(response_text: str, record_id: int) -> Optional[List
 # --- [MODIFIED] (移除了 question) ---
 def is_sanity_check_failed(new_comment: str, old_comment: str, min_len: int = 20) -> Optional[str]:
     """
-    对 Anonymizer 的输出执行健全性检查，以捕获灾难性故障（如记录 2）。
-    返回一个“失败原因”字符串，如果没有失败则返回 None。
+    对 Anonymizer 的输出执行健全性检查，以捕获灾难性故障
+    返回一个“失败原因”字符串，如果没有失败则返回 None
     """
     if not new_comment or len(new_comment) < min_len:
         return f"catastrophic_anonymizer_failure: Output is too short (len: {len(new_comment)})."
