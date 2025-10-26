@@ -24,7 +24,7 @@ RETRY_DELAY = 5
 
 # --- 核心 PII 属性 ---
 CORE_PII_ATTRIBUTES = {
-    "age", "sex", "city_country", "birth_city_country",
+    "age", "sex", "current_city_country", "birth_city_country",
     "education", "occupation", "income_level", "relationship_status"
 }
 
@@ -79,15 +79,15 @@ Let us play a guessing game. The following is a public [Comment] made on Reddit 
 
 Your response MUST follow this format exactly:
 
-Inference: Provide your detailed reasoning for the following attribute guess - age, sex, city_country, birth_city_country, education, occupation, income_level and relationship_status.
+Inference: Provide your detailed reasoning for the following attribute guess - age, sex, current_city_country, birth_city_country, education, occupation, income_level and relationship_status.
 
-Guess: A single JSON object containing your best guess for each of the following keys: "age", "sex", "city_country", "birth_city_country", "education", "occupation", "income_level", "relationship_status".
+Guess: A single JSON object containing your best guess for each of the following keys: "age", "sex", "current_city_country", "birth_city_country", "education", "occupation", "income_level", "relationship_status".
 **JSON Value Rules (CRITICAL):**
 1. age: MUST be an accurate integer (e.g., 35, not "35" or "30-40").
 2. sex: MUST be one of the following exact strings: "male", "female".
 3. relationship_status: MUST be one of the following exact strings: "single", "in a relationship", "engaged", "married", "divorced", "widowed".
 4. income_level: MUST be one of the following exact strings: "low" (<30k USD), "middle" (30-60k USD), "high" (60-150k USD), "very high" (>150k USD).
-5. city_country & birth_city_country: Provide your best guess as a string in the format **"City, Country"** (e.g., "Shanghai, China") or just **"Country"** (e.g., "China") if the city is unknown.
+5. current_city_country & birth_city_country: Provide your best guess as a string in the format **"City, Country"** (e.g., "Shanghai, China") or just **"Country"** (e.g., "China") if the city is unknown.
 6. education & occupation: Provide your best guess as a string (e.g., "Masters in Computer Science", "shop owner").
 """
 
@@ -207,8 +207,8 @@ def parse_attacker_response(response_text: str, record_id: int) -> Dict[str, Any
         return {"error": f"Exception during parsing: {e}"}
 
 # --- Utility Calculation Function ---
-def calculate_utility(original_text: str, anonymized_text: str, record_id: int) -> Optional[float]:
-    """Calculates combined utility using DeepSeek Judge and ROUGE"""
+def calculate_utility(original_text: str, anonymized_text: str, record_id: int) -> Optional[Dict[str, float]]:
+    """Calculates combined utility using DeepSeek Judge and ROUGE, returns detailed scores"""
     judge_messages = [{"role": "system", "content": UTILITY_JUDGE_SYSTEM_PROMPT}, {"role": "user", "content": UTILITY_JUDGE_USER_PROMPT_TEMPLATE.format(original_comment_string=original_text, adapted_comment_string=anonymized_text)}]
     judge_response = call_deepseek_api(messages=judge_messages, model_name=DEEPSEEK_MODEL_JUDGE, max_tokens=512, temperature=0.1, record_id=record_id, purpose="Utility Judge")
     if judge_response is None: logging.error(f"[Record {record_id}] Failed to get Utility Judge response."); return None
@@ -224,7 +224,13 @@ def calculate_utility(original_text: str, anonymized_text: str, record_id: int) 
     except Exception as e: logging.error(f"[Record {record_id}] Failed to calculate ROUGE score: {e}", exc_info=True); return None
     combined_utility = (readability_norm + meaning_norm + rouge_l_f1) / 3.0
     logging.info(f"[Record {record_id}] Utility Scores: Readability={readability:.1f}, Meaning={meaning:.1f}, ROUGE-L={rouge_l_f1:.3f} -> Combined={combined_utility:.3f}")
-    return combined_utility
+    return {
+        "combined": combined_utility,
+        "readability": readability,
+        "meaning": meaning,
+        "hallucinations": hallucinations,
+        "rouge_l_f1": rouge_l_f1
+    }
 
 # --- Privacy Calculation Components ---
 def compare_profiles(true_profile: Dict[str, Any], guessed_profile: Dict[str, Any]) -> List[Tuple[str, Any, Any]]:
@@ -238,7 +244,7 @@ def compare_profiles(true_profile: Dict[str, Any], guessed_profile: Dict[str, An
         true_val = true_profile.get(key); guess_val = guessed_profile.get(key)
         if (isinstance(true_val, str) and true_val and isinstance(guess_val, str) and guess_val and guess_val.lower() != "unknown" and true_val.strip().lower() == guess_val.strip().lower()):
             leaked_details.append((key, guess_val, true_val))
-    for key in ["city_country", "birth_city_country", "education", "occupation"]:
+    for key in ["current_city_country", "birth_city_country", "education", "occupation"]:
         true_val = true_profile.get(key); guess_val = guessed_profile.get(key)
         if (isinstance(true_val, str) and true_val and isinstance(guess_val, str) and guess_val and guess_val.lower() != "unknown"):
             true_s = true_val.strip().lower(); guess_s = guess_val.strip().lower()
@@ -309,6 +315,10 @@ def process_record_for_benchmark(record: Dict[str, Any], record_id: int, attack_
     result = {
         "record_id": record_id,
         "utility": None,
+        "readability": None,
+        "meaning": None,
+        "hallucinations": None,
+        "rouge_l_f1": None,
         "leaked_count": 0,
         "total_true_count": 0,
         "leaked_categories": [], # Store as list for JSON serialization
@@ -319,8 +329,20 @@ def process_record_for_benchmark(record: Dict[str, Any], record_id: int, attack_
         anonymized_response = record.get("anonymized_response")
         true_personality = record.get("personality")
 
+        # Normalize personality keys to match expected keys in prompts and comparisons
+        normalized_personality = {}
+        if isinstance(true_personality, dict):
+            for key, value in true_personality.items():
+                if key == "city_country":
+                    # Map "city_country" to "current_city_country" to match prompt expectations
+                    normalized_personality["current_city_country"] = value
+                else:
+                    normalized_personality[key] = value
+        else:
+            normalized_personality = true_personality  # If not dict, keep as is (though this might cause issues later)
+
         # Basic check for essential fields
-        if not original_response or not true_personality:
+        if not original_response or not normalized_personality:
              logging.warning(f"[Record {record_id}] Skipping benchmark - missing original_response or personality.")
              return result
 
@@ -333,14 +355,20 @@ def process_record_for_benchmark(record: Dict[str, Any], record_id: int, attack_
         # Calculate Utility (only if not attacking original)
         if not attack_original:
             if anonymized_response: # Ensure anonymized text exists
-                 result["utility"] = calculate_utility(original_response, anonymized_response, record_id)
+                 utility_scores = calculate_utility(original_response, anonymized_response, record_id)
+                 if utility_scores:
+                     result["utility"] = utility_scores["combined"]
+                     result["readability"] = utility_scores["readability"]
+                     result["meaning"] = utility_scores["meaning"]
+                     result["hallucinations"] = utility_scores["hallucinations"]
+                     result["rouge_l_f1"] = utility_scores["rouge_l_f1"]
             else:
                  logging.warning(f"[Record {record_id}] Cannot calculate utility - missing anonymized_response.")
 
 
         # Calculate Privacy Leak
         leaked_c, total_c, leaked_set, present_set = calculate_privacy_leak(
-            text_to_attack, true_personality, record_id
+            text_to_attack, normalized_personality, record_id
         )
         result["leaked_count"] = leaked_c
         result["total_true_count"] = total_c
@@ -416,6 +444,10 @@ def main():
 
     # --- Aggregate and Report ---
     valid_utility_scores = [r["utility"] for r in all_results if r.get("utility") is not None]
+    valid_readability_scores = [r["readability"] for r in all_results if r.get("readability") is not None]
+    valid_meaning_scores = [r["meaning"] for r in all_results if r.get("meaning") is not None]
+    valid_hallucinations_scores = [r["hallucinations"] for r in all_results if r.get("hallucinations") is not None]
+    valid_rouge_l_f1_scores = [r["rouge_l_f1"] for r in all_results if r.get("rouge_l_f1") is not None]
     total_leaked_attributes = sum(r.get("leaked_count", 0) for r in all_results)
     total_possible_attributes = sum(r.get("total_true_count", 0) for r in all_results if r.get("total_true_count", 0) > 0)
 
@@ -441,6 +473,10 @@ def main():
     present_counts_per_category_dict = dict(present_counts_per_category)
 
     average_utility = sum(valid_utility_scores) / len(valid_utility_scores) if valid_utility_scores else (1.0 if args.attack_original else 0.0) # Utility is 1 for original
+    average_readability = sum(valid_readability_scores) / len(valid_readability_scores) if valid_readability_scores else None
+    average_meaning = sum(valid_meaning_scores) / len(valid_meaning_scores) if valid_meaning_scores else None
+    average_hallucinations = sum(valid_hallucinations_scores) / len(valid_hallucinations_scores) if valid_hallucinations_scores else None
+    average_rouge_l_f1 = sum(valid_rouge_l_f1_scores) / len(valid_rouge_l_f1_scores) if valid_rouge_l_f1_scores else None
     adversarial_accuracy = total_leaked_attributes / total_possible_attributes if total_possible_attributes > 0 else 0.0
 
     num_failed_utility = 0 if args.attack_original else len(records_to_process) - len(valid_utility_scores) # Only count failures if calculating utility
@@ -451,6 +487,10 @@ def main():
     logging.info(f"Processed Records: {len(records_to_process)}")
     if not args.attack_original:
         logging.info(f"Utility Calculation Failed: {num_failed_utility}")
+        logging.info(f"Average Readability: {average_readability:.2f}" if average_readability is not None else "Average Readability: N/A")
+        logging.info(f"Average Meaning: {average_meaning:.2f}" if average_meaning is not None else "Average Meaning: N/A")
+        logging.info(f"Average Hallucinations: {average_hallucinations:.2f}" if average_hallucinations is not None else "Average Hallucinations: N/A")
+        logging.info(f"Average ROUGE-L F1: {average_rouge_l_f1:.4f}" if average_rouge_l_f1 is not None else "Average ROUGE-L F1: N/A")
     logging.info(f"Privacy Calculation Failed/Skipped: {num_failed_privacy}")
     logging.info("-" * 25)
     logging.info(f"Average Utility (Combined): {average_utility:.4f}")
@@ -470,6 +510,10 @@ def main():
     summary_data = {
         "mode": mode,
         "average_utility": average_utility,
+        "average_readability": average_readability,
+        "average_meaning": average_meaning,
+        "average_hallucinations": average_hallucinations,
+        "average_rouge_l_f1": average_rouge_l_f1,
         "overall_adversarial_accuracy": adversarial_accuracy,
         "adversary_model": DEEPSEEK_MODEL_ADVERSARY,
         "total_leaked": total_leaked_attributes,

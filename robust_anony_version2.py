@@ -13,28 +13,19 @@ from tqdm import tqdm
 # --- Prompts---
 PROMPT_ANONYMIZER_SYSTEM = """
 You are an expert anonymizer that carefully adapts small parts of the text to make it anonymous. You follow the instructions and format precisely and you try to change as little as possible, keeping the original text in tact as much as possible. Only generalize information and do not invent new information.
-
-When asked to neutralize stylistic cues (often marked as 'Validity: medium'), you rephrase text to be more neutral without changing the core meaning.
-
-Example of neutralizing a 'high' validity (entity) leak:
-- Original: "I live in Paris and work at Google."
-- Anonymized: "I live in a large European city and work at a major tech company."
-
-Example of neutralizing a 'medium' validity (stylistic) leak:
-- Original: "Yeah mate, I reckon that's a tops idea, bloody brilliant." (Attacker infers 'male' from 'mate', 'bloody')
-- Anonymized: "Yes, I agree that's a great idea, truly brilliant."
-
-Example of neutralizing a 'medium' validity (topic) leak:
-- Original: "I spent all weekend detailing my new F-150, that V8 engine is a beast." (Attacker infers 'male' from topic)
-- Anonymized: "I spent all weekend working on my new truck, the engine is a beast." (More generic)
+Example: 'my husband and I' -> 'my partner and I' is valid, but 'my husband and I' -> 'my wife and I' is not.
+Example: 'my husband and I have a dog' -> 'my partner and I have a dog' is valid, but 'my husband and I have a dog' -> 'my partner and I have a cat' is not.
+Example: 'my husband and I' -> 'I' is also valid as it only removes information.
+Example (Neutralizing Style): If feedback indicates 'ya know' implies a certain age group, changing 'ya know' is valid neutral rephrasing. Rewriting the entire sentence with a completely different style is NOT desired.
 """
+
 PROMPT_ANONYMIZER_USER = """
 Below I give you a [Comment] from a user as well as a list of [Leaked Concepts]. Your task is to edit the [Comment] to neutralize these concepts, while keeping the rest of the text intact.
 
 **How to Neutralize:**
-1.  If a concept has `Validity: high`, it's a direct leak (like a name or city). You MUST generalize or remove the specific [Reasoning Evidence].
-2.  If a concept has `Validity: medium`, it's often a stylistic or topical leak (like slang, tone, or topic choice implying gender). You MUST rephrase the text identified in [Reasoning Evidence] to be more neutral, while preserving the core meaning.
-3.  Change as little as possible.
+1. If a concept has `validity_level: "high"`, it's likely a direct leak (e.g., specific name, location). Focus on **generalizing** the specific word(s) identified in `reasoning_evidence` (e.g., "Paris" -> "a major city").
+2. If a concept has `validity_level: "medium"`, it might be a leak based on style, tone, or topic choice (e.g., implying gender, age). Focus on **rephrasing** the phrase(s) in `reasoning_evidence` to be more neutral or generic. **Crucially, ensure the core meaning and intent of the original phrase are preserved** after rephrasing.
+3. **Try to address them with a minimal change if possible. Prioritize addressing concepts with "high" validity.**
 
 [Comment]:
 {user_response}
@@ -42,7 +33,7 @@ Below I give you a [Comment] from a user as well as a list of [Leaked Concepts].
 [Leaked Concepts]:
 {feedback}
 
-In a first step, briefly explain the changes you will make (generalizations, removals, or stylistic rephrasing) to invalidate the attacker's inference.
+In a first step, briefly explain the changes you will make to invalidate the attacker's inference.
 In a new line, write a single #
 **Then, ONLY return the anonymized text without any extra preamble like "Here is the anonymized text:" or suffix like "Note:". **
 """
@@ -56,52 +47,52 @@ Let us play a guessing game. The following is a public [Comment] made on Reddit 
 [Comment]:
 {user_response}
 
-Your response MUST follow this format exactly:
+Your response must follow this format exactly:
 
-Inference: Provide your detailed reasoning for the following attribute guess - age, sex, city_country, birth_city_country, education, occupation, income_level and relationship_status.
+Inference: Provide your detailed reasoning for the following attribute guess - age, sex, current_city_country, birth_city_country, education, occupation, income_level and relationship_status.
 
-Guess: A single JSON object containing your best guess for each of the following keys: "age", "sex", "city_country", "birth_city_country", "education", "occupation", "income_level", "relationship_status".
+Guess: A single JSON object containing your best guess for each of the following keys: "age", "sex", "current_city_country", "birth_city_country", "education", "occupation", "income_level", "relationship_status".
 **JSON Value Rules (CRITICAL):**
-1. age: MUST be an accurate integer (e.g., 35, not "35" or "30-40") or string "unknown".
-2. sex: MUST be one of the following exact strings: "male", "female", or "unknown".
-3. relationship_status: MUST be one of the following exact strings: "single", "in a relationship", "engaged", "married", "divorced", "widowed", or "unknown".
-4. income_level: MUST be one of the following exact strings: "low", "middle", "high", "very high", or "unknown".
-5. city_country & birth_city_country: Provide your best guess as a string in the format **"City, Country"** (e.g., "Shanghai, China") or just **"Country"** (e.g., "China") if the city is unknown, or "unknown".
+1. age: must be an accurate integer (e.g., 35, not "35" or "30-40") or string "unknown".
+2. sex: must be one of the following exact strings: "male", "female", or "unknown".
+3. relationship_status: must be one of the following exact strings: "single", "in a relationship", "engaged", "married", "divorced", "widowed", or "unknown".
+4. income_level: must be one of the following exact strings: "low", "middle", "high", "very high", or "unknown".
+5. current_city_country & birth_city_country: Provide your best guess as a string in the format **"City, Country"** (e.g., "Shanghai, China") or just **"Country"** (e.g., "China") if the city is unknown, or "unknown".
 6. education & occupation: Provide your best guess as a string (e.g., "Masters in Computer Science", "shop owner") or "unknown".
-7. **MOST IMPORTANT: If you cannot reasonably infer an attribute with high confidence, you MUST use the string value "unknown" instead of randomly guessing an answer.**
+7. **If you cannot reasonably infer an attribute with high confidence, you must use the string value "unknown" instead of randomly guessing an answer.**
 """
 
 PROMPT_ARBITRATOR_SYSTEM = """
 You are an expert Arbitrator. Your job is to validate an Attacker's reasoning and extract the core concepts behind valid leaks.
-You MUST output a single, valid JSON list.
+You must output a single, valid JSON list.
 """
 PROMPT_ARBITRATOR_USER = """
-Below is an [Attacker Reasoning] block, a [List of Leaked Attributes] and the [Comment] text.
+Below is an [Attacker Reasoning] block, a [Attributes to protect] and the [Comment] text.
 
-Your task is to analyze EACH leaked attribute and determine the **validity level** of the Attacker's reasoning for it.
+Your task is to analyze EACH attribute and determine the **validity level** of the Attacker's reasoning for it.
 A reasoning's validity level is defined as:
-1.  `"high"`: Reasoning is based on a **direct statement** or an **undeniable logical deduction** from the [Comment] (e.g., [Comment] says "I live in Paris", Attacker guesses "Paris, France").
-2.  `"medium"`: Reasoning is based on a **strong stylistic cue**, **specific topic**, or **strong pattern** (e.g., "use of specific slang like 'mate'", "detailed discussion of fashion design", "use of specific engineering jargon"). **Use this for gender/occupation cues that are based on *specific text* rather than vague feelings.**
-3.  `"low"`: Reasoning is based on a **vague stereotype** or **weak association** (e.g., "polite tone implies female", "using 'ahaha' implies young"). These are generally invalid.
-4.  `"invalid"`: Reasoning is based on information **not found** in the [Comment] or is a clear hallucination.
+1. `"high"`: Reasoning is based on a **direct statement** or an **undeniable logical deduction** from the [Comment] (e.g., [Comment] says "I live in Paris", Attacker guesses "Paris, France").
+2. `"medium"`: Reasoning is based on a **strong stylistic cue**, **specific topic**, or **strong pattern** (e.g., "use of specific slang like 'mate'", "detailed discussion of fashion design", "use of specific engineering jargon"). **Use this for gender/occupation cues that are based on *specific text* rather than vague feelings.**
+3. `"low"`: Reasoning is based on a **vague stereotype** or **weak association** (e.g., "polite tone implies female", "using 'ahaha' implies young"). These are generally invalid.
+4. `"invalid"`: Reasoning is based on information **not found** in the [Comment] or is a clear hallucination.
 
 For EACH leaked attribute, provide a JSON object with the following fields:
 - "attribute": The name of the leaked attribute (e.g., "age").
 - "validity_level": The validity level as a string: "high", "medium", "low", or "invalid".
 - "reasoning_evidence": The specific phrase(s) from the [Comment] that the Attacker used.
 - "leaked_concept": If validity is "high" or "medium", describe the concept that needs to be neutralized (e.g., "Author works in fashion industry" or "Author lives in Paris" or "Author uses male-coded slang").
-- "validation_notes": Explain WHY you chose that validity level (e.g., "Medium: Based on specific stylistic cues 'mate' and 'reckon' which are statistically correlated." or "Low: Vague guess based on tone.").
+- "validation_notes": Explain why you chose that validity level (e.g., "Medium: Based on specific stylistic cues 'mate' and 'reckon' which are statistically correlated." or "Low: Vague guess based on tone.").
 
 Return ONLY a single JSON list containing these objects.
 
 [Comment]:
 {current_comment}
 
+[Attributes to protect]:
+{attributes_to_protect}
+
 [Attacker Reasoning]:
 {attacker_inference_block}
-
-[List of Leaked Attributes]:
-{leaked_attributes_list}
 
 [Arbitrator's JSON Output]:
 """
@@ -171,38 +162,14 @@ def extract_first_json(text: str) -> Optional[Any]:
                         return json.loads(candidate)
                     except json.JSONDecodeError as e:
                         logging.warning(f"Found matching brackets but invalid JSON: {e}. Text: {candidate[:100]}... Continuing search.")
-                        i = j + 1  # 继续从下一个位置查找
+                        i = j + 1 # 继续从下一个位置查找
                         break
         else:
             logging.warning("Found JSON start but no matching end bracket/brace. Continuing search.")
-            i = start_index + 1  # 继续从下一个位置查找
+            i = start_index + 1 # 继续从下一个位置查找
     
     logging.debug("No valid JSON found after searching entire text.")
     return None
-
-def compare_profiles(true_profile: Dict[str, Any], guessed_profile: Dict[str, Any]) -> List[str]:
-    """使用确定性的 Python 逻辑比较 profiles"""
-    leaked_attributes: List[str] = []
-    _log = lambda k, g, t: f"{k} (guessed: '{g}', true: '{t}')"
-    true_age = true_profile.get("age")
-    guessed_age = guessed_profile.get("age")
-    if isinstance(true_age, int) and isinstance(guessed_age, int) and abs(true_age - guessed_age) <= 3:
-        leaked_attributes.append(_log("age", guessed_age, true_age))
-    for key in ["sex", "relationship_status"]:
-        true_val = true_profile.get(key)
-        guess_val = guessed_profile.get(key)
-        if isinstance(true_val, str) and isinstance(guess_val, str) and true_val and guess_val and guess_val != "unknown" and true_val.strip().lower() == guess_val.strip().lower():
-            leaked_attributes.append(_log(key, guess_val, true_val))
-    for key in ["city_country", "birth_city_country", "education", "occupation", "income_level"]:
-        true_val = true_profile.get(key)
-        guess_val = guessed_profile.get(key)
-        if isinstance(true_val, str) and isinstance(guess_val, str) and true_val and guess_val and guess_val != "unknown":
-            true_s = true_val.strip().lower()
-            guess_s = guess_val.strip().lower()
-            if len(guess_s) >= 3 and ((guess_s in true_s) or (true_s in guess_s)):
-                leaked_attributes.append(_log(key, guess_val, true_val))
-    logging.debug(f"Rule-based comparison complete. Leaked: {leaked_attributes}")
-    return leaked_attributes
 
 def parse_attacker_output(response_text: str) -> Dict[str, Any]:
     """从攻击者的自由格式输出中解析 *非结构化的推理* 和 猜测(JSON)。"""
@@ -215,12 +182,14 @@ def parse_attacker_output(response_text: str) -> Dict[str, Any]:
         else:
             logging.warning("Could not find 'Inference:' block in attacker output.")
             inference_block = "No Inference block found."
+        
         guess_json = extract_first_json(response_text)
         if guess_json is None:
              guess_json = {"error": "No JSON object found in attacker output"}
     except Exception as e:
         logging.error(f"Error parsing attacker output: {e}\nOutput:\n{response_text[:500]}...", exc_info=True)
         return {"inference": str(e), "guess_json": {}}
+    
     return {"inference": inference_block, "guess_json": guess_json}
 
 def call_attacker_local(pipe, user_response: str, terminator_ids: List[int], record_id: int) -> str:
@@ -233,8 +202,10 @@ def call_attacker_local(pipe, user_response: str, terminator_ids: List[int], rec
     messages = [{"role": "system", "content": PROMPT_ATTACKER_SYSTEM.strip()}, {"role": "user", "content": user_content}]
     prompt = pipe.tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
     logging.debug(f"{iteration_log_prefix} --- Attacker PROMPT ---\n{prompt}\n--- End ---")
+    
     temperature = 0.1
     do_sample = temperature > 0.0
+    
     try:
         outputs = pipe(prompt, max_new_tokens=1024, eos_token_id=terminator_ids, do_sample=do_sample, temperature=temperature if do_sample else None, top_p=0.9 if do_sample else None, pad_token_id=pipe.tokenizer.eos_token_id, return_full_text=False)
         response_text = outputs[0]["generated_text"]
@@ -247,20 +218,20 @@ def call_attacker_local(pipe, user_response: str, terminator_ids: List[int], rec
 def call_arbitrator_local(pipe,
                           current_comment: str, 
                           attacker_inference_block: str, 
-                          leaked_attributes_list: List[str], 
+                          attributes_to_protect: List[str], 
                           terminator_ids: List[int], 
                           record_id: int) -> str:
     """使用 LLM 仲裁者验证推理并提取有效的泄露概念"""
     iteration_log_prefix = f"[Record-{record_id}] Arbitrating Feedback"
-    logging.debug(f"{iteration_log_prefix} for attributes: {leaked_attributes_list}")
+    logging.debug(f"{iteration_log_prefix} for attributes: {attributes_to_protect}")
     
-    if not leaked_attributes_list:
+    if not attributes_to_protect:
         return "[]" # 返回一个空的 JSON 列表
 
     user_content = PROMPT_ARBITRATOR_USER.format(
         current_comment=current_comment,
         attacker_inference_block=attacker_inference_block,
-        leaked_attributes_list=json.dumps(leaked_attributes_list)
+        attributes_to_protect=json.dumps(attributes_to_protect)
     )
     messages = [{"role": "system", "content": PROMPT_ARBITRATOR_SYSTEM.strip()}, {"role": "user", "content": user_content}]
     prompt = pipe.tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
@@ -268,20 +239,22 @@ def call_arbitrator_local(pipe,
     
     temperature = 0.0 # 零温，使其具有确定性
     do_sample = temperature > 0.0
+    
     try:
         outputs = pipe(prompt, max_new_tokens=1024, eos_token_id=terminator_ids, do_sample=do_sample, temperature=temperature if do_sample else None, top_p=None, pad_token_id=pipe.tokenizer.eos_token_id, return_full_text=False)
-        # 尝试从 LLM 的（可能混乱的）输出中提取 JSON 列表
         response_text = outputs[0]["generated_text"].strip()
+        
         start = response_text.find("[")
         end = response_text.rfind("]")
+        
         if start != -1 and end != -1:
             arbitrator_json_output = response_text[start:end+1]
             logging.debug(f"{iteration_log_prefix} --- ARBITRATOR FULL OUTPUT (Raw) ---\n{response_text}\n--- End ---")
             logging.debug(f"{iteration_log_prefix} --- ARBITRATOR PARSED JSON ---\n{arbitrator_json_output}\n--- End ---")
             return arbitrator_json_output
         else:
-             logging.warning(f"{iteration_log_prefix} Could not find JSON list '[]' in Arbitrator output. Returning empty list.")
-             return "[]"
+            logging.warning(f"{iteration_log_prefix} Could not find JSON list '[]' in Arbitrator output. Returning empty list.")
+            return "[]"
     except Exception as e:
         logging.error(f"{iteration_log_prefix} Error during local feedback arbitration.", exc_info=True)
         return f"[]" # 失败时返回空列表
@@ -338,8 +311,10 @@ def call_anonymizer_local(pipe, user_response: str, feedback: str, terminator_id
     messages = [{"role": "system", "content": PROMPT_ANONYMIZER_SYSTEM.strip()}, {"role": "user", "content": user_content}]
     prompt = pipe.tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
     logging.debug(f"{iteration_log_prefix} --- Anonymizer PROMPT ---\n{prompt}\n--- End ---")
+    
     temperature = 0.5
     do_sample = temperature > 0.0
+    
     try:
         outputs = pipe(prompt, max_new_tokens=512, eos_token_id=terminator_ids, do_sample=do_sample, temperature=temperature if do_sample else None, top_p=0.9 if do_sample else None, pad_token_id=pipe.tokenizer.eos_token_id, return_full_text=False)
         response_text = outputs[0]["generated_text"]
@@ -355,8 +330,8 @@ def call_anonymizer_local(pipe, user_response: str, feedback: str, terminator_id
             final_response = final_response.split("<|end_of_text|>")[0].strip()
             return final_response
         else:
-             logging.warning(f"{iteration_log_prefix} Anonymizer failed to produce '#'. Using raw output.")
-             return response_text.strip().strip('"').strip()
+            logging.warning(f"{iteration_log_prefix} Anonymizer failed to produce '#'. Using raw output.")
+            return response_text.strip().strip('"').strip()
     except Exception as e:
         logging.error(f"{iteration_log_prefix} Error during local anonymization.", exc_info=True)
         return user_response
@@ -375,7 +350,48 @@ def adversarial_anonymization(
     执行 "Attacker -> Python Judge -> LLM Filter -> Anonymizer" 架构
     """
     
-    CORE_PII_ATTRIBUTES = {"age", "city_country", "birth_city_country", "education", "occupation", "relationship_status", "sex", "income_level"}
+    CORE_PII_ATTRIBUTES = {"age", "education", "income_level", "current_city_country", "occupation", "relationship_status", "sex"}
+    attributes_to_protect = sorted(CORE_PII_ATTRIBUTES)
+
+    def evaluate_leaks(comment_text: str, inference_block: str, context_label: str) -> Tuple[bool, str, List[Dict[str, Any]]]:
+        arbitrator_raw_output = call_arbitrator_local(
+            pipe,
+            comment_text,
+            inference_block,
+            attributes_to_protect,
+            terminator_ids,
+            record_id
+        )
+        arbitration_results = parse_arbitrator_output(arbitrator_raw_output, record_id)
+        
+        if arbitration_results is None:
+            logging.error(f"{context_label} LLM Judge failed to produce valid JSON list. Using raw inference as feedback.")
+            return True, inference_block, []
+        
+        validated_items: List[Dict[str, Any]] = []
+        for item in arbitration_results:
+            validity = str(item.get("validity_level", "")).lower()
+            if validity in ("high", "medium"):
+                validated_items.append(item)
+        
+        if not validated_items:
+            logging.info(f"{context_label} No validated leaks detected by Arbitrator.")
+            return False, "", []
+        
+        lines = [
+            "The attacker's reasoning for the protected attributes (validated by the Judge) is as follows:",
+            ""
+        ]
+        for entry in validated_items:
+            lines.append(f"**Attribute:** {entry.get('attribute')}")
+            lines.append(f"**Validity:** {entry.get('validity_level')}")
+            lines.append(f"**Leaked Concept:** {entry.get('leaked_concept')}")
+            lines.append(f"**Reasoning Evidence:** {json.dumps(entry.get('reasoning_evidence'))}")
+            lines.append("")
+        
+        filtered_feedback = "\n".join(lines).strip()
+        logging.info(f"{context_label} Validated leaks: {[entry.get('attribute') for entry in validated_items]}")
+        return True, filtered_feedback, validated_items
 
     current_anonymized_response = original_response
     meta = {"status": "max_iterations_reached", "iterations_used": 0, "final_leaked_attributes": [], "final_attacker_guess": {}}
@@ -389,68 +405,30 @@ def adversarial_anonymization(
         attacker_guess = parsed_attack.get("guess_json", {})
         full_inference_block = parsed_attack.get("inference", "No reasoning provided.")
         meta["final_attacker_guess"] = attacker_guess
+        
         if "error" in attacker_guess:
             raise ValueError(f"Failed to parse attacker output: {attacker_guess.get('error')}")
+            
     except Exception as e:
         logging.error(f"[Record {record_id}][Round 0] Initial Attacker/Parser failed: {e}", exc_info=True)
         meta["status"] = "model_error"; meta["error"] = f"initial_attacker_error: {e}"
         return current_anonymized_response, meta
 
-    # --- 步骤 0.5: 初始评判 (Python Judge) ---
-    leaked = compare_profiles(true_personality, attacker_guess)
-    meta["final_leaked_attributes"] = leaked
-    leaked_attribute_names = [detail.split(" ")[0] for detail in leaked]
-    core_leaked_names = set(leaked_attribute_names).intersection(CORE_PII_ATTRIBUTES)
+    # 0.5: 仲裁初始攻击结果
+    leaks_detected, filtered_feedback, arbitration_items = evaluate_leaks(
+        original_response,
+        full_inference_block,
+        f"[Record {record_id}][Round 0]"
+    )
+    meta["final_leaked_attributes"] = [f"{item.get('attribute')} ({item.get('validity_level')})" for item in arbitration_items]
 
-    if not core_leaked_names:
-        non_core_leaked = set(leaked_attribute_names).difference(CORE_PII_ATTRIBUTES)
-        logging.info(f"[Record {record_id}] Success on original text (0 iterations). No Core PII leaks found. (Non-core leaks: {non_core_leaked or 'None'})")
+    if not leaks_detected:
+        logging.info(f"[Record {record_id}] Success on original text (0 iterations). No validated leaks found.")
         meta["status"] = "success_on_original"; meta["iterations_used"] = 0
         return original_response, meta
-    
-    logging.info(f"[Record {record_id}] Initial attack leaked Core PII: {list(core_leaked_names)}. (All leaks: {list(leaked_attribute_names)})")
 
-    # --- 步骤 0.75: 初始反馈过滤 (LLM Judge) ---
-    logging.info(f"[Record {record_id}][Round 0] Filtering feedback...")
-    
-    arbitrator_raw_output = call_arbitrator_local(
-        pipe, 
-        original_response, 
-        full_inference_block, 
-        leaked_attribute_names, 
-        terminator_ids, 
-        record_id
-    )
-    
-    try:
-        arbitration_results = parse_arbitrator_output(arbitrator_raw_output, record_id)
-        
-        if arbitration_results is None:
-            logging.error(f"[Record {record_id}][Round 0] LLM Judge (Filter) failed to produce valid JSON list. Using raw (noisy) feedback.")
-            filtered_feedback = full_inference_block # Fallback
-        else:
-            filtered_feedback = "The attacker's reasoning for the correctly guessed attributes (which the Judge validated) is as follows:\n\n"
-            found_valid_reasoning = False
-            for item in arbitration_results:
-                validity = item.get("validity_level", "invalid").lower()
-                if validity in ("high", "medium"): # [MODIFIED] Accept 'high' and 'medium' validity
-                    found_valid_reasoning = True
-                    filtered_feedback += f"**Attribute:** {item.get('attribute')}\n"
-                    filtered_feedback += f"**Validity:** {validity}\n" # [NEW] Pass the validity level
-                    filtered_feedback += f"**Leaked Concept:** {item.get('leaked_concept')}\n"
-                    filtered_feedback += f"**Reasoning Evidence:** {json.dumps(item.get('reasoning_evidence'))}\n\n"
-            
-            # 如果猜对了，但所有推理都是无效的 (例如偏见)，则停止。
-            if not found_valid_reasoning:
-                logging.info(f"[Record {record_id}][Round 0] Success: Attacker core leaks ({list(core_leaked_names)}) were based on invalid reasoning (low/invalid). Stopping.")
-                meta["status"] = "success_arbitrator_invalidated"
-                meta["iterations_used"] = 0 
-                return original_response, meta
-    
-    except Exception as e:
-        logging.error(f"[Record {record_id}][Round 0] Initial Arbitrator/Parser failed: {e}", exc_info=True)
-        meta["status"] = "model_error"; meta["error"] = f"arbitrator_parse_error: {e}"
-        return current_anonymized_response, meta
+    if not filtered_feedback:
+        filtered_feedback = full_inference_block
 
     # --- 循环开始 ---
     for i in range(max_iterations):
@@ -489,65 +467,29 @@ def adversarial_anonymization(
             attacker_guess = parsed_attack.get("guess_json", {})
             full_inference_block = parsed_attack.get("inference", "No reasoning provided.")
             meta["final_attacker_guess"] = attacker_guess
+            
             if "error" in attacker_guess:
                 raise ValueError(f"Failed to parse attacker output: {attacker_guess.get('error')}")
+                
         except Exception as e:
             logging.warning(f"{iteration_log_prefix} Attacker/Parser failed: {e}. Skipping judge for this round.", exc_info=True)
             continue
 
-        # 4) 评判泄露 (Python Judge) & 检查停止条件
-        logging.info(f"{iteration_log_prefix} Calling Judge (compare_profiles)...")
-        leaked = compare_profiles(true_personality, attacker_guess)
-        meta["final_leaked_attributes"] = leaked
-        leaked_attribute_names = [detail.split(" ")[0] for detail in leaked]
-        core_leaked_names = set(leaked_attribute_names).intersection(CORE_PII_ATTRIBUTES)
-        
-        if not core_leaked_names:
-            non_core_leaked = set(leaked_attribute_names).difference(CORE_PII_ATTRIBUTES)
-            logging.info(f"{iteration_log_prefix} Success! No CORE PII attributes leaked. (Non-core leaks: {non_core_leaked or 'None'})")
+        # 4) 仲裁判定与停止条件
+        leaks_detected, filtered_feedback, arbitration_items = evaluate_leaks(
+            current_anonymized_response,
+            full_inference_block,
+            iteration_log_prefix
+        )
+        meta["final_leaked_attributes"] = [f"{item.get('attribute')} ({item.get('validity_level')})" for item in arbitration_items]
+
+        if not leaks_detected:
+            logging.info(f"{iteration_log_prefix} Success! No validated leaks detected.")
             meta["status"] = "success"
             return current_anonymized_response, meta
         
-        # 5) 反馈过滤 (LLM Judge)
-        logging.info(f"{iteration_log_prefix} Failed. Leaked Core PII: {list(core_leaked_names)}. (All leaks: {list(leaked_attribute_names)})")
-        logging.info(f"{iteration_log_prefix} Filtering new feedback...")
-        
-        arbitrator_raw_output = call_arbitrator_local(
-            pipe,
-            current_anonymized_response, 
-            full_inference_block, 
-            leaked_attribute_names, 
-            terminator_ids, 
-            record_id
-        )
-        
-        try:
-            arbitration_results = parse_arbitrator_output(arbitrator_raw_output, record_id)
-            
-            if arbitration_results is None:
-                logging.error(f"{iteration_log_prefix} LLM Judge failed. Using raw (noisy) feedback.")
-                filtered_feedback = full_inference_block # Fallback
-            else:
-                filtered_feedback = "The attacker's reasoning for the correctly guessed attributes (which the Judge validated) is as follows:\n\n"
-                found_valid_reasoning = False
-                for item in arbitration_results:
-                    validity = item.get("validity_level", "invalid").lower()
-                    if validity in ("high", "medium"): # [MODIFIED] Accept 'high' and 'medium' validity
-                        found_valid_reasoning = True
-                        filtered_feedback += f"**Attribute:** {item.get('attribute')}\n"
-                        filtered_feedback += f"**Validity:** {validity}\n" # [NEW] Pass the validity level
-                        filtered_feedback += f"**Leaked Concept:** {item.get('leaked_concept')}\n"
-                        filtered_feedback += f"**Reasoning Evidence:** {json.dumps(item.get('reasoning_evidence'))}\n\n"
-                
-                # 如果在循环中猜对了，但所有推理都是无效的 (例如偏见)，则停止。
-                if not found_valid_reasoning:
-                    logging.info(f"{iteration_log_prefix} Success: Attacker core leaks ({list(core_leaked_names)}) were based on invalid reasoning (low/invalid). Stopping.")
-                    meta["status"] = "success_arbitrator_invalidated"
-                    return current_anonymized_response, meta
-
-        except Exception as e:
-             logging.error(f"{iteration_log_prefix} Feedback filtering failed: {e}", exc_info=True)
-             filtered_feedback = full_inference_block
+        if not filtered_feedback:
+            filtered_feedback = full_inference_block
 
     logging.warning(f"[Record {record_id}] Max iterations reached. Final leaked: {meta['final_leaked_attributes']}")
     return current_anonymized_response, meta
@@ -598,28 +540,34 @@ def main():
     parser.add_argument("--failed_file", type=str, default=None, help="失败记录输出路径")
     parser.add_argument("--max_iterations", type=int, default=3, help="每条记录最大对抗轮数")
     parser.add_argument("--limit", type=int, default=None, help="仅处理前 N 条")
-    parser.add_argument("--max_new_tokens", type=int, default=1024, help="生成的最大新 token 数（Attacker/Arbitrator 需要更大空间）")
+    parser.add_argument("--max_new_tokens", type=int, default=2048, help="生成的最大新 token 数（Attacker/Arbitrator 需要更大空间）")
     parser.add_argument("--log_file", type=str, default="anonymizer_local_arbitrator.log", help="日志文件路径")
     parser.add_argument("--log_level", type=str, default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR"], help="日志级别")
     
     args = parser.parse_args()
+    
     log_level = getattr(logging, args.log_level.upper(), logging.INFO)
     log_format = '%(asctime)s - %(levelname)s - %(message)s'
     handlers = [logging.FileHandler(args.log_file, 'w', 'utf-8'), logging.StreamHandler(sys.stdout)]
     logging.basicConfig(level=log_level, format=log_format, handlers=handlers)
+    
     logging.getLogger("transformers").setLevel(logging.ERROR)
     logging.getLogger("httpx").setLevel(logging.WARNING)
     logging.getLogger("httpcore").setLevel(logging.WARNING)
+    
     logging.info(f"Logging configured at level {args.log_level.upper()}. Library logs suppressed.")
+    
     try:
         with open(args.input_file, 'r', encoding='utf-8') as f:
             lines = f.readlines()
     except FileNotFoundError:
         logging.error(f"Error: Input file not found at '{args.input_file}'")
         sys.exit(1)
+
     records_to_process = [(i, json.loads(line)) for i, line in enumerate(lines) if line.strip()]
     if args.limit:
         records_to_process = records_to_process[:args.limit]
+
     try:
         gen_pipe, tokenizer = build_pipeline(model_name=args.model_name, device=args.device, dtype=args.dtype, gpu_memory_utilization=args.gpu_memory_utilization)
     except Exception as e:
@@ -658,6 +606,7 @@ def main():
             counters["unknown_fail"] += 1
             
     logging.info(f"\nProcessing complete. Writing {len(results)} results to output files...")
+    
     with open(args.output_file, 'w', encoding='utf-8') as outfile, \
             open(args.success_file, 'w', encoding='utf-8') if args.success_file else open(os.devnull, 'w') as success_out, \
             open(args.failed_file, 'w', encoding='utf-8') if args.failed_file else open(os.devnull, 'w') as failed_out:
@@ -677,6 +626,7 @@ def main():
         if count > 0:
             logging.info(f"    {status}: {count}")
     logging.info("--- End Summary ---")
+    
     logging.info(f"Anonymized data saved to '{args.output_file}'.")
     if args.success_file:
         logging.info(f"Successful anonymizations saved to '{args.success_file}'.")
