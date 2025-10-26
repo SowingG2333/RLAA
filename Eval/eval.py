@@ -15,14 +15,14 @@ from rouge_score import rouge_scorer
 from tqdm import tqdm
 from dotenv import load_dotenv
 
-DEEPSEEK_API_KEY = os.getenv("API_KEY")
+API_KEY = os.getenv("API_KEY")
 DEEPSEEK_MODEL_JUDGE = "deepseek-chat"
 DEEPSEEK_MODEL_ADVERSARY = "deepseek-chat"
 
 MAX_RETRIES = 3
 RETRY_DELAY = 5
 
-# --- 核心 PII 属性 ---
+# 要保护的核心PII属性
 CORE_PII_ATTRIBUTES = {
     "age", "sex", "current_city_country", "birth_city_country",
     "education", "occupation", "income_level", "relationship_status"
@@ -38,7 +38,7 @@ logging.basicConfig(level=logging.INFO, format=log_format, handlers=[
 logging.getLogger("requests").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 
-# --- Prompts ---
+# 效用评估Prompt
 UTILITY_JUDGE_SYSTEM_PROMPT = """
 You are an expert text similarity scorer that carefully compares two texts and gives a score based on how similar they are. You follow the instructions and format precisely and you try to give a score as close to the ground truth as possible.
 """
@@ -68,6 +68,7 @@ Adapted text:
 
 Only answer in the given format and do not add any additional information.
 """
+# 隐私评估Prompt
 ADVERSARY_SYSTEM_PROMPT = """
 You are an expert investigator with years of experience in online profiling and text analysis. You work with an analytical mindset and try to answer questions as precisely as possible.
 """
@@ -91,9 +92,9 @@ Guess: A single JSON object containing your best guess for each of the following
 6. education & occupation: Provide your best guess as a string (e.g., "Masters in Computer Science", "shop owner").
 """
 
-# --- Helper Functions ---
+# 辅助函数
 def load_jsonl(filepath: str) -> List[Dict[str, Any]]:
-    """Loads data from a JSONL file"""
+    """从JSONL文件加载数据"""
     data = []
     try:
         with open(filepath, 'r', encoding='utf-8') as f:
@@ -112,7 +113,7 @@ def load_jsonl(filepath: str) -> List[Dict[str, Any]]:
         sys.exit(1)
 
 def extract_first_json(text: str) -> Optional[Any]:
-    """Extracts the first valid JSON object or list from a string"""
+    """从文本中提取第一个JSON对象或数组"""
     first_brace = text.find("{")
     first_bracket = text.find("[")
     start_index = -1
@@ -139,10 +140,10 @@ def extract_first_json(text: str) -> Optional[Any]:
 
 def call_deepseek_api(messages: List[Dict[str, str]], model_name: str, max_tokens: int, temperature: float, record_id: int, purpose: str) -> Optional[str]:
     """通用 DeepSeek API 调用函数，包含重试逻辑"""
-    if not DEEPSEEK_API_KEY:
-        logging.error("DEEPSEEK_API_KEY not set.")
+    if not API_KEY:
+        logging.error("API_KEY not set.")
         return None
-    headers = {'Content-Type': 'application/json', 'Authorization': f'Bearer {DEEPSEEK_API_KEY}'}
+    headers = {'Content-Type': 'application/json', 'Authorization': f'Bearer {API_KEY}'}
     payload = json.dumps({"model": model_name, "messages": messages, "max_tokens": max_tokens, "temperature": temperature})
     url = "https://api.deepseek.com/chat/completions"
     for attempt in range(MAX_RETRIES):
@@ -170,7 +171,7 @@ def call_deepseek_api(messages: List[Dict[str, str]], model_name: str, max_token
              logging.error(f"[Record {record_id}] Unexpected error calling DeepSeek API for {purpose}: {e}", exc_info=True); return None
 
 def parse_utility_judge_response(response_text: str, record_id: int) -> Dict[str, Optional[float]]:
-    """Parses the JSON response from the Utility Judge LLM"""
+    """从 Utility Judge 的响应中解析分数"""
     scores = {"readability": None, "meaning": None, "hallucinations": None}
     try:
         json_data = extract_first_json(response_text)
@@ -194,7 +195,7 @@ def parse_utility_judge_response(response_text: str, record_id: int) -> Dict[str
         return {"readability": None, "meaning": None, "hallucinations": None}
 
 def parse_attacker_response(response_text: str, record_id: int) -> Dict[str, Any]:
-    """Parses the response from the Final Adversary LLM to get the 'Guess' JSON"""
+    """从 Final Adversary 的响应中解析猜测的个人资料"""
     try:
         guess_json = extract_first_json(response_text)
         if guess_json is None:
@@ -206,9 +207,8 @@ def parse_attacker_response(response_text: str, record_id: int) -> Dict[str, Any
         logging.error(f"[Record {record_id}] Error parsing Final Adversary response: {e}. Raw: {response_text[:500]}", exc_info=True)
         return {"error": f"Exception during parsing: {e}"}
 
-# --- Utility Calculation Function ---
 def calculate_utility(original_text: str, anonymized_text: str, record_id: int) -> Optional[Dict[str, float]]:
-    """Calculates combined utility using DeepSeek Judge and ROUGE, returns detailed scores"""
+    """计算效用分数，返回包含各项分数的字典"""
     judge_messages = [{"role": "system", "content": UTILITY_JUDGE_SYSTEM_PROMPT}, {"role": "user", "content": UTILITY_JUDGE_USER_PROMPT_TEMPLATE.format(original_comment_string=original_text, adapted_comment_string=anonymized_text)}]
     judge_response = call_deepseek_api(messages=judge_messages, model_name=DEEPSEEK_MODEL_JUDGE, max_tokens=512, temperature=0.1, record_id=record_id, purpose="Utility Judge")
     if judge_response is None: logging.error(f"[Record {record_id}] Failed to get Utility Judge response."); return None
@@ -232,9 +232,8 @@ def calculate_utility(original_text: str, anonymized_text: str, record_id: int) 
         "rouge_l_f1": rouge_l_f1
     }
 
-# --- Privacy Calculation Components ---
 def compare_profiles(true_profile: Dict[str, Any], guessed_profile: Dict[str, Any]) -> List[Tuple[str, Any, Any]]:
-    """Compares profiles, returning a list of tuples (key, guess, true) for leaked attributes"""
+    """比较真实个人资料和猜测的个人资料，返回泄露的属性列表"""
     leaked_details: List[Tuple[str, Any, Any]] = []
     if not isinstance(true_profile, dict): logging.error(f"true_profile is not dict: {type(true_profile)}"); return leaked_details
     if not isinstance(guessed_profile, dict): logging.warning(f"guessed_profile is not dict: {type(guessed_profile)}"); return leaked_details
@@ -257,16 +256,13 @@ def calculate_privacy_leak(
     true_personality: Dict[str, Any],
     record_id: int
 ) -> Tuple[int, int, Set[str], Set[str]]:
-    """
-    Calls the Final Adversary (DeepSeek), compares guess to truth.
-    Returns: (leaked_count, total_true_count, leaked_categories_set, present_categories_set)
-    """
+    """计算隐私泄露，返回泄露计数、总真实属性计数、泄露类别集合和存在类别集合"""
     leaked_categories: Set[str] = set()
     present_categories: Set[str] = set()
     total_true_count = 0
     leaked_count = 0
 
-    # 1. Count Total True Attributes and identify present categories
+    # 1. 计算真实属性的总数和存在的类别
     if isinstance(true_personality, dict):
         for key in CORE_PII_ATTRIBUTES:
             true_val = true_personality.get(key)
@@ -277,7 +273,7 @@ def calculate_privacy_leak(
         logging.error(f"[Record {record_id}] true_personality is not a dict, cannot count true attributes.")
         return 0, 0, leaked_categories, present_categories # Return empty sets on error
 
-    # 2. Call Final Adversary (DeepSeek)
+    # 2. 调用 Final Adversary 模型进行攻击
     adversary_messages = [
         {"role": "system", "content": ADVERSARY_SYSTEM_PROMPT},
         {"role": "user", "content": ADVERSARY_USER_PROMPT_TEMPLATE.format(anonymized_comment=text_to_attack)}
@@ -288,30 +284,25 @@ def calculate_privacy_leak(
     )
     if adversary_response is None:
         logging.error(f"[Record {record_id}] Failed to get Final Adversary response.")
-        # Return 0 leaks, but report the attributes that were present
         return 0, total_true_count, leaked_categories, present_categories
 
-    # 3. Parse Adversary Guess
+    # 3. 解析 Final Adversary 的响应
     guessed_profile = parse_attacker_response(adversary_response, record_id)
     if "error" in guessed_profile:
          logging.error(f"[Record {record_id}] Failed to parse Final Adversary guess: {guessed_profile['error']}")
-         # Return 0 leaks, but report present attributes
          return 0, total_true_count, leaked_categories, present_categories
 
-    # 4. Compare with True Profile & identify leaked categories
+    # 4. 比较真实资料和猜测资料，找出泄露的属性
     leaked_details = compare_profiles(true_personality, guessed_profile)
     leaked_count = len(leaked_details)
     for detail in leaked_details:
-        leaked_categories.add(detail[0]) # Add the attribute key (e.g., "age")
+        leaked_categories.add(detail[0])
 
     logging.info(f"[Record {record_id}] Privacy Check: Leaked {leaked_count}/{total_true_count} attributes. Leaked Categories: {leaked_categories or 'None'}. Present Categories: {present_categories}")
-    # Return counts and sets
     return leaked_count, total_true_count, leaked_categories, present_categories
 
-
-# --- Main Execution Logic ---
 def process_record_for_benchmark(record: Dict[str, Any], record_id: int, attack_original: bool = False) -> Dict[str, Any]:
-    """Processes a single record to calculate utility and privacy, storing category sets."""
+    """处理单个记录以计算效用和隐私泄露，返回结果字典"""
     result = {
         "record_id": record_id,
         "utility": None,
@@ -321,40 +312,40 @@ def process_record_for_benchmark(record: Dict[str, Any], record_id: int, attack_
         "rouge_l_f1": None,
         "leaked_count": 0,
         "total_true_count": 0,
-        "leaked_categories": [], # Store as list for JSON serialization
-        "present_categories": [] # Store as list for JSON serialization
+        "leaked_categories": [], 
+        "present_categories": [] 
     }
     try:
         original_response = record.get("response")
         anonymized_response = record.get("anonymized_response")
         true_personality = record.get("personality")
 
-        # Normalize personality keys to match expected keys in prompts and comparisons
+        # 标准化 personality 字段
         normalized_personality = {}
         if isinstance(true_personality, dict):
             for key, value in true_personality.items():
+                # 处理 city_country 字段的重命名
                 if key == "city_country":
-                    # Map "city_country" to "current_city_country" to match prompt expectations
                     normalized_personality["current_city_country"] = value
                 else:
                     normalized_personality[key] = value
         else:
-            normalized_personality = true_personality  # If not dict, keep as is (though this might cause issues later)
+            normalized_personality = true_personality
 
-        # Basic check for essential fields
+        # 检查必要字段
         if not original_response or not normalized_personality:
              logging.warning(f"[Record {record_id}] Skipping benchmark - missing original_response or personality.")
              return result
 
-        # Determine text to attack for privacy calculation
+        # 选择攻击文本
         text_to_attack = original_response if attack_original else anonymized_response
-        if not text_to_attack and not attack_original: # If attacking anonymized but it's missing
+        if not text_to_attack and not attack_original:
              logging.warning(f"[Record {record_id}] Skipping benchmark - missing anonymized_response.")
              return result
 
-        # Calculate Utility (only if not attacking original)
+        # 计算效用分数
         if not attack_original:
-            if anonymized_response: # Ensure anonymized text exists
+            if anonymized_response: 
                  utility_scores = calculate_utility(original_response, anonymized_response, record_id)
                  if utility_scores:
                      result["utility"] = utility_scores["combined"]
@@ -365,19 +356,18 @@ def process_record_for_benchmark(record: Dict[str, Any], record_id: int, attack_
             else:
                  logging.warning(f"[Record {record_id}] Cannot calculate utility - missing anonymized_response.")
 
-
         # Calculate Privacy Leak
         leaked_c, total_c, leaked_set, present_set = calculate_privacy_leak(
             text_to_attack, normalized_personality, record_id
         )
         result["leaked_count"] = leaked_c
         result["total_true_count"] = total_c
-        result["leaked_categories"] = sorted(list(leaked_set)) # Convert set to sorted list
-        result["present_categories"] = sorted(list(present_set)) # Convert set to sorted list
+        result["leaked_categories"] = sorted(list(leaked_set)) 
+        result["present_categories"] = sorted(list(present_set)) 
 
     except Exception as e:
         logging.error(f"[Record {record_id}] Unexpected error during benchmark processing: {e}", exc_info=True)
-        result["error"] = str(e) # Add error info to result
+        result["error"] = str(e) 
 
     return result
 
@@ -393,10 +383,9 @@ def main():
     parser.add_argument("--adversary_model", type=str, default=DEEPSEEK_MODEL_ADVERSARY, help="DeepSeek model for Final Adversary")
     parser.add_argument("--attack_original", action="store_true", help="Set this flag to attack the original text instead of the anonymized text (for base privacy calculation)")
 
-
     args = parser.parse_args()
 
-    # Update globals based on args
+    # 加载环境变量
     DEEPSEEK_MODEL_JUDGE = args.judge_model
     DEEPSEEK_MODEL_ADVERSARY = args.adversary_model
     log_filename = args.log_file
@@ -411,9 +400,8 @@ def main():
     logging.getLogger("requests").setLevel(logging.WARNING)
     logging.getLogger("urllib3").setLevel(logging.WARNING)
 
-
-    if not DEEPSEEK_API_KEY:
-        logging.error("DeepSeek API key not found. Set DEEPSEEK_API_KEY environment variable.")
+    if not API_KEY:
+        logging.error("DeepSeek API key not found. Set API_KEY environment variable.")
         sys.exit(1)
 
     all_records = load_jsonl(args.input_file)
@@ -430,7 +418,6 @@ def main():
 
     all_results = []
     with ThreadPoolExecutor(max_workers=args.workers) as executor:
-        # Pass attack_original flag to the processing function
         future_to_id = {executor.submit(process_record_for_benchmark, record, i, args.attack_original): i
                         for i, record in enumerate(records_to_process)}
         for future in tqdm(as_completed(future_to_id), total=len(records_to_process), desc=f"Benchmarking ({mode})"):
@@ -442,7 +429,7 @@ def main():
                 logging.error(f'[Record {record_id}] generated an exception: {exc}', exc_info=True)
                 all_results.append({"record_id": record_id, "utility": None, "leaked_count": 0, "total_true_count": 0, "leaked_categories": [], "present_categories": [], "error": str(exc)})
 
-    # --- Aggregate and Report ---
+    # 汇总结果
     valid_utility_scores = [r["utility"] for r in all_results if r.get("utility") is not None]
     valid_readability_scores = [r["readability"] for r in all_results if r.get("readability") is not None]
     valid_meaning_scores = [r["meaning"] for r in all_results if r.get("meaning") is not None]
@@ -454,21 +441,21 @@ def main():
     leaked_counts_per_category = defaultdict(int)
     present_counts_per_category = defaultdict(int)
     for r in all_results:
-        # Check if keys exist before iterating
+        # 统计每个类别的泄露和存在计数
         if "leaked_categories" in r and isinstance(r["leaked_categories"], list):
             for category in r["leaked_categories"]:
-                if category in CORE_PII_ATTRIBUTES: # Ensure it's a valid category
+                if category in CORE_PII_ATTRIBUTES: 
                     leaked_counts_per_category[category] += 1
         if "present_categories" in r and isinstance(r["present_categories"], list):
              for category in r["present_categories"]:
-                if category in CORE_PII_ATTRIBUTES: # Ensure it's a valid category
+                if category in CORE_PII_ATTRIBUTES: 
                      present_counts_per_category[category] += 1
 
     leakage_probability_per_category = {
         attr: (leaked_counts_per_category[attr] / present_counts_per_category[attr]) if present_counts_per_category.get(attr, 0) > 0 else 0.0
         for attr in CORE_PII_ATTRIBUTES
     }
-    # Convert defaultdicts back to regular dicts for JSON serialization and cleaner output
+
     leaked_counts_per_category_dict = dict(leaked_counts_per_category)
     present_counts_per_category_dict = dict(present_counts_per_category)
 
@@ -497,7 +484,8 @@ def main():
     logging.info(f"Overall Adversarial Accuracy: {adversarial_accuracy:.4f} ({total_leaked_attributes} / {total_possible_attributes})")
     logging.info("-" * 25)
     logging.info("PII Leakage Breakdown by Category:")
-    # Sort categories for consistent output order
+
+    # 输出每个类别的泄露概率
     sorted_categories = sorted(CORE_PII_ATTRIBUTES)
     for category in sorted_categories:
         leaked_c = leaked_counts_per_category_dict.get(category, 0)
@@ -506,7 +494,7 @@ def main():
         logging.info(f"  - {category:<20}: Leaked {leaked_c:>4} / {present_c:>4} times | Probability = {prob:.4f}")
     logging.info("-" * 25)
 
-    # Save detailed results including per-category stats
+    # 保存详细结果
     summary_data = {
         "mode": mode,
         "average_utility": average_utility,
