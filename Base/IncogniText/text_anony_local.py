@@ -4,7 +4,6 @@ import argparse
 import sys
 import logging
 import re
-import random
 from typing import List, Dict, Any, Tuple, Optional
 
 import torch
@@ -69,10 +68,8 @@ Certainty: [A number from 1 (low certainty/bias) to 5 (high certainty/evidence)]
 Output ONLY the Reasoning, Guess, and Certainty lines in the specified format.
 """
 
-# --- 辅助函数 (复制 generate_personas.py 中的 build_pipeline, parse_attacker_output, compare_profiles, call_attacker_local, call_anonymizer_local, extract_first_json_object) ---
 def build_pipeline(model_name: str, device: Optional[str], dtype: Optional[str], gpu_memory_utilization: float):
-    """构建本地推理 pipeline。(无需修改)"""
-    # ... (代码同上一个脚本) ...
+    """构建本地推理 pipeline"""
     if dtype is None:
         if torch.cuda.is_available(): torch_dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
         elif torch.backends.mps.is_available(): torch_dtype = torch.float16
@@ -91,8 +88,7 @@ def build_pipeline(model_name: str, device: Optional[str], dtype: Optional[str],
     return gen_pipe, tokenizer
 
 def extract_first_json_object(text: str) -> Optional[Dict[str, Any]]:
-    """从文本中提取第一个完整 JSON 对象。(无需修改)"""
-    # ... (代码同上一个脚本) ...
+    """从文本中提取第一个完整 JSON 对象"""
     start = text.find("{")
     if start == -1: return None
     depth = 0; end = -1
@@ -114,8 +110,7 @@ def extract_first_json_object(text: str) -> Optional[Dict[str, Any]]:
 
 
 def parse_attacker_output(response_text: str, attribute_name: str) -> Dict[str, Any]:
-    """从 IncogniText 攻击者的自由格式输出中解析。(无需修改)"""
-    # ... (代码同上一个脚本) ...
+    """从 IncogniText 攻击者的自由格式输出中解析"""
     reasoning = "Parsing failed."; first_guess = None; certainty = 0
     try:
         reasoning_match = re.search(r"Reasoning:(.*?)(Guess:|Certainty:|$)", response_text, re.DOTALL | re.IGNORECASE)
@@ -141,8 +136,7 @@ def parse_attacker_output(response_text: str, attribute_name: str) -> Dict[str, 
 
 
 def call_attacker_local(pipe, user_response: str, attribute_name: str, terminator_ids: List[int], record_id: int) -> Dict[str, Any]:
-    """为单个属性调用本地 Attacker LLM 并解析结果。(无需修改)"""
-    # ... (代码同上一个脚本) ...
+    """为单个属性调用本地 Attacker LLM 并解析结果"""
     iteration_log_prefix = f"[Record-{record_id}] Attacking '{attribute_name}'"
     logging.debug(f"{iteration_log_prefix}...")
     user_content = PROMPT_ATTACKER_USER.format(
@@ -164,8 +158,7 @@ def call_attacker_local(pipe, user_response: str, attribute_name: str, terminato
 
 
 def call_anonymizer_local(pipe, user_response: str, target_attributes: Dict[str, Any], combined_feedback: str, true_attributes: Dict[str, Any], terminator_ids: List[int], record_id: int, use_true_value: bool) -> str:
-    """调用多属性本地 Anonymizer LLM。(无需修改)"""
-    # ... (代码同上一个脚本) ...
+    """调用多属性本地 Anonymizer LLM"""
     iteration_log_prefix = f"[Record-{record_id}] Anonymizing..."
     logging.debug(f"{iteration_log_prefix} with target: {target_attributes}")
     attribute_names_list = ", ".join(target_attributes.keys())
@@ -201,8 +194,7 @@ def call_anonymizer_local(pipe, user_response: str, target_attributes: Dict[str,
 
 
 def compare_profiles(true_profile: Dict[str, Any], guessed_profile: Dict[str, Any]) -> List[str]:
-    """使用确定性的 Python 逻辑比较 profiles。(无需修改)"""
-    # ... (代码同上一个脚本) ...
+    """使用确定性的 Python 逻辑比较 profiles"""
     leaked_attributes: List[str] = []; _log = lambda k, g, t: f"{k} (guessed: '{g}', true: '{t}')"
     true_age = true_profile.get("age"); guessed_age = guessed_profile.get("age")
     if isinstance(true_age, int) and isinstance(guessed_age, int) and abs(true_age - guessed_age) <= 3: leaked_attributes.append(_log("age", guessed_age, true_age))
@@ -217,12 +209,11 @@ def compare_profiles(true_profile: Dict[str, Any], guessed_profile: Dict[str, An
     logging.debug(f"Rule-based comparison complete. Leaked: {leaked_attributes}")
     return leaked_attributes
 
-# --- 修改后的核心函数：接收 target_persona ---
 def adversarial_anonymization_multi_local(
     pipe, # transformers pipeline
     original_response: str,
     true_personality: Dict[str, Any],
-    target_persona_dict: Dict[str, Any], # <--- 接收 Target Persona
+    target_persona_dict: Dict[str, Any], # 接收 Target Persona
     attributes_to_anonymize: List[str], # 需要知道哪些属性是目标
     terminator_ids: List[int],
     max_iterations: int = 3,
@@ -292,7 +283,6 @@ def adversarial_anonymization_multi_local(
 
     return current_anonymized_response, meta
 
-# --- 修改后的 process_record (本地版) ---
 def process_record(pipe, data: Dict[str, Any], max_iterations: int, record_id: int, terminator_ids: List[int]) -> Dict[str, Any]:
     """处理单条记录 (IncogniText Local version - 读取 Persona)"""
     record_log_prefix = f"[Record-{record_id}]"
@@ -325,8 +315,8 @@ def process_record(pipe, data: Dict[str, Any], max_iterations: int, record_id: i
         pipe=pipe,
         original_response=response,
         true_personality=personality,
-        target_persona_dict=target_persona, # <--- 传入 Persona
-        attributes_to_anonymize=attributes_to_anonymize, # <--- 传入目标属性列表
+        target_persona_dict=target_persona, # 传入 Persona
+        attributes_to_anonymize=attributes_to_anonymize, # 传入目标属性列表
         terminator_ids=terminator_ids,
         max_iterations=max_iterations,
         record_id=record_id,
