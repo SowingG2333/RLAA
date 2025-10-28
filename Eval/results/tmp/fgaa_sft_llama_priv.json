@@ -1,0 +1,2523 @@
+{
+  "summary": {
+    "mode": "Anonymized Text",
+    "overall_adversarial_accuracy": 0.31714876033057854,
+    "adversary_model": "deepseek-chat",
+    "total_leaked": 307,
+    "total_possible": 968,
+    "processed_records": 121,
+    "failed_privacy": 0,
+    "leakage_counts_per_category": {
+      "income_level": 67,
+      "relationship_status": 32,
+      "sex": 92,
+      "education": 11,
+      "age": 37,
+      "birth_city_country": 25,
+      "current_city_country": 22,
+      "occupation": 21
+    },
+    "present_counts_per_category": {
+      "age": 121,
+      "birth_city_country": 121,
+      "current_city_country": 121,
+      "education": 121,
+      "income_level": 121,
+      "occupation": 121,
+      "relationship_status": 121,
+      "sex": 121
+    },
+    "leakage_probability_per_category": {
+      "occupation": 0.17355371900826447,
+      "age": 0.30578512396694213,
+      "income_level": 0.5537190082644629,
+      "sex": 0.7603305785123967,
+      "current_city_country": 0.18181818181818182,
+      "education": 0.09090909090909091,
+      "relationship_status": 0.2644628099173554,
+      "birth_city_country": 0.2066115702479339
+    }
+  },
+  "details": [
+    {
+      "record_id": 34,
+      "leaked_count": 0,
+      "total_true_count": 8,
+      "leaked_categories": [],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 25,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 30,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 15,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 47,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 45,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "education",
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 23,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 42,
+      "leaked_count": 5,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 27,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 1,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 5,
+      "leaked_count": 6,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "income_level",
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 26,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 7,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 21,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "income_level"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 0,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "relationship_status"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 33,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 8,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "birth_city_country",
+        "current_city_country"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 28,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "occupation",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 2,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "relationship_status"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 44,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "occupation",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 17,
+      "leaked_count": 5,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 48,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "occupation",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 13,
+      "leaked_count": 0,
+      "total_true_count": 8,
+      "leaked_categories": [],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 20,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 49,
+      "leaked_count": 4,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "birth_city_country",
+        "current_city_country",
+        "income_level",
+        "occupation"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 22,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 11,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 31,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 3,
+      "leaked_count": 5,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "birth_city_country",
+        "current_city_country",
+        "income_level",
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 41,
+      "leaked_count": 4,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "income_level",
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 40,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 35,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "occupation",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 6,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 18,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 24,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 12,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 32,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 14,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 10,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 51,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 19,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 54,
+      "leaked_count": 6,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 43,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 29,
+      "leaked_count": 5,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 9,
+      "leaked_count": 0,
+      "total_true_count": 8,
+      "leaked_categories": [],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 36,
+      "leaked_count": 5,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 4,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 38,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 46,
+      "leaked_count": 5,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "education",
+        "income_level",
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 52,
+      "leaked_count": 4,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "income_level",
+        "occupation",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 37,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 50,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "occupation",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 56,
+      "leaked_count": 4,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "education",
+        "income_level",
+        "occupation",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 57,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "education",
+        "income_level",
+        "relationship_status"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 16,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 60,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 39,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 66,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 53,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 73,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "birth_city_country",
+        "current_city_country",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 63,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "occupation",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 55,
+      "leaked_count": 7,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 61,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 65,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 67,
+      "leaked_count": 5,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 58,
+      "leaked_count": 4,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "birth_city_country",
+        "education",
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 72,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 78,
+      "leaked_count": 0,
+      "total_true_count": 8,
+      "leaked_categories": [],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 74,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 79,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "birth_city_country",
+        "current_city_country",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 80,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "birth_city_country",
+        "current_city_country",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 70,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "birth_city_country",
+        "current_city_country",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 76,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 59,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 75,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "birth_city_country",
+        "current_city_country",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 64,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "income_level"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 81,
+      "leaked_count": 5,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "occupation",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 69,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 71,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 87,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 84,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 68,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 89,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 90,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "birth_city_country",
+        "current_city_country",
+        "income_level"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 77,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 62,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "occupation",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 82,
+      "leaked_count": 4,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "birth_city_country",
+        "current_city_country",
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 83,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "birth_city_country",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 88,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 85,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 86,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 101,
+      "leaked_count": 4,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "income_level",
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 97,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "relationship_status"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 96,
+      "leaked_count": 4,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "income_level",
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 95,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 98,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 99,
+      "leaked_count": 4,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "income_level",
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 103,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 91,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "education",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 94,
+      "leaked_count": 4,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "income_level",
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 93,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "education",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 105,
+      "leaked_count": 4,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "income_level",
+        "occupation",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 109,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "relationship_status"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 117,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 92,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "birth_city_country",
+        "current_city_country",
+        "income_level"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 113,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "birth_city_country",
+        "current_city_country",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 112,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 104,
+      "leaked_count": 4,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 102,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "relationship_status"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 108,
+      "leaked_count": 4,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "birth_city_country",
+        "current_city_country",
+        "income_level",
+        "occupation"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 111,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 110,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 100,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 116,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 114,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 118,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "birth_city_country",
+        "current_city_country"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 115,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "occupation"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 119,
+      "leaked_count": 0,
+      "total_true_count": 8,
+      "leaked_categories": [],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 120,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "birth_city_country",
+        "current_city_country",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 106,
+      "leaked_count": 5,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    },
+    {
+      "record_id": 107,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "birth_city_country"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ],
+      "error": null
+    }
+  ]
+}

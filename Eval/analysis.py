@@ -6,14 +6,14 @@ num_iteration = [1, 3, 5]
 utility_original = [1.0000, 1.0000, 1.0000]
 utility_fgaa_ds = [0.9617, 0.9094, 0.8858]
 utility_fgaa_lm = [0.8999, 0.7916, 0.6922] 
-utility_fgaa_sft_lm = [0.9649, 0.9502, 0.9391]
-utility_rlaa_lm = [0.9346, 0.8695, 0.7952]
+utility_fgaa_sft_lm = [0.9649, 0.9502, 0.9454]
+utility_rlaa_lm = [0.9437, 0.8695, 0.7952]
 
 privacy_original = [0.4452, 0.4452, 0.4452]
 privacy_fgaa_ds = [0.3016, 0.2520, 0.2427]
 privacy_fgaa_lm = [0.3041, 0.2384, 0.2150]
-privacy_fgaa_sft_lm = [0.3471, 0.3305, 0.3057]
-privacy_rlaa_lm = [0.3130, 0.2614, 0.2324]
+privacy_fgaa_sft_lm = [0.3471, 0.3305, 0.3171]
+privacy_rlaa_lm = [0.3140, 0.2614, 0.2324]
 
 # 绘制隐私-效用曲线
 plt.figure(figsize=(10, 6))

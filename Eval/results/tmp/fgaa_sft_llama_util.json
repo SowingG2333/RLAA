@@ -1,0 +1,1103 @@
+{
+  "summary": {
+    "judge_model": "deepseek-chat",
+    "average_utility": 0.9454728311676196,
+    "average_readability": 9.925,
+    "average_meaning": 9.291666666666666,
+    "average_hallucinations": 0.9916666666666667,
+    "average_rouge_l_f1": 0.9147518268361915,
+    "processed_records": 121,
+    "failed_utility": 1
+  },
+  "details": [
+    {
+      "record_id": 6,
+      "utility": 0.9937106918238993,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9811320754716981,
+      "error": null
+    },
+    {
+      "record_id": 13,
+      "utility": 0.9941520467836257,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9824561403508771,
+      "error": null
+    },
+    {
+      "record_id": 47,
+      "utility": 0.9890710382513661,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9672131147540983,
+      "error": null
+    },
+    {
+      "record_id": 14,
+      "utility": 0.9971264367816092,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9913793103448276,
+      "error": null
+    },
+    {
+      "record_id": 16,
+      "utility": 0.9372549019607842,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.911764705882353,
+      "error": null
+    },
+    {
+      "record_id": 35,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "error": null
+    },
+    {
+      "record_id": 28,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "error": null
+    },
+    {
+      "record_id": 3,
+      "utility": 0.9519916142557653,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9559748427672956,
+      "error": null
+    },
+    {
+      "record_id": 23,
+      "utility": 0.9871086556169429,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9613259668508287,
+      "error": null
+    },
+    {
+      "record_id": 36,
+      "utility": 0.9800307219662058,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9400921658986175,
+      "error": null
+    },
+    {
+      "record_id": 26,
+      "utility": 0.8881796690307328,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9645390070921985,
+      "error": null
+    },
+    {
+      "record_id": 11,
+      "utility": 0.9529680365296803,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9589041095890412,
+      "error": null
+    },
+    {
+      "record_id": 0,
+      "utility": 0.9371681415929203,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.911504424778761,
+      "error": null
+    },
+    {
+      "record_id": 9,
+      "utility": 0.9593137254901961,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9779411764705882,
+      "error": null
+    },
+    {
+      "record_id": 7,
+      "utility": 0.6767441860465117,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.13023255813953485,
+      "error": null
+    },
+    {
+      "record_id": 44,
+      "utility": 0.9902534113060429,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9707602339181286,
+      "error": null
+    },
+    {
+      "record_id": 27,
+      "utility": 0.8964125560538116,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.789237668161435,
+      "error": null
+    },
+    {
+      "record_id": 42,
+      "utility": 0.967741935483871,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9032258064516129,
+      "error": null
+    },
+    {
+      "record_id": 45,
+      "utility": 0.9572199730094466,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.97165991902834,
+      "error": null
+    },
+    {
+      "record_id": 12,
+      "utility": 0.9363636363636364,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9090909090909092,
+      "error": null
+    },
+    {
+      "record_id": 34,
+      "utility": 0.987012987012987,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.961038961038961,
+      "error": null
+    },
+    {
+      "record_id": 39,
+      "utility": 0.9116883116883118,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.935064935064935,
+      "error": null
+    },
+    {
+      "record_id": 41,
+      "utility": 0.9821138211382113,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9463414634146341,
+      "error": null
+    },
+    {
+      "record_id": 37,
+      "utility": 0.9455696202531646,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9367088607594936,
+      "error": null
+    },
+    {
+      "record_id": 15,
+      "utility": 0.8355432780847144,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8066298342541436,
+      "error": null
+    },
+    {
+      "record_id": 46,
+      "utility": 0.9503496503496504,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9510489510489512,
+      "error": null
+    },
+    {
+      "record_id": 43,
+      "utility": 0.9410256410256409,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9230769230769231,
+      "error": null
+    },
+    {
+      "record_id": 29,
+      "utility": 0.9418439716312057,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9255319148936171,
+      "error": null
+    },
+    {
+      "record_id": 10,
+      "utility": 0.9397306397306396,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9191919191919193,
+      "error": null
+    },
+    {
+      "record_id": 48,
+      "utility": 0.9897610921501706,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9692832764505118,
+      "error": null
+    },
+    {
+      "record_id": 30,
+      "utility": 0.9815602836879433,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9446808510638298,
+      "error": null
+    },
+    {
+      "record_id": 40,
+      "utility": 0.9565656565656565,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9696969696969696,
+      "error": null
+    },
+    {
+      "record_id": 33,
+      "utility": 0.9390423572744014,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9171270718232044,
+      "error": null
+    },
+    {
+      "record_id": 24,
+      "utility": 0.989247311827957,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.967741935483871,
+      "error": null
+    },
+    {
+      "record_id": 21,
+      "utility": 0.9845474613686535,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9536423841059603,
+      "error": null
+    },
+    {
+      "record_id": 31,
+      "utility": 0.9894332372718541,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.968299711815562,
+      "error": null
+    },
+    {
+      "record_id": 2,
+      "utility": 0.9924242424242425,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9772727272727273,
+      "error": null
+    },
+    {
+      "record_id": 18,
+      "utility": 0.9119496855345912,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9358490566037737,
+      "error": null
+    },
+    {
+      "record_id": 32,
+      "utility": 0.9644444444444445,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8933333333333333,
+      "error": null
+    },
+    {
+      "record_id": 38,
+      "utility": 0.9855855855855856,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9567567567567568,
+      "error": null
+    },
+    {
+      "record_id": 25,
+      "utility": 0.8535353535353535,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8606060606060606,
+      "error": null
+    },
+    {
+      "record_id": 17,
+      "utility": 0.9408268733850128,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9224806201550387,
+      "error": null
+    },
+    {
+      "record_id": 20,
+      "utility": 0.907843137254902,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8235294117647058,
+      "error": null
+    },
+    {
+      "record_id": 8,
+      "utility": 0.9806598407281001,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9419795221843004,
+      "error": null
+    },
+    {
+      "record_id": 1,
+      "utility": 0.9575342465753424,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9726027397260274,
+      "error": null
+    },
+    {
+      "record_id": 19,
+      "utility": 0.9708333333333333,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9125,
+      "error": null
+    },
+    {
+      "record_id": 5,
+      "utility": 0.9477611940298507,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9432835820895521,
+      "error": null
+    },
+    {
+      "record_id": 4,
+      "utility": 0.9440129449838187,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9320388349514563,
+      "error": null
+    },
+    {
+      "record_id": 22,
+      "utility": 0.912876052948255,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9386281588447654,
+      "error": null
+    },
+    {
+      "record_id": 49,
+      "utility": 0.9708141321044547,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9124423963133641,
+      "error": null
+    },
+    {
+      "record_id": 53,
+      "utility": 0.9981981981981982,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9945945945945946,
+      "error": null
+    },
+    {
+      "record_id": 50,
+      "utility": null,
+      "readability": null,
+      "meaning": null,
+      "hallucinations": null,
+      "rouge_l_f1": null,
+      "error": "Utility calculation failed"
+    },
+    {
+      "record_id": 82,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "error": null
+    },
+    {
+      "record_id": 54,
+      "utility": 0.9596343178621659,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9789029535864979,
+      "error": null
+    },
+    {
+      "record_id": 51,
+      "utility": 0.8389671361502348,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8169014084507042,
+      "error": null
+    },
+    {
+      "record_id": 52,
+      "utility": 0.9830508474576272,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9491525423728815,
+      "error": null
+    },
+    {
+      "record_id": 60,
+      "utility": 0.6878306878306878,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.06349206349206349,
+      "error": null
+    },
+    {
+      "record_id": 80,
+      "utility": 0.9838709677419355,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9516129032258064,
+      "error": null
+    },
+    {
+      "record_id": 56,
+      "utility": 0.9303030303030303,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8909090909090909,
+      "error": null
+    },
+    {
+      "record_id": 68,
+      "utility": 0.9560121765601218,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9680365296803655,
+      "error": null
+    },
+    {
+      "record_id": 58,
+      "utility": 0.9412556053811659,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9237668161434978,
+      "error": null
+    },
+    {
+      "record_id": 79,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "error": null
+    },
+    {
+      "record_id": 70,
+      "utility": 0.9773755656108598,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9321266968325793,
+      "error": null
+    },
+    {
+      "record_id": 76,
+      "utility": 0.9743589743589745,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9230769230769231,
+      "error": null
+    },
+    {
+      "record_id": 85,
+      "utility": 0.9837037037037036,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9511111111111111,
+      "error": null
+    },
+    {
+      "record_id": 55,
+      "utility": 0.9710982658959537,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9132947976878611,
+      "error": null
+    },
+    {
+      "record_id": 86,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "error": null
+    },
+    {
+      "record_id": 92,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "error": null
+    },
+    {
+      "record_id": 61,
+      "utility": 0.9781659388646288,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9344978165938864,
+      "error": null
+    },
+    {
+      "record_id": 57,
+      "utility": 0.8705215419501133,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9115646258503401,
+      "error": null
+    },
+    {
+      "record_id": 73,
+      "utility": 0.9431924882629108,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9295774647887324,
+      "error": null
+    },
+    {
+      "record_id": 62,
+      "utility": 0.9786163522012578,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9358490566037736,
+      "error": null
+    },
+    {
+      "record_id": 69,
+      "utility": 0.9814814814814815,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9444444444444444,
+      "error": null
+    },
+    {
+      "record_id": 90,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "error": null
+    },
+    {
+      "record_id": 66,
+      "utility": 0.9820193637621024,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9460580912863071,
+      "error": null
+    },
+    {
+      "record_id": 84,
+      "utility": 0.9875706214689265,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9627118644067796,
+      "error": null
+    },
+    {
+      "record_id": 72,
+      "utility": 0.9523994811932553,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9571984435797665,
+      "error": null
+    },
+    {
+      "record_id": 74,
+      "utility": 0.9602194787379972,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8806584362139918,
+      "error": null
+    },
+    {
+      "record_id": 67,
+      "utility": 0.989384288747346,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9681528662420381,
+      "error": null
+    },
+    {
+      "record_id": 71,
+      "utility": 0.9761006289308177,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9283018867924528,
+      "error": null
+    },
+    {
+      "record_id": 77,
+      "utility": 0.9844559585492227,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9533678756476683,
+      "error": null
+    },
+    {
+      "record_id": 59,
+      "utility": 0.9800995024875622,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9402985074626865,
+      "error": null
+    },
+    {
+      "record_id": 97,
+      "utility": 0.9887640449438203,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9662921348314606,
+      "error": null
+    },
+    {
+      "record_id": 64,
+      "utility": 0.9809885931558936,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9429657794676807,
+      "error": null
+    },
+    {
+      "record_id": 93,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "error": null
+    },
+    {
+      "record_id": 81,
+      "utility": 0.9574074074074074,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9722222222222222,
+      "error": null
+    },
+    {
+      "record_id": 63,
+      "utility": 0.9866666666666667,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.96,
+      "error": null
+    },
+    {
+      "record_id": 91,
+      "utility": 0.953179190751445,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9595375722543352,
+      "error": null
+    },
+    {
+      "record_id": 98,
+      "utility": 0.9876543209876543,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9629629629629629,
+      "error": null
+    },
+    {
+      "record_id": 87,
+      "utility": 0.9942528735632185,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9827586206896551,
+      "error": null
+    },
+    {
+      "record_id": 75,
+      "utility": 0.8926829268292683,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8780487804878049,
+      "error": null
+    },
+    {
+      "record_id": 65,
+      "utility": 0.9046964490263459,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9140893470790379,
+      "error": null
+    },
+    {
+      "record_id": 96,
+      "utility": 0.9140350877192982,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8421052631578948,
+      "error": null
+    },
+    {
+      "record_id": 89,
+      "utility": 0.9690346083788707,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.907103825136612,
+      "error": null
+    },
+    {
+      "record_id": 94,
+      "utility": 0.9684499314128944,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9053497942386831,
+      "error": null
+    },
+    {
+      "record_id": 88,
+      "utility": 0.9586151368760064,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9758454106280193,
+      "error": null
+    },
+    {
+      "record_id": 78,
+      "utility": 0.9299840510366826,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8899521531100478,
+      "error": null
+    },
+    {
+      "record_id": 95,
+      "utility": 0.966183574879227,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8985507246376812,
+      "error": null
+    },
+    {
+      "record_id": 83,
+      "utility": 0.9413255360623781,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9239766081871345,
+      "error": null
+    },
+    {
+      "record_id": 99,
+      "utility": 0.8895238095238095,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8685714285714285,
+      "error": null
+    },
+    {
+      "record_id": 101,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "error": null
+    },
+    {
+      "record_id": 109,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "error": null
+    },
+    {
+      "record_id": 107,
+      "utility": 0.9935483870967742,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9806451612903226,
+      "error": null
+    },
+    {
+      "record_id": 102,
+      "utility": 0.11,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.13,
+      "error": null
+    },
+    {
+      "record_id": 100,
+      "utility": 0.9594771241830066,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8784313725490196,
+      "error": null
+    },
+    {
+      "record_id": 117,
+      "utility": 0.5303030303030303,
+      "readability": 10.0,
+      "meaning": 3.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.2909090909090909,
+      "error": null
+    },
+    {
+      "record_id": 114,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "error": null
+    },
+    {
+      "record_id": 119,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "error": null
+    },
+    {
+      "record_id": 112,
+      "utility": 0.9453900709219858,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9361702127659574,
+      "error": null
+    },
+    {
+      "record_id": 108,
+      "utility": 0.9545893719806763,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.963768115942029,
+      "error": null
+    },
+    {
+      "record_id": 120,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "error": null
+    },
+    {
+      "record_id": 105,
+      "utility": 0.9732770745428972,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9198312236286921,
+      "error": null
+    },
+    {
+      "record_id": 111,
+      "utility": 0.9437908496732025,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9313725490196078,
+      "error": null
+    },
+    {
+      "record_id": 104,
+      "utility": 0.8747292418772563,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.924187725631769,
+      "error": null
+    },
+    {
+      "record_id": 103,
+      "utility": 0.9442577030812326,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9327731092436976,
+      "error": null
+    },
+    {
+      "record_id": 116,
+      "utility": 0.9798534798534799,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9395604395604397,
+      "error": null
+    },
+    {
+      "record_id": 115,
+      "utility": 0.927296587926509,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8818897637795275,
+      "error": null
+    },
+    {
+      "record_id": 113,
+      "utility": 0.9704142011834319,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9112426035502958,
+      "error": null
+    },
+    {
+      "record_id": 106,
+      "utility": 0.9846827133479213,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9540481400437638,
+      "error": null
+    },
+    {
+      "record_id": 110,
+      "utility": 0.9873663751214772,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9620991253644314,
+      "error": null
+    },
+    {
+      "record_id": 118,
+      "utility": 0.9454849498327759,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9364548494983278,
+      "error": null
+    }
+  ]
+}
