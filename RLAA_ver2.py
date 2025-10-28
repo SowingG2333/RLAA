@@ -538,7 +538,7 @@ def main():
     parser.add_argument("--output_file", type=str, required=True, help="输出 JSONL 路径")
     parser.add_argument("--success_file", type=str, default=None, help="仅成功记录输出路径")
     parser.add_argument("--failed_file", type=str, default=None, help="失败记录输出路径")
-    parser.add_argument("--max_iterations", type=int, default=1, help="每条记录最大对抗轮数")
+    parser.add_argument("--max_iterations", type=int, default=5, help="每条记录最大对抗轮数")
     parser.add_argument("--limit", type=int, default=None, help="仅处理前 N 条")
     parser.add_argument("--max_new_tokens", type=int, default=2048, help="生成的最大新 token 数（Attacker/Arbitrator 需要更大空间）")
     parser.add_argument("--log_file", type=str, default="anonymizer_local_arbitrator.log", help="日志文件路径")
