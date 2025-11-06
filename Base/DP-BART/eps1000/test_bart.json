@@ -1,27 +1,27 @@
 {
   "summary": {
     "mode": "Anonymized Text",
-    "average_utility": 0.14438586053695102,
-    "average_readability": 1.3801652892561984,
-    "average_meaning": 1.2148760330578512,
+    "average_utility": 0.14438586053695096,
+    "average_readability": 1.396694214876033,
+    "average_meaning": 1.1983471074380165,
     "average_hallucinations": 0.049586776859504134,
     "average_rouge_l_f1": 0.17365344937944793,
-    "overall_adversarial_accuracy": 0.22520661157024793,
+    "overall_adversarial_accuracy": 0.20867768595041322,
     "adversary_model": "deepseek-chat",
-    "total_leaked": 218,
+    "total_leaked": 202,
     "total_possible": 968,
     "processed_records": 121,
     "failed_utility": 0,
     "failed_privacy": 0,
     "leakage_counts_per_category": {
-      "age": 29,
-      "income_level": 68,
-      "relationship_status": 26,
-      "sex": 75,
+      "income_level": 63,
       "occupation": 8,
-      "education": 2,
-      "birth_city_country": 5,
-      "current_city_country": 5
+      "age": 27,
+      "relationship_status": 23,
+      "sex": 72,
+      "current_city_country": 5,
+      "birth_city_country": 4,
+      "education": 0
     },
     "present_counts_per_category": {
       "age": 121,
@@ -34,113 +34,17 @@
       "sex": 121
     },
     "leakage_probability_per_category": {
-      "occupation": 0.06611570247933884,
-      "education": 0.01652892561983471,
       "current_city_country": 0.04132231404958678,
-      "sex": 0.6198347107438017,
-      "birth_city_country": 0.04132231404958678,
-      "age": 0.2396694214876033,
-      "income_level": 0.5619834710743802,
-      "relationship_status": 0.21487603305785125
+      "age": 0.2231404958677686,
+      "education": 0.0,
+      "income_level": 0.5206611570247934,
+      "sex": 0.5950413223140496,
+      "relationship_status": 0.19008264462809918,
+      "occupation": 0.06611570247933884,
+      "birth_city_country": 0.03305785123966942
     }
   },
   "details": [
-    {
-      "record_id": 3,
-      "utility": 0.4543859649122807,
-      "readability": 10.0,
-      "meaning": 3.0,
-      "hallucinations": 1.0,
-      "rouge_l_f1": 0.06315789473684211,
-      "leaked_count": 3,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "age",
-        "income_level",
-        "relationship_status"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 47,
-      "utility": 0.12659176029962546,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.1797752808988764,
-      "leaked_count": 2,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "income_level",
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 33,
-      "utility": 0.11014492753623188,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.13043478260869565,
-      "leaked_count": 2,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "age",
-        "income_level"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 17,
-      "utility": 0.11090047393364928,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.13270142180094788,
-      "leaked_count": 1,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
     {
       "record_id": 26,
       "utility": 0.13484848484848486,
@@ -153,78 +57,6 @@
       "leaked_categories": [
         "income_level",
         "occupation"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 49,
-      "utility": 0.12072072072072071,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.16216216216216214,
-      "leaked_count": 2,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "income_level",
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 44,
-      "utility": 0.1074829931972789,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.12244897959183672,
-      "leaked_count": 2,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "income_level",
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 13,
-      "utility": 0.11721958925750393,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.15165876777251183,
-      "leaked_count": 2,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "income_level",
-        "sex"
       ],
       "present_categories": [
         "age",
@@ -263,16 +95,18 @@
       ]
     },
     {
-      "record_id": 37,
-      "utility": 0.11976401179941004,
-      "readability": 1.0,
+      "record_id": 3,
+      "utility": 0.3877192982456141,
+      "readability": 10.0,
       "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.15929203539823011,
-      "leaked_count": 1,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.06315789473684211,
+      "leaked_count": 3,
       "total_true_count": 8,
       "leaked_categories": [
-        "sex"
+        "age",
+        "income_level",
+        "relationship_status"
       ],
       "present_categories": [
         "age",
@@ -286,7 +120,7 @@
       ]
     },
     {
-      "record_id": 40,
+      "record_id": 12,
       "utility": 0.11929824561403508,
       "readability": 1.0,
       "meaning": 1.0,
@@ -295,29 +129,6 @@
       "leaked_count": 1,
       "total_true_count": 8,
       "leaked_categories": [
-        "income_level"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 20,
-      "utility": 0.12372372372372371,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.17117117117117117,
-      "leaked_count": 1,
-      "total_true_count": 8,
-      "leaked_categories": [
         "sex"
       ],
       "present_categories": [
@@ -332,16 +143,88 @@
       ]
     },
     {
-      "record_id": 27,
-      "utility": 0.11818181818181818,
+      "record_id": 24,
+      "utility": 0.12056737588652483,
       "readability": 1.0,
       "meaning": 1.0,
       "hallucinations": 0.0,
-      "rouge_l_f1": 0.15454545454545454,
-      "leaked_count": 1,
+      "rouge_l_f1": 0.16170212765957448,
+      "leaked_count": 3,
       "total_true_count": 8,
       "leaked_categories": [
-        "income_level"
+        "age",
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 17,
+      "utility": 0.11090047393364928,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.13270142180094788,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 33,
+      "utility": 0.11014492753623188,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.13043478260869565,
+      "leaked_count": 0,
+      "total_true_count": 8,
+      "leaked_categories": [],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 18,
+      "utility": 0.13781291172595522,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.21343873517786563,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "sex"
       ],
       "present_categories": [
         "age",
@@ -379,16 +262,17 @@
       ]
     },
     {
-      "record_id": 19,
-      "utility": 0.12373540856031129,
+      "record_id": 2,
+      "utility": 0.1308377896613191,
       "readability": 1.0,
       "meaning": 1.0,
       "hallucinations": 0.0,
-      "rouge_l_f1": 0.17120622568093388,
-      "leaked_count": 1,
+      "rouge_l_f1": 0.19251336898395724,
+      "leaked_count": 2,
       "total_true_count": 8,
       "leaked_categories": [
-        "sex"
+        "age",
+        "relationship_status"
       ],
       "present_categories": [
         "age",
@@ -408,61 +292,10 @@
       "meaning": 1.0,
       "hallucinations": 0.0,
       "rouge_l_f1": 0.15450643776824033,
-      "leaked_count": 3,
+      "leaked_count": 2,
       "total_true_count": 8,
       "leaked_categories": [
         "income_level",
-        "relationship_status",
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 29,
-      "utility": 1.0,
-      "readability": 10.0,
-      "meaning": 10.0,
-      "hallucinations": 1.0,
-      "rouge_l_f1": 1.0,
-      "leaked_count": 5,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "age",
-        "education",
-        "income_level",
-        "occupation",
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 2,
-      "utility": 0.1308377896613191,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.19251336898395724,
-      "leaked_count": 1,
-      "total_true_count": 8,
-      "leaked_categories": [
         "relationship_status"
       ],
       "present_categories": [
@@ -477,19 +310,40 @@
       ]
     },
     {
-      "record_id": 5,
-      "utility": 0.12431077694235589,
+      "record_id": 36,
+      "utility": 0.12131147540983607,
       "readability": 1.0,
       "meaning": 1.0,
       "hallucinations": 0.0,
-      "rouge_l_f1": 0.17293233082706766,
-      "leaked_count": 5,
+      "rouge_l_f1": 0.16393442622950818,
+      "leaked_count": 2,
       "total_true_count": 8,
       "leaked_categories": [
+        "age",
+        "income_level"
+      ],
+      "present_categories": [
+        "age",
         "birth_city_country",
         "current_city_country",
+        "education",
         "income_level",
+        "occupation",
         "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 45,
+      "utility": 0.12604588394062077,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.17813765182186234,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
         "sex"
       ],
       "present_categories": [
@@ -510,6 +364,29 @@
       "meaning": 1.0,
       "hallucinations": 0.0,
       "rouge_l_f1": 0.16974169741697415,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 9,
+      "utility": 0.12628726287262873,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.17886178861788618,
       "leaked_count": 1,
       "total_true_count": 8,
       "leaked_categories": [
@@ -551,6 +428,264 @@
       ]
     },
     {
+      "record_id": 48,
+      "utility": 0.11834625322997416,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.1550387596899225,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 35,
+      "utility": 0.12486772486772486,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.1746031746031746,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "income_level"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 20,
+      "utility": 0.12372372372372371,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.17117117117117117,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 41,
+      "utility": 0.12754946727549468,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.182648401826484,
+      "leaked_count": 0,
+      "total_true_count": 8,
+      "leaked_categories": [],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 29,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 4,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "income_level",
+        "occupation",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 40,
+      "utility": 0.11929824561403508,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.15789473684210525,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 10,
+      "utility": 0.11732522796352585,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.1519756838905775,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 47,
+      "utility": 0.12659176029962546,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.1797752808988764,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 49,
+      "utility": 0.12072072072072071,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.16216216216216214,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 21,
+      "utility": 0.12789115646258506,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.18367346938775514,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 13,
+      "utility": 0.11721958925750393,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.15165876777251183,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
       "record_id": 7,
       "utility": 0.12046109510086456,
       "readability": 1.0,
@@ -574,12 +709,419 @@
       ]
     },
     {
-      "record_id": 35,
-      "utility": 0.12486772486772486,
+      "record_id": 15,
+      "utility": 0.10642201834862386,
       "readability": 1.0,
       "meaning": 1.0,
       "hallucinations": 0.0,
-      "rouge_l_f1": 0.1746031746031746,
+      "rouge_l_f1": 0.11926605504587157,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 14,
+      "utility": 0.11814671814671814,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.15444015444015444,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 19,
+      "utility": 0.12373540856031129,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.17120622568093388,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 1,
+      "utility": 0.12410256410256411,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.1723076923076923,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "relationship_status"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 28,
+      "utility": 0.12495446265938069,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.17486338797814205,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "income_level",
+        "occupation"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 44,
+      "utility": 0.1074829931972789,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.12244897959183672,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 23,
+      "utility": 0.12395833333333332,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.17187499999999997,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 42,
+      "utility": 0.11746031746031747,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.1523809523809524,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 46,
+      "utility": 0.12,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.16,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 37,
+      "utility": 0.11976401179941004,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.15929203539823011,
+      "leaked_count": 0,
+      "total_true_count": 8,
+      "leaked_categories": [],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 30,
+      "utility": 0.13066666666666668,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.192,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "income_level",
+        "occupation"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 22,
+      "utility": 0.12051282051282053,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.16153846153846155,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 0,
+      "utility": 0.11452991452991453,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.14358974358974358,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "relationship_status"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 43,
+      "utility": 0.10724637681159421,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.12173913043478261,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 11,
+      "utility": 0.10163170163170164,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.1048951048951049,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 5,
+      "utility": 0.12431077694235589,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.17293233082706766,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "current_city_country",
+        "income_level",
+        "relationship_status"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 25,
+      "utility": 0.11657754010695187,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.14973262032085563,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "income_level"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 27,
+      "utility": 0.11818181818181818,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.15454545454545454,
       "leaked_count": 2,
       "total_true_count": 8,
       "leaked_categories": [
@@ -623,103 +1165,6 @@
       ]
     },
     {
-      "record_id": 41,
-      "utility": 0.12754946727549468,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.182648401826484,
-      "leaked_count": 1,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "age"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 24,
-      "utility": 0.12056737588652483,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.16170212765957448,
-      "leaked_count": 2,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "income_level",
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 18,
-      "utility": 0.13781291172595522,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.21343873517786563,
-      "leaked_count": 3,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "age",
-        "income_level",
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 21,
-      "utility": 0.12789115646258506,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.18367346938775514,
-      "leaked_count": 3,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "age",
-        "income_level",
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
       "record_id": 39,
       "utility": 0.11111111111111112,
       "readability": 1.0,
@@ -744,326 +1189,18 @@
       ]
     },
     {
-      "record_id": 15,
-      "utility": 0.10642201834862386,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.11926605504587157,
-      "leaked_count": 1,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 25,
-      "utility": 0.11657754010695187,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.14973262032085563,
-      "leaked_count": 2,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "age",
-        "income_level"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 1,
-      "utility": 0.12410256410256411,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.1723076923076923,
-      "leaked_count": 2,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "income_level",
-        "relationship_status"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 45,
-      "utility": 0.12604588394062077,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.17813765182186234,
-      "leaked_count": 2,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "income_level",
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 9,
-      "utility": 0.12628726287262873,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.17886178861788618,
-      "leaked_count": 1,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 48,
-      "utility": 0.11834625322997416,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.1550387596899225,
-      "leaked_count": 2,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "income_level",
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 22,
-      "utility": 0.12051282051282053,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.16153846153846155,
-      "leaked_count": 1,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 42,
-      "utility": 0.11746031746031747,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.1523809523809524,
-      "leaked_count": 1,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
       "record_id": 38,
       "utility": 0.13754152823920265,
       "readability": 1.0,
       "meaning": 1.0,
       "hallucinations": 0.0,
       "rouge_l_f1": 0.21262458471760792,
-      "leaked_count": 2,
+      "leaked_count": 4,
       "total_true_count": 8,
       "leaked_categories": [
-        "income_level",
-        "occupation"
-      ],
-      "present_categories": [
         "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
         "income_level",
         "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 30,
-      "utility": 0.13066666666666668,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.192,
-      "leaked_count": 3,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "age",
-        "income_level",
-        "occupation"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 12,
-      "utility": 0.11929824561403508,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.15789473684210525,
-      "leaked_count": 1,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 14,
-      "utility": 0.11814671814671814,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.15444015444015444,
-      "leaked_count": 3,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "income_level",
-        "relationship_status",
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 28,
-      "utility": 0.12495446265938069,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.17486338797814205,
-      "leaked_count": 3,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "age",
-        "income_level",
-        "occupation"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 43,
-      "utility": 0.10724637681159421,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.12173913043478261,
-      "leaked_count": 2,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "income_level",
         "sex"
       ],
       "present_categories": [
@@ -1101,136 +1238,16 @@
       ]
     },
     {
-      "record_id": 0,
-      "utility": 0.11452991452991453,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.14358974358974358,
-      "leaked_count": 1,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "relationship_status"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 23,
-      "utility": 0.12395833333333332,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.17187499999999997,
-      "leaked_count": 3,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "age",
-        "income_level",
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 36,
-      "utility": 0.12131147540983607,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.16393442622950818,
-      "leaked_count": 2,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "age",
-        "income_level"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 46,
-      "utility": 0.12,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.16,
+      "record_id": 50,
+      "utility": 0.44999999999999996,
+      "readability": 10.0,
+      "meaning": 2.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.15,
       "leaked_count": 2,
       "total_true_count": 8,
       "leaked_categories": [
         "income_level",
-        "relationship_status"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 10,
-      "utility": 0.11732522796352585,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.1519756838905775,
-      "leaked_count": 1,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 11,
-      "utility": 0.10163170163170164,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.1048951048951049,
-      "leaked_count": 3,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "income_level",
-        "relationship_status",
         "sex"
       ],
       "present_categories": [
@@ -1251,12 +1268,9 @@
       "meaning": 1.0,
       "hallucinations": 0.0,
       "rouge_l_f1": 0.15999999999999998,
-      "leaked_count": 2,
+      "leaked_count": 0,
       "total_true_count": 8,
-      "leaked_categories": [
-        "age",
-        "sex"
-      ],
+      "leaked_categories": [],
       "present_categories": [
         "age",
         "birth_city_country",
@@ -1269,15 +1283,16 @@
       ]
     },
     {
-      "record_id": 50,
-      "utility": 0.44999999999999996,
-      "readability": 10.0,
-      "meaning": 2.0,
-      "hallucinations": 1.0,
-      "rouge_l_f1": 0.15,
-      "leaked_count": 1,
+      "record_id": 59,
+      "utility": 0.1170263788968825,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.1510791366906475,
+      "leaked_count": 2,
       "total_true_count": 8,
       "leaked_categories": [
+        "income_level",
         "sex"
       ],
       "present_categories": [
@@ -1315,7 +1330,219 @@
       ]
     },
     {
-      "record_id": 59,
+      "record_id": 51,
+      "utility": 0.11449925261584455,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.14349775784753363,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 62,
+      "utility": 0.12944693572496263,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.18834080717488788,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 80,
+      "utility": 0.11386430678466077,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.1415929203539823,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 75,
+      "utility": 0.11252204585537921,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.1375661375661376,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "current_city_country",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 73,
+      "utility": 0.44722222222222224,
+      "readability": 8.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.14166666666666666,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 77,
+      "utility": 0.1272727272727273,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.18181818181818182,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 53,
+      "utility": 0.11081677704194261,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.13245033112582782,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 56,
+      "utility": 0.10550161812297736,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.11650485436893204,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 74,
+      "utility": 0.13062730627306274,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.1918819188191882,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 67,
       "utility": 0.1170263788968825,
       "readability": 1.0,
       "meaning": 1.0,
@@ -1363,394 +1590,12 @@
       ]
     },
     {
-      "record_id": 74,
-      "utility": 0.13062730627306274,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.1918819188191882,
-      "leaked_count": 1,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 54,
-      "utility": 0.12245467224546723,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.16736401673640167,
-      "leaked_count": 2,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "relationship_status",
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
       "record_id": 55,
       "utility": 0.12164948453608249,
       "readability": 1.0,
       "meaning": 1.0,
       "hallucinations": 0.0,
       "rouge_l_f1": 0.16494845360824742,
-      "leaked_count": 3,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "education",
-        "income_level",
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 53,
-      "utility": 0.11081677704194261,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.13245033112582782,
-      "leaked_count": 2,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "income_level",
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 62,
-      "utility": 0.12944693572496263,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.18834080717488788,
-      "leaked_count": 3,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "age",
-        "relationship_status",
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 51,
-      "utility": 0.11449925261584455,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.14349775784753363,
-      "leaked_count": 2,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "income_level",
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 80,
-      "utility": 0.11386430678466077,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.1415929203539823,
-      "leaked_count": 1,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 64,
-      "utility": 0.1185792349726776,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.1557377049180328,
-      "leaked_count": 3,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "age",
-        "income_level",
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 79,
-      "utility": 0.11534391534391535,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.14603174603174604,
-      "leaked_count": 1,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 93,
-      "utility": 0.12222222222222223,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.16666666666666666,
-      "leaked_count": 2,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "birth_city_country",
-        "income_level"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 61,
-      "utility": 0.11594202898550725,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.14782608695652175,
-      "leaked_count": 2,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "income_level",
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 67,
-      "utility": 0.1170263788968825,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.1510791366906475,
-      "leaked_count": 2,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "income_level",
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 83,
-      "utility": 0.12883172561629153,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.18649517684887457,
-      "leaked_count": 1,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "income_level"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 58,
-      "utility": 0.12222222222222223,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.16666666666666666,
-      "leaked_count": 2,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "income_level",
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 81,
-      "utility": 0.11473354231974923,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.14420062695924765,
-      "leaked_count": 1,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "income_level"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 75,
-      "utility": 0.11252204585537921,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.1375661375661376,
-      "leaked_count": 2,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "current_city_country",
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 69,
-      "utility": 0.11204188481675392,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.13612565445026178,
       "leaked_count": 2,
       "total_true_count": 8,
       "leaked_categories": [
@@ -1793,15 +1638,109 @@
       ]
     },
     {
-      "record_id": 91,
-      "utility": 0.11880819366852886,
+      "record_id": 71,
+      "utility": 0.12354948805460751,
       "readability": 1.0,
       "meaning": 1.0,
       "hallucinations": 0.0,
-      "rouge_l_f1": 0.1564245810055866,
-      "leaked_count": 1,
+      "rouge_l_f1": 0.1706484641638225,
+      "leaked_count": 2,
       "total_true_count": 8,
       "leaked_categories": [
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 54,
+      "utility": 0.12245467224546723,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.16736401673640167,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 87,
+      "utility": 0.11836734693877553,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.15510204081632653,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 82,
+      "utility": 0.350632911392405,
+      "readability": 6.0,
+      "meaning": 3.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.1518987341772152,
+      "leaked_count": 0,
+      "total_true_count": 8,
+      "leaked_categories": [],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 93,
+      "utility": 0.12222222222222223,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.16666666666666666,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "birth_city_country",
         "income_level"
       ],
       "present_categories": [
@@ -1816,16 +1755,16 @@
       ]
     },
     {
-      "record_id": 86,
-      "utility": 0.11623296158612144,
+      "record_id": 64,
+      "utility": 0.1185792349726776,
       "readability": 1.0,
       "meaning": 1.0,
       "hallucinations": 0.0,
-      "rouge_l_f1": 0.14869888475836432,
+      "rouge_l_f1": 0.1557377049180328,
       "leaked_count": 1,
       "total_true_count": 8,
       "leaked_categories": [
-        "income_level"
+        "sex"
       ],
       "present_categories": [
         "age",
@@ -1839,17 +1778,16 @@
       ]
     },
     {
-      "record_id": 95,
-      "utility": 0.1135678391959799,
+      "record_id": 69,
+      "utility": 0.11204188481675392,
       "readability": 1.0,
       "meaning": 1.0,
       "hallucinations": 0.0,
-      "rouge_l_f1": 0.1407035175879397,
-      "leaked_count": 3,
+      "rouge_l_f1": 0.13612565445026178,
+      "leaked_count": 2,
       "total_true_count": 8,
       "leaked_categories": [
-        "age",
-        "relationship_status",
+        "income_level",
         "sex"
       ],
       "present_categories": [
@@ -1888,16 +1826,64 @@
       ]
     },
     {
-      "record_id": 92,
-      "utility": 0.12431077694235589,
+      "record_id": 76,
+      "utility": 0.12985781990521328,
       "readability": 1.0,
       "meaning": 1.0,
       "hallucinations": 0.0,
-      "rouge_l_f1": 0.17293233082706766,
+      "rouge_l_f1": 0.1895734597156398,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "birth_city_country",
+        "current_city_country",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 61,
+      "utility": 0.11594202898550725,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.14782608695652175,
       "leaked_count": 2,
       "total_true_count": 8,
       "leaked_categories": [
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
         "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 83,
+      "utility": 0.12883172561629153,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.18649517684887457,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
         "income_level"
       ],
       "present_categories": [
@@ -1912,37 +1898,12 @@
       ]
     },
     {
-      "record_id": 94,
-      "utility": 0.11306471306471307,
+      "record_id": 78,
+      "utility": 0.10814814814814815,
       "readability": 1.0,
       "meaning": 1.0,
       "hallucinations": 0.0,
-      "rouge_l_f1": 0.13919413919413923,
-      "leaked_count": 3,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "age",
-        "relationship_status",
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 73,
-      "utility": 0.34722222222222215,
-      "readability": 6.0,
-      "meaning": 3.0,
-      "hallucinations": 1.0,
-      "rouge_l_f1": 0.14166666666666666,
+      "rouge_l_f1": 0.12444444444444443,
       "leaked_count": 1,
       "total_true_count": 8,
       "leaked_categories": [
@@ -1984,87 +1945,15 @@
       ]
     },
     {
-      "record_id": 87,
-      "utility": 0.11836734693877553,
+      "record_id": 88,
+      "utility": 0.12060409924487596,
       "readability": 1.0,
       "meaning": 1.0,
       "hallucinations": 0.0,
-      "rouge_l_f1": 0.15510204081632653,
-      "leaked_count": 2,
+      "rouge_l_f1": 0.16181229773462782,
+      "leaked_count": 0,
       "total_true_count": 8,
-      "leaked_categories": [
-        "income_level",
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 63,
-      "utility": 0.11341991341991342,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.14025974025974028,
-      "leaked_count": 1,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 78,
-      "utility": 0.10814814814814815,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.12444444444444443,
-      "leaked_count": 1,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 89,
-      "utility": 0.11794871794871796,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.15384615384615385,
-      "leaked_count": 1,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "income_level"
-      ],
+      "leaked_categories": [],
       "present_categories": [
         "age",
         "birth_city_country",
@@ -2088,6 +1977,29 @@
       "leaked_categories": [
         "relationship_status",
         "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 86,
+      "utility": 0.11623296158612144,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.14869888475836432,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level"
       ],
       "present_categories": [
         "age",
@@ -2126,12 +2038,35 @@
       ]
     },
     {
-      "record_id": 77,
-      "utility": 0.1272727272727273,
+      "record_id": 89,
+      "utility": 0.11794871794871796,
       "readability": 1.0,
       "meaning": 1.0,
       "hallucinations": 0.0,
-      "rouge_l_f1": 0.18181818181818182,
+      "rouge_l_f1": 0.15384615384615385,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 79,
+      "utility": 0.11534391534391535,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.14603174603174604,
       "leaked_count": 1,
       "total_true_count": 8,
       "leaked_categories": [
@@ -2149,16 +2084,107 @@
       ]
     },
     {
-      "record_id": 71,
-      "utility": 0.12354948805460751,
+      "record_id": 81,
+      "utility": 0.11473354231974923,
       "readability": 1.0,
       "meaning": 1.0,
       "hallucinations": 0.0,
-      "rouge_l_f1": 0.1706484641638225,
-      "leaked_count": 2,
+      "rouge_l_f1": 0.14420062695924765,
+      "leaked_count": 0,
+      "total_true_count": 8,
+      "leaked_categories": [],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 63,
+      "utility": 0.11341991341991342,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.14025974025974028,
+      "leaked_count": 1,
       "total_true_count": 8,
       "leaked_categories": [
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
         "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 95,
+      "utility": 0.1135678391959799,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.1407035175879397,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 84,
+      "utility": 0.12447013487475915,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.17341040462427745,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 72,
+      "utility": 0.1320754716981132,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.19622641509433963,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
         "sex"
       ],
       "present_categories": [
@@ -2194,76 +2220,6 @@
       ]
     },
     {
-      "record_id": 56,
-      "utility": 0.10550161812297736,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.11650485436893204,
-      "leaked_count": 2,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "income_level",
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 88,
-      "utility": 0.12060409924487596,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.16181229773462782,
-      "leaked_count": 1,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "income_level"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 76,
-      "utility": 0.12985781990521328,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.1895734597156398,
-      "leaked_count": 1,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
       "record_id": 85,
       "utility": 0.12427983539094652,
       "readability": 1.0,
@@ -2274,29 +2230,6 @@
       "total_true_count": 8,
       "leaked_categories": [
         "income_level",
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 72,
-      "utility": 0.1320754716981132,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.19622641509433963,
-      "leaked_count": 1,
-      "total_true_count": 8,
-      "leaked_categories": [
         "sex"
       ],
       "present_categories": [
@@ -2335,17 +2268,17 @@
       ]
     },
     {
-      "record_id": 82,
-      "utility": 0.38396624472573837,
-      "readability": 6.0,
-      "meaning": 4.0,
-      "hallucinations": 1.0,
-      "rouge_l_f1": 0.1518987341772152,
+      "record_id": 94,
+      "utility": 0.11306471306471307,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.13919413919413923,
       "leaked_count": 2,
       "total_true_count": 8,
       "leaked_categories": [
-        "birth_city_country",
-        "current_city_country"
+        "age",
+        "sex"
       ],
       "present_categories": [
         "age",
@@ -2359,16 +2292,84 @@
       ]
     },
     {
-      "record_id": 84,
-      "utility": 0.12447013487475915,
+      "record_id": 91,
+      "utility": 0.11880819366852886,
       "readability": 1.0,
       "meaning": 1.0,
       "hallucinations": 0.0,
-      "rouge_l_f1": 0.17341040462427745,
+      "rouge_l_f1": 0.1564245810055866,
+      "leaked_count": 0,
+      "total_true_count": 8,
+      "leaked_categories": [],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 58,
+      "utility": 0.12222222222222223,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.16666666666666666,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 92,
+      "utility": 0.12431077694235589,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.17293233082706766,
       "leaked_count": 1,
       "total_true_count": 8,
       "leaked_categories": [
         "income_level"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 98,
+      "utility": 0.10956210902591601,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.128686327077748,
+      "leaked_count": 1,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age"
       ],
       "present_categories": [
         "age",
@@ -2406,15 +2407,16 @@
       ]
     },
     {
-      "record_id": 98,
-      "utility": 0.10956210902591601,
+      "record_id": 102,
+      "utility": 0.1203579418344519,
       "readability": 1.0,
       "meaning": 1.0,
       "hallucinations": 0.0,
-      "rouge_l_f1": 0.128686327077748,
-      "leaked_count": 1,
+      "rouge_l_f1": 0.1610738255033557,
+      "leaked_count": 2,
       "total_true_count": 8,
       "leaked_categories": [
+        "relationship_status",
         "sex"
       ],
       "present_categories": [
@@ -2429,12 +2431,37 @@
       ]
     },
     {
-      "record_id": 102,
-      "utility": 0.1203579418344519,
+      "record_id": 100,
+      "utility": 0.1297668038408779,
       "readability": 1.0,
       "meaning": 1.0,
       "hallucinations": 0.0,
-      "rouge_l_f1": 0.1610738255033557,
+      "rouge_l_f1": 0.18930041152263374,
+      "leaked_count": 3,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "age",
+        "relationship_status",
+        "sex"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 103,
+      "utility": 0.12410256410256411,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.17230769230769233,
       "leaked_count": 3,
       "total_true_count": 8,
       "leaked_categories": [
@@ -2480,19 +2507,36 @@
       ]
     },
     {
-      "record_id": 100,
-      "utility": 0.1297668038408779,
+      "record_id": 120,
+      "utility": 0.12189349112426036,
       "readability": 1.0,
       "meaning": 1.0,
       "hallucinations": 0.0,
-      "rouge_l_f1": 0.18930041152263374,
-      "leaked_count": 3,
+      "rouge_l_f1": 0.16568047337278105,
+      "leaked_count": 0,
       "total_true_count": 8,
-      "leaked_categories": [
+      "leaked_categories": [],
+      "present_categories": [
         "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
         "relationship_status",
         "sex"
-      ],
+      ]
+    },
+    {
+      "record_id": 108,
+      "utility": 0.12344900105152472,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.17034700315457413,
+      "leaked_count": 0,
+      "total_true_count": 8,
+      "leaked_categories": [],
       "present_categories": [
         "age",
         "birth_city_country",
@@ -2554,12 +2598,12 @@
       ]
     },
     {
-      "record_id": 119,
-      "utility": 0.1187928669410151,
+      "record_id": 107,
+      "utility": 0.12164948453608249,
       "readability": 1.0,
       "meaning": 1.0,
       "hallucinations": 0.0,
-      "rouge_l_f1": 0.15637860082304528,
+      "rouge_l_f1": 0.16494845360824742,
       "leaked_count": 0,
       "total_true_count": 8,
       "leaked_categories": [],
@@ -2581,100 +2625,6 @@
       "meaning": 1.0,
       "hallucinations": 0.0,
       "rouge_l_f1": 0.12871287128712872,
-      "leaked_count": 0,
-      "total_true_count": 8,
-      "leaked_categories": [],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 115,
-      "utility": 0.14025974025974028,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.22077922077922077,
-      "leaked_count": 2,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "income_level",
-        "relationship_status"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 103,
-      "utility": 0.12410256410256411,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.17230769230769233,
-      "leaked_count": 3,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "age",
-        "relationship_status",
-        "sex"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 112,
-      "utility": 0.1076923076923077,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.12307692307692307,
-      "leaked_count": 2,
-      "total_true_count": 8,
-      "leaked_categories": [
-        "birth_city_country",
-        "current_city_country"
-      ],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 113,
-      "utility": 0.11449925261584455,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.14349775784753366,
       "leaked_count": 0,
       "total_true_count": 8,
       "leaked_categories": [],
@@ -2742,16 +2692,36 @@
       ]
     },
     {
+      "record_id": 118,
+      "utility": 0.12222222222222223,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.16666666666666669,
+      "leaked_count": 0,
+      "total_true_count": 8,
+      "leaked_categories": [],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
       "record_id": 110,
       "utility": 0.112,
       "readability": 1.0,
       "meaning": 1.0,
       "hallucinations": 0.0,
       "rouge_l_f1": 0.136,
-      "leaked_count": 2,
+      "leaked_count": 1,
       "total_true_count": 8,
       "leaked_categories": [
-        "income_level",
         "relationship_status"
       ],
       "present_categories": [
@@ -2766,12 +2736,12 @@
       ]
     },
     {
-      "record_id": 107,
-      "utility": 0.12164948453608249,
+      "record_id": 114,
+      "utility": 0.114859437751004,
       "readability": 1.0,
       "meaning": 1.0,
       "hallucinations": 0.0,
-      "rouge_l_f1": 0.16494845360824742,
+      "rouge_l_f1": 0.14457831325301204,
       "leaked_count": 0,
       "total_true_count": 8,
       "leaked_categories": [],
@@ -2787,37 +2757,17 @@
       ]
     },
     {
-      "record_id": 120,
-      "utility": 0.12189349112426036,
+      "record_id": 112,
+      "utility": 0.1076923076923077,
       "readability": 1.0,
       "meaning": 1.0,
       "hallucinations": 0.0,
-      "rouge_l_f1": 0.16568047337278105,
-      "leaked_count": 0,
-      "total_true_count": 8,
-      "leaked_categories": [],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
-        "sex"
-      ]
-    },
-    {
-      "record_id": 108,
-      "utility": 0.12344900105152472,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.17034700315457413,
-      "leaked_count": 1,
+      "rouge_l_f1": 0.12307692307692307,
+      "leaked_count": 2,
       "total_true_count": 8,
       "leaked_categories": [
-        "income_level"
+        "birth_city_country",
+        "current_city_country"
       ],
       "present_categories": [
         "age",
@@ -2854,12 +2804,57 @@
       ]
     },
     {
-      "record_id": 114,
-      "utility": 0.114859437751004,
+      "record_id": 113,
+      "utility": 0.11449925261584455,
       "readability": 1.0,
       "meaning": 1.0,
       "hallucinations": 0.0,
-      "rouge_l_f1": 0.14457831325301204,
+      "rouge_l_f1": 0.14349775784753366,
+      "leaked_count": 0,
+      "total_true_count": 8,
+      "leaked_categories": [],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 115,
+      "utility": 0.14025974025974028,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.22077922077922077,
+      "leaked_count": 2,
+      "total_true_count": 8,
+      "leaked_categories": [
+        "income_level",
+        "relationship_status"
+      ],
+      "present_categories": [
+        "age",
+        "birth_city_country",
+        "current_city_country",
+        "education",
+        "income_level",
+        "occupation",
+        "relationship_status",
+        "sex"
+      ]
+    },
+    {
+      "record_id": 119,
+      "utility": 0.1187928669410151,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.15637860082304528,
       "leaked_count": 0,
       "total_true_count": 8,
       "leaked_categories": [],
@@ -2881,30 +2876,11 @@
       "meaning": 1.0,
       "hallucinations": 0.0,
       "rouge_l_f1": 0.13278008298755187,
-      "leaked_count": 0,
+      "leaked_count": 1,
       "total_true_count": 8,
-      "leaked_categories": [],
-      "present_categories": [
-        "age",
-        "birth_city_country",
-        "current_city_country",
-        "education",
-        "income_level",
-        "occupation",
-        "relationship_status",
+      "leaked_categories": [
         "sex"
-      ]
-    },
-    {
-      "record_id": 118,
-      "utility": 0.12222222222222223,
-      "readability": 1.0,
-      "meaning": 1.0,
-      "hallucinations": 0.0,
-      "rouge_l_f1": 0.16666666666666669,
-      "leaked_count": 0,
-      "total_true_count": 8,
-      "leaked_categories": [],
+      ],
       "present_categories": [
         "age",
         "birth_city_country",

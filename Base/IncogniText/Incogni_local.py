@@ -334,7 +334,7 @@ def main_run():
     parser.add_argument("--dtype", type=str, default=None, help="Tensor dtype: fp32/fp16/bf16. Default auto")
     parser.add_argument("--gpu_memory_utilization", type=float, default=0.9, help="GPU memory hint")
     # --- IncogniText 参数 ---
-    parser.add_argument("--max_iterations", type=int, default=3, help="Max IncogniText iterations per record")
+    parser.add_argument("--max_iterations", type=int, default=5, help="Max IncogniText iterations per record")
     # --- 控制参数 ---
     parser.add_argument("--limit", type=int, default=None, help="Only process first N records")
     parser.add_argument("--success_file", type=str, default=None, help="Optional path for successful records")
