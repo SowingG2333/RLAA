@@ -1,0 +1,34 @@
+--- 开始统计 '/home/sowingg/coding/LLM/reddit-self-disclosure/merged_data.jsonl' 中的标签 ---
+
+--- 统计完成 ---
+总共读取行数: 6133
+包含 'label' 字典的行数: 6133
+
+--- 各个标签出现的次数 (降序排列) ---
+Health                    : 935 次
+Time                      : 906 次
+Family                    : 814 次
+Location                  : 682 次 ✔
+Occupation                : 541 次 ✔
+Other                     : 512 次
+Age                       : 436 次 ✔
+Mental_Health             : 436 次
+Relationship_Status       : 382 次 ✔
+Age_Gender                : 306 次
+Education                 : 277 次
+Interests                 : 269 次
+Wife_GF                   : 258 次
+Pet                       : 258 次
+Personal_Experiences      : 252 次
+Appearance                : 238 次
+Possession                : 228 次
+Finance                   : 218 次
+Husband_BF                : 205 次
+Gender                    : 179 次 ✔
+Race_Nationality          : 137 次
+Sexual_Orientation        : 97 次
+Religion                  : 58 次
+Stance                    : 49 次
+Name                      : 30 次
+Contact                   : 22 次
+Affiliation               : 13 次
