@@ -1,0 +1,7691 @@
+{
+  "summary": {
+    "mode": "Anonymized Text",
+    "protected_attributes": [
+      "current_city_country"
+    ],
+    "average_utility": 0.9118015787097601,
+    "average_readability": 9.775280898876405,
+    "average_meaning": 8.812734082397004,
+    "average_hallucinations": 0.9925093632958801,
+    "average_rouge_l_f1": 0.8766032380019417,
+    "overall_adversarial_accuracy": 0.1252336448598131,
+    "adversary_model": "deepseek-chat",
+    "total_leaked": 67,
+    "total_possible": 535,
+    "processed_records": 538,
+    "failed_utility": 4,
+    "failed_privacy": 3,
+    "leakage_counts_per_category": {
+      "current_city_country": 67
+    },
+    "present_counts_per_category": {
+      "current_city_country": 535
+    },
+    "leakage_probability_per_category": {
+      "current_city_country": 0.1252336448598131
+    }
+  },
+  "details": [
+    {
+      "record_id": 23,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 3,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 1,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 30,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 44,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 28,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 49,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 22,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 17,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 0,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 7,
+      "utility": 0.8666666666666667,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7999999999999999,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 39,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 35,
+      "utility": 0.7888888888888888,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6666666666666665,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 12,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 47,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 19,
+      "utility": 0.7249619482496193,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.4748858447488584,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 2,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 27,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 8,
+      "utility": 0.8888888888888888,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6666666666666665,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 9,
+      "utility": 0.7148148148148148,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.4444444444444445,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 5,
+      "utility": 0.9615975422427034,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8847926267281105,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 32,
+      "utility": 0.9615975422427034,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8847926267281105,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 21,
+      "utility": 0.8398907103825136,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.819672131147541,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 14,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 26,
+      "utility": 0.9729729729729729,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.918918918918919,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 48,
+      "utility": 0.8398907103825136,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.819672131147541,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 25,
+      "utility": 0.8090909090909091,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7272727272727273,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 15,
+      "utility": 0.8444444444444444,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7333333333333333,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 13,
+      "utility": 0.8698412698412699,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8095238095238095,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 42,
+      "utility": 0.8666666666666667,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8000000000000002,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 40,
+      "utility": 0.9565217391304347,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8695652173913043,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 36,
+      "utility": 0.7857142857142857,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.35714285714285715,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 29,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 24,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 34,
+      "utility": 0.8142857142857144,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7428571428571429,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 46,
+      "utility": 0.08055555555555556,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.041666666666666664,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 45,
+      "utility": 0.66957928802589,
+      "readability": 7.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7087378640776698,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 43,
+      "utility": 0.8466666666666667,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8399999999999999,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 20,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 4,
+      "utility": 0.9304193319118692,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8912579957356076,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 10,
+      "utility": 0.9084656084656085,
+      "readability": 9.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8253968253968254,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 41,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 11,
+      "utility": 0.9363636363636362,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.909090909090909,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 38,
+      "utility": 0.9024691358024691,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9074074074074074,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 31,
+      "utility": 0.9700765483646485,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9102296450939457,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 33,
+      "utility": 0.336936936936937,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.8108108108108109,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 16,
+      "utility": 0.8803738317757009,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8411214953271027,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 37,
+      "utility": 0.6732240437158471,
+      "readability": 8.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8196721311475409,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 6,
+      "utility": 0.3541284403669725,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.8623853211009175,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 18,
+      "utility": 0.8363636363636364,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7090909090909092,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 50,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 51,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 52,
+      "utility": 0.8090909090909091,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7272727272727273,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 53,
+      "utility": 0.9729729729729729,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.918918918918919,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 65,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 58,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 56,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 57,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 80,
+      "utility": 0.7151515151515152,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5454545454545454,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 87,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 61,
+      "utility": 0.9166666666666666,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.75,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 68,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 81,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 86,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 71,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 64,
+      "utility": 0.7277777777777779,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5833333333333334,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 85,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 66,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 60,
+      "utility": 0.9696969696969697,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9090909090909091,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 67,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 55,
+      "utility": 0.9288389513108614,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7865168539325842,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 93,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 83,
+      "utility": null,
+      "readability": null,
+      "meaning": null,
+      "hallucinations": null,
+      "rouge_l_f1": null,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 73,
+      "utility": 0.9056338028169014,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8169014084507042,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 72,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 92,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 91,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 79,
+      "utility": 0.9696969696969697,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9090909090909091,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 82,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 90,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 74,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 84,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 63,
+      "utility": 0.8921985815602836,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.776595744680851,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 77,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 75,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 54,
+      "utility": 0.953125,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.859375,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 59,
+      "utility": 0.9623188405797102,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8869565217391304,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 62,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 88,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 70,
+      "utility": 0.9333333333333332,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7999999999999999,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 76,
+      "utility": 0.8389937106918239,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7169811320754716,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 78,
+      "utility": 0.8936507936507936,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.780952380952381,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 89,
+      "utility": 0.8953020134228188,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8859060402684563,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 96,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 69,
+      "utility": 0.8691131498470949,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8073394495412846,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 98,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 95,
+      "utility": 0.9807162534435262,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9421487603305785,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 97,
+      "utility": 0.8677419354838709,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9032258064516129,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 94,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 99,
+      "utility": 0.7698924731182796,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7096774193548386,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 106,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 104,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 107,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 102,
+      "utility": 0.8888888888888888,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6666666666666666,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 105,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 112,
+      "utility": 0.8767295597484277,
+      "readability": 8.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.830188679245283,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 116,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 108,
+      "utility": 0.8254385964912281,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7763157894736842,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 113,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 110,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 114,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 101,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 111,
+      "utility": 0.793137254901961,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7794117647058825,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 120,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 121,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 100,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 165,
+      "utility": null,
+      "readability": null,
+      "meaning": null,
+      "hallucinations": null,
+      "rouge_l_f1": null,
+      "leaked_count": 0,
+      "total_true_count": 0,
+      "leaked_categories": [],
+      "present_categories": []
+    },
+    {
+      "record_id": 103,
+      "utility": 0.9824561403508772,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9473684210526316,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 129,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 130,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 132,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 125,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 122,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 118,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 127,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 138,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 126,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 109,
+      "utility": 0.9145833333333333,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.84375,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 115,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 133,
+      "utility": 0.774468085106383,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.723404255319149,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 117,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 128,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 119,
+      "utility": 0.982905982905983,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9487179487179487,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 139,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 124,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 140,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 135,
+      "utility": 0.8898550724637682,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8695652173913043,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 131,
+      "utility": 0.8186666666666667,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6559999999999999,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 137,
+      "utility": 0.8282700421940928,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7848101265822784,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 136,
+      "utility": 0.883433133732535,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8502994011976048,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 123,
+      "utility": 0.8222222222222223,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6666666666666666,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 146,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 141,
+      "utility": 0.7049382716049383,
+      "readability": 10.0,
+      "meaning": 3.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8148148148148148,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 144,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 148,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 145,
+      "utility": 0.8666666666666667,
+      "readability": 6.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 142,
+      "utility": 0.9858156028368793,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9574468085106382,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 143,
+      "utility": 0.7938697318007663,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7816091954022987,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 134,
+      "utility": 0.9168908819133034,
+      "readability": 9.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9506726457399103,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 153,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 147,
+      "utility": 0.9249999999999999,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.875,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 155,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 149,
+      "utility": 0.8833333333333333,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7499999999999999,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 151,
+      "utility": 0.7083333333333334,
+      "readability": 10.0,
+      "meaning": 5.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.625,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 152,
+      "utility": 0.825925925925926,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7777777777777778,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 154,
+      "utility": 0.9871794871794872,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9615384615384616,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 175,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 150,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 167,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 160,
+      "utility": 0.711764705882353,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7352941176470589,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 163,
+      "utility": 0.7266666666666667,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.58,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 210,
+      "utility": null,
+      "readability": null,
+      "meaning": null,
+      "hallucinations": null,
+      "rouge_l_f1": null,
+      "leaked_count": 0,
+      "total_true_count": 0,
+      "leaked_categories": [],
+      "present_categories": []
+    },
+    {
+      "record_id": 174,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 164,
+      "utility": 0.8230769230769232,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7692307692307692,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 168,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 156,
+      "utility": 0.8666666666666667,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 158,
+      "utility": 0.7967078189300412,
+      "readability": 8.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7901234567901234,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 159,
+      "utility": 0.743859649122807,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.631578947368421,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 176,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 173,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 166,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 161,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 171,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 169,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 162,
+      "utility": 0.7636363636363637,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5909090909090909,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 182,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 157,
+      "utility": 0.9558139534883722,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8674418604651163,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 172,
+      "utility": 0.8358974358974359,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8076923076923077,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 181,
+      "utility": 0.7813953488372093,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7441860465116279,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 177,
+      "utility": 0.7487179487179487,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6461538461538462,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 180,
+      "utility": 0.8978723404255319,
+      "readability": 8.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8936170212765958,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 170,
+      "utility": 0.9731182795698925,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9193548387096774,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 178,
+      "utility": 0.8549549549549549,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8648648648648648,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 183,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 185,
+      "utility": 0.8051987767584098,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7155963302752292,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 179,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 188,
+      "utility": 0.5078431372549019,
+      "readability": 4.0,
+      "meaning": 3.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.823529411764706,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 186,
+      "utility": 0.6717948717948717,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6153846153846154,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 192,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 196,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 190,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 193,
+      "utility": 0.9066666666666667,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.92,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 191,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 184,
+      "utility": 0.7992248062015505,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6976744186046512,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 189,
+      "utility": 0.9689922480620154,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9069767441860465,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 187,
+      "utility": 0.8380952380952381,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5142857142857143,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 201,
+      "utility": 0.3333333333333333,
+      "readability": 7.0,
+      "meaning": 3.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 199,
+      "utility": 0.6871794871794873,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.4615384615384615,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 198,
+      "utility": 0.6962962962962963,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.3888888888888889,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 197,
+      "utility": 0.8107981220657278,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.732394366197183,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 204,
+      "utility": 0.6871794871794873,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.4615384615384615,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 195,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 200,
+      "utility": 0.9076923076923077,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.923076923076923,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 205,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 215,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 208,
+      "utility": 0.8230769230769232,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7692307692307693,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 194,
+      "utility": 0.9264367816091954,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8793103448275862,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 203,
+      "utility": 0.7913978494623656,
+      "readability": 9.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7741935483870968,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 212,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 214,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 213,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 206,
+      "utility": 0.9010752688172042,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9032258064516129,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 220,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 202,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 224,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 207,
+      "utility": 0.94017094017094,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8205128205128205,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 216,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 209,
+      "utility": 0.8274509803921569,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8823529411764706,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 211,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 223,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 221,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 219,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 235,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 240,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 226,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 222,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 231,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 225,
+      "utility": 0.8575757575757575,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7727272727272727,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 217,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 238,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 230,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 218,
+      "utility": 0.978494623655914,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9354838709677419,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 228,
+      "utility": 0.7982905982905985,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.794871794871795,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 227,
+      "utility": 0.8840579710144928,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6521739130434783,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 234,
+      "utility": 0.7484848484848485,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5454545454545455,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 237,
+      "utility": 0.8888888888888888,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6666666666666665,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 239,
+      "utility": 0.975609756097561,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9268292682926829,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 229,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 236,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 246,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 233,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 241,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 248,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 244,
+      "utility": 0.9951690821256038,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9855072463768115,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 252,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 249,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 245,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 247,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 242,
+      "utility": 0.7888888888888891,
+      "readability": 8.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6666666666666667,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 243,
+      "utility": 0.9615384615384616,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8846153846153847,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 253,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 254,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 255,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 232,
+      "utility": 0.8009009009009009,
+      "readability": 9.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7027027027027027,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 261,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 258,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 256,
+      "utility": 0.8320987654320988,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7962962962962964,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 250,
+      "utility": 0.7888888888888889,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6666666666666666,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 257,
+      "utility": 0.806896551724138,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6206896551724138,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 264,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 259,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 251,
+      "utility": 0.8506666666666667,
+      "readability": 9.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7519999999999999,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 260,
+      "utility": 0.9333333333333332,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7999999999999999,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 265,
+      "utility": 0.7173611111111112,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5520833333333334,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 274,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 273,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 262,
+      "utility": 0.9226415094339622,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8679245283018868,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 266,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 267,
+      "utility": 0.6583333333333333,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.375,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 278,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 270,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 279,
+      "utility": 0.7235294117647059,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.47058823529411764,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 282,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 269,
+      "utility": 0.7568627450980392,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.47058823529411764,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 268,
+      "utility": 0.625,
+      "readability": 7.0,
+      "meaning": 3.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8750000000000001,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 263,
+      "utility": 0.8958333333333334,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6875000000000001,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 275,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 271,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 276,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 287,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 272,
+      "utility": 0.6005847953216374,
+      "readability": 7.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7017543859649122,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 280,
+      "utility": 0.9956709956709956,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9870129870129869,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 277,
+      "utility": 0.7533333333333333,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.56,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 290,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 286,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 289,
+      "utility": 0.7600508905852417,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5801526717557252,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 283,
+      "utility": 0.8945736434108528,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8837209302325582,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 281,
+      "utility": 0.9562289562289562,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8686868686868686,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 285,
+      "utility": 0.8126984126984128,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.838095238095238,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 297,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 288,
+      "utility": 0.7999999999999999,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7999999999999999,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 292,
+      "utility": 0.8857142857142857,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8571428571428571,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 293,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 298,
+      "utility": 0.7888888888888888,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6666666666666665,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 294,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 296,
+      "utility": 0.9743589743589743,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.923076923076923,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 291,
+      "utility": 0.8523809523809525,
+      "readability": 8.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8571428571428572,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 295,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 304,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 303,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 308,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 306,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 310,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 307,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 309,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 300,
+      "utility": 0.9209150326797385,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8627450980392156,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 301,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 299,
+      "utility": 0.8573099415204678,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7719298245614034,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 315,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 318,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 311,
+      "utility": 0.6193798449612403,
+      "readability": 10.0,
+      "meaning": 3.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5581395348837209,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 284,
+      "utility": 0.8878787878787878,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7636363636363638,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 313,
+      "utility": 0.7913043478260869,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6739130434782609,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 320,
+      "utility": 0.903030303030303,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9090909090909091,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 319,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 333,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 305,
+      "utility": 0.7862745098039214,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6588235294117646,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 324,
+      "utility": 0.7888888888888888,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6666666666666665,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 302,
+      "utility": 0.7163398692810459,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5490196078431373,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 316,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 322,
+      "utility": 0.8295081967213115,
+      "readability": 9.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6885245901639345,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 321,
+      "utility": 0.7666666666666666,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 337,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 325,
+      "utility": 0.966183574879227,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8985507246376812,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 332,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 323,
+      "utility": 0.8128205128205129,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7384615384615385,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 331,
+      "utility": 0.9352201257861635,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9056603773584906,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 329,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 326,
+      "utility": 0.9033755274261602,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8101265822784809,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 327,
+      "utility": 0.6964028776978418,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.48920863309352514,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 312,
+      "utility": 0.9567099567099566,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8701298701298701,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 338,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 336,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 334,
+      "utility": 0.6238095238095238,
+      "readability": 10.0,
+      "meaning": 3.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5714285714285714,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 314,
+      "utility": 0.9712643678160919,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9137931034482758,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 330,
+      "utility": 0.9842154131847725,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9526462395543176,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 340,
+      "utility": 0.7619047619047619,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6857142857142856,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 328,
+      "utility": 0.6695652173913044,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6086956521739131,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 335,
+      "utility": 0.96,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.88,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 344,
+      "utility": 0.9060606060606059,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8181818181818181,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 339,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 342,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 343,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 341,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 345,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 317,
+      "utility": 0.9,
+      "readability": 7.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 348,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 349,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 352,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 347,
+      "utility": 0.8444444444444446,
+      "readability": 9.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8333333333333334,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 350,
+      "utility": 0.5658402203856748,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.2975206611570248,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 346,
+      "utility": 0.9318407960199004,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8955223880597014,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 353,
+      "utility": 0.9083333333333333,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9249999999999999,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 351,
+      "utility": 0.8006410256410256,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7019230769230769,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 356,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 363,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 355,
+      "utility": 0.7670498084291187,
+      "readability": 9.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7011494252873562,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 361,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 362,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 360,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 369,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 372,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 368,
+      "utility": 0.8857142857142857,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8571428571428571,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 366,
+      "utility": 0.8661835748792271,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8985507246376813,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 354,
+      "utility": 0.6083333333333333,
+      "readability": 7.0,
+      "meaning": 5.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.625,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 370,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 358,
+      "utility": 0.9434108527131783,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9302325581395349,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 364,
+      "utility": 0.8523809523809525,
+      "readability": 8.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8571428571428571,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 359,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 371,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 383,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 357,
+      "utility": 0.8333333333333334,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 377,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 379,
+      "utility": 0.7888888888888889,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6666666666666667,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 373,
+      "utility": 0.692354740061162,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.4770642201834862,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 376,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 365,
+      "utility": 0.9455284552845528,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9365853658536586,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 382,
+      "utility": 0.959349593495935,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8780487804878049,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 390,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 385,
+      "utility": 0.5619047619047619,
+      "readability": 9.0,
+      "meaning": 5.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.28571428571428575,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 367,
+      "utility": 0.9668874172185431,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9006622516556291,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 386,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 375,
+      "utility": 0.8789473684210526,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7368421052631577,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 381,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 374,
+      "utility": 0.9851851851851853,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9555555555555556,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 387,
+      "utility": 0.7926553672316384,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6779661016949152,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 392,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 389,
+      "utility": 0.9666666666666667,
+      "readability": 9.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 378,
+      "utility": 0.359409594095941,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.878228782287823,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 380,
+      "utility": 0.8610441767068274,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.783132530120482,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 388,
+      "utility": 0.7689655172413793,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.706896551724138,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 393,
+      "utility": 0.8411764705882353,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.823529411764706,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 391,
+      "utility": 0.959349593495935,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8780487804878048,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 384,
+      "utility": 0.792156862745098,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.676470588235294,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 394,
+      "utility": 0.8166666666666668,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7500000000000001,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 399,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 401,
+      "utility": 0.9296296296296296,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.888888888888889,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 395,
+      "utility": 0.9247723132969035,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8743169398907105,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 404,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 398,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 402,
+      "utility": 0.8473684210526317,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8421052631578948,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 397,
+      "utility": 0.8163522012578617,
+      "readability": 9.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8490566037735848,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 396,
+      "utility": 0.6978142076502731,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.39344262295081966,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 403,
+      "utility": 0.9274509803921568,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8823529411764706,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 400,
+      "utility": 0.903225806451613,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7096774193548387,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 409,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 407,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 418,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 414,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 415,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 410,
+      "utility": 0.8358974358974359,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8076923076923077,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 408,
+      "utility": 0.8351851851851851,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8055555555555556,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 412,
+      "utility": 0.8588014981273409,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8764044943820225,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 411,
+      "utility": 0.685424588086185,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.45627376425855515,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 427,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 417,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 406,
+      "utility": 0.9212121212121213,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7636363636363634,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 416,
+      "utility": 0.9818181818181818,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9454545454545454,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 421,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 424,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 405,
+      "utility": 0.9558232931726908,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8674698795180723,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 419,
+      "utility": 0.876470588235294,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7294117647058822,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 413,
+      "utility": 0.8770114942528736,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9310344827586207,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 420,
+      "utility": 0.8195402298850575,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7586206896551724,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 429,
+      "utility": 0.3666666666666667,
+      "readability": 3.0,
+      "meaning": 5.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.3,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 434,
+      "utility": 0.8758620689655173,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8275862068965517,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 428,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 430,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 422,
+      "utility": 0.8617486338797814,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8852459016393442,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 438,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 423,
+      "utility": 0.8032258064516129,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7096774193548387,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 425,
+      "utility": 0.9819819819819818,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9459459459459458,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 431,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 433,
+      "utility": 0.8155555555555555,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7466666666666666,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 435,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 440,
+      "utility": 0.9666666666666667,
+      "readability": 9.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 437,
+      "utility": 0.7441441441441441,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.4324324324324324,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 426,
+      "utility": 0.9213991769547324,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8641975308641976,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 432,
+      "utility": 0.6547008547008547,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5641025641025641,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 442,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 441,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 436,
+      "utility": 0.8717514124293785,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9152542372881356,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 439,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 445,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 451,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 449,
+      "utility": 0.7833333333333333,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7499999999999999,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 450,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 446,
+      "utility": 0.9333333333333332,
+      "readability": 8.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 443,
+      "utility": 0.8325396825396826,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7976190476190476,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 456,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 452,
+      "utility": 0.7674698795180723,
+      "readability": 8.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6024096385542168,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 453,
+      "utility": 0.8608695652173912,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7826086956521738,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 444,
+      "utility": 0.9118143459915612,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8354430379746836,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 447,
+      "utility": 0.7816993464052288,
+      "readability": 9.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7450980392156864,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 457,
+      "utility": 0.9743589743589743,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.923076923076923,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 459,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 458,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 455,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 461,
+      "utility": 0.5761904761904763,
+      "readability": 10.0,
+      "meaning": 3.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.4285714285714285,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 462,
+      "utility": 0.6956989247311828,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.3870967741935484,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 454,
+      "utility": 0.7954415954415954,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7863247863247863,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 463,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 466,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 448,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 465,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 460,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 464,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 475,
+      "utility": 0.4407407407407408,
+      "readability": 10.0,
+      "meaning": 1.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.22222222222222224,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 468,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 482,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 469,
+      "utility": 0.7666666666666666,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 470,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 474,
+      "utility": 0.8652482269503546,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5957446808510639,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 471,
+      "utility": 0.8873563218390804,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8620689655172413,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 476,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 472,
+      "utility": 0.8732240437158469,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8196721311475409,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 486,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 478,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 473,
+      "utility": 0.7703703703703705,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7111111111111111,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 477,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 480,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 467,
+      "utility": 0.7846153846153846,
+      "readability": 6.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9538461538461539,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 492,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 484,
+      "utility": 0.8710144927536231,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9130434782608696,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 490,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 479,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 535,
+      "utility": null,
+      "readability": null,
+      "meaning": null,
+      "hallucinations": null,
+      "rouge_l_f1": null,
+      "leaked_count": 0,
+      "total_true_count": 0,
+      "leaked_categories": [],
+      "present_categories": []
+    },
+    {
+      "record_id": 481,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 489,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 487,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 488,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 496,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 483,
+      "utility": 0.9722222222222222,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9166666666666666,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 491,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 485,
+      "utility": 0.7571428571428571,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5714285714285715,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 493,
+      "utility": 0.7196687370600414,
+      "readability": 9.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5590062111801243,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 497,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 495,
+      "utility": 0.9065573770491803,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8196721311475409,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 499,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 498,
+      "utility": 0.8166666666666668,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.75,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 500,
+      "utility": 0.8103942652329749,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7311827956989247,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 494,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 503,
+      "utility": 0.3444444444444444,
+      "readability": 3.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.3333333333333333,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 501,
+      "utility": 0.8009009009009009,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7027027027027027,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 506,
+      "utility": 0.6888888888888888,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6666666666666666,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 513,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 502,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 507,
+      "utility": 0.9148148148148149,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8444444444444444,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 508,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 512,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 511,
+      "utility": 0.9157894736842106,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9473684210526316,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 514,
+      "utility": 0.8169398907103825,
+      "readability": 8.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9508196721311476,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 505,
+      "utility": 0.8190476190476191,
+      "readability": 9.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8571428571428572,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 509,
+      "utility": 0.796551724137931,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6896551724137931,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 517,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 516,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 523,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 521,
+      "utility": 0.5333333333333333,
+      "readability": 8.0,
+      "meaning": 3.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 515,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 524,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 504,
+      "utility": 0.9470588235294116,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9411764705882353,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 525,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 526,
+      "utility": 0.8753623188405797,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8260869565217391,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 510,
+      "utility": 0.8047619047619047,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7142857142857142,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 527,
+      "utility": 0.9523809523809524,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8571428571428572,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 519,
+      "utility": 0.8565217391304348,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8695652173913043,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 529,
+      "utility": 0.7571428571428571,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5714285714285714,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 520,
+      "utility": 0.7155555555555555,
+      "readability": 9.0,
+      "meaning": 5.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7466666666666666,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 528,
+      "utility": 0.7484848484848484,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5454545454545454,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 531,
+      "utility": 0.9716312056737589,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9148936170212767,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 534,
+      "utility": 0.837669376693767,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8130081300813009,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 537,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 530,
+      "utility": 0.8920398009950249,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7761194029850746,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 536,
+      "utility": 0.9743589743589743,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.923076923076923,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 533,
+      "utility": 0.7222222222222223,
+      "readability": 10.0,
+      "meaning": 5.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6666666666666667,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 518,
+      "utility": 1.0,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 1.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 522,
+      "utility": 0.8923976608187134,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8771929824561402,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "current_city_country"
+      ],
+      "present_categories": [
+        "current_city_country"
+      ]
+    },
+    {
+      "record_id": 532,
+      "utility": 0.8947712418300653,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7843137254901961,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "current_city_country"
+      ]
+    }
+  ]
+}

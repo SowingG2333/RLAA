@@ -61,7 +61,7 @@ Your response must follow this format exactly:
 
 Inference: Provide your detailed reasoning for the following attribute guess - **{attributes_list_str}**.
 
-Guess: A single JSON object containing your best guess for each of the following keys: **{json_keys_str}**.
+Guess: A single JSON object containing your best guess for the following key: **{json_keys_str}**.
 **JSON Value Rules (CRITICAL):**
 1. age: must be an accurate integer (e.g., 35, not "35" or "30-40") or string "unknown".
 2. sex: must be one of the following exact strings: "male", "female", or "unknown".
@@ -203,13 +203,11 @@ def parse_attacker_output(response_text: str) -> Dict[str, Any]:
     
     return {"inference": inference_block, "guess_json": guess_json}
 
-# [MODIFIED] 添加了 attributes_to_protect 参数
 def call_attacker_local(pipe, user_response: str, terminator_ids: List[int], record_id: int, attributes_to_protect: List[str]) -> str:
     """调用本地 Attacker LLM，返回 *原始文本输出*"""
     iteration_log_prefix = f"[Record-{record_id}] Attacking"
     logging.debug(f"{iteration_log_prefix} for attributes {attributes_to_protect}...")
     
-    # [MODIFIED] 动态生成 user_content
     user_content = generate_attacker_user_prompt(str(user_response), attributes_to_protect) 
     
     messages = [{"role": "system", "content": PROMPT_ATTACKER_SYSTEM.strip()}, {"role": "user", "content": user_content}]
@@ -351,8 +349,6 @@ def call_anonymizer_local(pipe, user_response: str, feedback: str, terminator_id
 
 
 # --- 3. 核心逻辑 ---
-
-# [MODIFIED] 添加了 protect_attribute 参数
 def adversarial_anonymization(
     pipe,
     original_response: str,
@@ -365,8 +361,6 @@ def adversarial_anonymization(
     """
     执行 "Attacker -> Python Judge -> LLM Filter -> Anonymizer" 架构
     """
-    
-    # --- [MODIFICATION START] ---
     # 定义所有可能的有效属性
     CORE_PII_ATTRIBUTES_ALL = {"age", "sex", "current_city_country", "birth_city_country", "education", "occupation", "income_level", "relationship_status"}
     
@@ -397,7 +391,7 @@ def adversarial_anonymization(
             pipe,
             comment_text,
             inference_block,
-            attributes_to_protect, # <-- [MODIFICATION] 现在这里会使用上面定义的列表
+            attributes_to_protect,
             terminator_ids,
             record_id
         )
@@ -438,7 +432,6 @@ def adversarial_anonymization(
     # --- 步骤 0: 初始攻击 (Attacker) ---
     logging.info(f"[Record {record_id}] Starting initial attack (Round 0)...")
     try:
-        # [MODIFIED] 将 attributes_to_protect 传递给 attacker
         raw_attack_output = call_attacker_local(pipe, original_response, terminator_ids, record_id, attributes_to_protect)
         
         parsed_attack = parse_attacker_output(raw_attack_output)
@@ -503,7 +496,6 @@ def adversarial_anonymization(
         try:
             logging.info(f"{iteration_log_prefix} Calling Attacker...")
             
-            # [MODIFIED] 将 attributes_to_protect 传递给 attacker
             raw_attack_output = call_attacker_local(pipe, current_anonymized_response, terminator_ids, record_id, attributes_to_protect)
             
             parsed_attack = parse_attacker_output(raw_attack_output)
@@ -539,8 +531,6 @@ def adversarial_anonymization(
 
 
 # --- 4. Wrapper 和 Main ---
-
-# [MODIFIED] 添加了 protect_attribute 参数
 def process_record(pipe, data: Dict[str, Any], max_iterations: int, record_id: int, terminator_ids: List[int], protect_attribute: Optional[str]) -> Dict[str, Any]:
     """处理单条记录。"""
     logging.info(f"[Record {record_id}] Starting processing.")
@@ -568,7 +558,7 @@ def process_record(pipe, data: Dict[str, Any], max_iterations: int, record_id: i
         terminator_ids, 
         max_iterations, 
         record_id,
-        protect_attribute # <-- [MODIFICATION] 传递参数
+        protect_attribute
     )
     data["anonymized_response"] = anonymized_response
     data["anonymization_meta"] = meta
@@ -589,12 +579,9 @@ def main():
     parser.add_argument("--limit", type=int, default=None, help="仅处理前 N 条")
     parser.add_argument("--max_new_tokens", type=int, default=2048, help="生成的最大新 token 数（Attacker/Arbitrator 需要更大空间）")
     parser.add_argument("--log_file", type=str, default="anonymizer_local_arbitrator.log", help="日志文件路径")
-    parser.add_argument("--log_level", type=str, default="DEBUG", choices=["DEBUG", "INFO", "WARNING", "ERROR"], help="日志级别")
-    
-    # --- [MODIFICATION START] ---
+    parser.add_argument("--log_level", type=str, default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR"], help="日志级别")
     parser.add_argument("--protect_attribute", type=str, default=None, 
                         help="可选：指定要保护的单个属性（例如 'age', 'sex'）。如果未设置，则保护所有核心属性。")
-    # --- [MODIFICATION END] ---
     
     args = parser.parse_args()
     
@@ -630,12 +617,10 @@ def main():
     logging.info(f"Using terminators: {terminator_ids}")
     logging.info(f"Starting sequential processing for {len(records_to_process)} records with model {args.model_name} ...")
     
-    # --- [MODIFICATION START] ---
     if args.protect_attribute:
         logging.info(f"*** SINGLE ATTRIBUTE MODE: Protecting ONLY '{args.protect_attribute}' ***")
     else:
         logging.info(f"*** FULL PROTECTION MODE: Protecting all core PII attributes ***")
-    # --- [MODIFICATION END] ---
     
     results = []
     counters = {
@@ -647,15 +632,13 @@ def main():
         "skipped_data_read_error": 0, 
         "skipped_incomplete_data": 0, 
         "skipped_invalid_personality": 0, 
-        "skipped_invalid_attribute": 0, # <-- [MODIFICATION] 添加新的计数器
+        "skipped_invalid_attribute": 0,
         "unknown_fail": 0
     }
     
     def _task(rec_idx: int, rec: Dict[str, Any]):
-        # --- [MODIFICATION START] ---
         # 将 args.protect_attribute 传递下去
         return process_record(gen_pipe, rec, args.max_iterations, rec_idx, terminator_ids, args.protect_attribute)
-        # --- [MODIFICATION END] ---
     
     for i, rec_tuple in enumerate(tqdm(records_to_process, desc="Anonymizing profiles (Arbitrator)")): 
         rec_idx, rec_data = rec_tuple

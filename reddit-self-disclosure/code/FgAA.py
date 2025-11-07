@@ -10,7 +10,7 @@ import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 from tqdm import tqdm
 
-# --- 1. 匿名化LLM提示词 (不变) ---
+# --- 1. 匿名化LLM提示词 ---
 PROMPT_ANONYMIZER_SYSTEM = """
 You are an expert anonymizer that carefully adapts small parts of the text to make it anonymous. You follow the instructions and format precisely and you try to change as little as possible, keeping the original text in tact as much as possible. Only generalize information and do not invent new information.
 Example: 'my husband and I' -> 'my partner and I' is valid, but 'my husband and I' -> 'my wife and I' is not. 
@@ -31,7 +31,7 @@ In a new line, write a single #
 **Then, ONLY return the anonymized text without any extra preamble like "Here is the anonymized text:" or suffix like "Note:".**
 """
 
-# --- 2. 攻击者LLM提示词 (修改为动态函数) ---
+# --- 2. 攻击者LLM提示词 ---
 PROMPT_ATTACKER_SYSTEM = """
 You are an expert investigator with years of experience in online profiling and text analysis. You work with an analytical mindset and try to answer questions as precisely as possible.
 """
@@ -56,7 +56,7 @@ Your response MUST follow this format exactly:
 
 Inference: Provide your detailed reasoning for the following attribute guess - **{attributes_list_str}**.
 
-Guess: A single JSON object containing your best guess for each of the following keys: **{json_keys_str}**.
+Guess: A single JSON object containing your best guess for the following key: **{json_keys_str}**.
 **JSON Value Rules (CRITICAL):**
 1. age: MUST be an accurate integer (e.g., 35, not "35" or "30-40") or string "unknown".
 2. sex: MUST be one of the following exact strings: "male", "female", or "unknown".
@@ -68,7 +68,6 @@ Guess: A single JSON object containing your best guess for each of the following
 """
 
 # --- 3. 辅助函数 (构建, 解析, LLM调用) ---
-
 def build_pipeline(model_name: str, device: Optional[str], dtype: Optional[str], gpu_memory_utilization: float):
     """构建本地推理 pipeline"""
     if dtype is None:
@@ -125,10 +124,9 @@ def call_anonymizer(pipe, user_response: str, feedback: str, terminator_ids: Lis
     logging.debug(f"[Record {record_id}] --- ANONYMIZER EXPLANATION ---\n{explanation}\n--- End ---")
     return final_response
 
-# [MODIFIED] 添加了 attributes_to_protect 参数
 def call_attacker(pipe, user_response: str, terminator_ids: List[int], record_id: int, attributes_to_protect: List[str]) -> Dict[str, Any]:
     
-    # [MODIFIED] 动态生成 user_content
+    # 动态生成 user_content
     user_content = generate_attacker_user_prompt(
         user_response=str(user_response),
         attributes_to_protect=attributes_to_protect
@@ -145,13 +143,12 @@ def call_attacker(pipe, user_response: str, terminator_ids: List[int], record_id
     logging.debug(f"[Record {record_id}] --- ATTACKER PARSED ---\n{parsed_data}\n--- End ---")
     return parsed_data
 
-# [MODIFIED] 添加了 attributes_to_protect 参数
+
 def compare_profiles(true_profile: Dict[str, Any], guessed_profile: Dict[str, Any], attributes_to_protect: List[str]) -> List[str]:
     """使用确定性的 Python 逻辑比较 profiles，但仅限于指定的属性"""
     leaked_attributes: List[str] = []
     def _log(key, guess, true): return f"{key} (guessed: '{guess}', true: '{true}')"
 
-    # [MODIFIED] 不再使用硬编码列表，而是遍历传入的列表
     for key in attributes_to_protect:
         true_val = true_profile.get(key)
         guess_val = guessed_profile.get(key)
@@ -178,8 +175,6 @@ def compare_profiles(true_profile: Dict[str, Any], guessed_profile: Dict[str, An
     return leaked_attributes
 
 # --- 4. 核心逻辑 ---
-
-# [MODIFIED] 添加了 protect_attribute 参数
 def adversarial_anonymization(
     pipe,
     original_response: str,
@@ -190,8 +185,7 @@ def adversarial_anonymization(
     protect_attribute: Optional[str] = None # <-- 新增
 ) -> Tuple[str, Dict[str, Any]]:
     """执行对抗性匿名化过程，返回最终的匿名化响应和元数据。"""
-    
-    # --- [MODIFICATION START] ---
+
     # 定义所有可能的有效属性
     CORE_PII_ATTRIBUTES_ALL = {"age", "sex", "city_country", "birth_city_country", "education", "occupation", "income_level", "relationship_status"}
     
@@ -211,7 +205,6 @@ def adversarial_anonymization(
         # 默认行为：保护所有8个属性
         attributes_to_protect = sorted(list(CORE_PII_ATTRIBUTES_ALL))
         logging.info(f"[Record {record_id}] Full attribute protection enabled for: {attributes_to_protect}")
-    # --- [MODIFICATION END] ---
 
     current_anonymized_response = original_response
     meta = {"status": "max_iterations_reached", "iterations_used": 0, "final_leaked_attributes": [], "final_attacker_guess": {}}
@@ -231,7 +224,6 @@ def adversarial_anonymization(
         return current_anonymized_response, meta
 
     # --- 步骤 0.5: 初始裁判 ---
-    # [MODIFIED] 传递 attributes_to_protect
     leaked = compare_profiles(true_personality, attacker_guess, attributes_to_protect)
     meta["final_leaked_attributes"] = leaked
     if not leaked:
@@ -284,7 +276,6 @@ def adversarial_anonymization(
     logging.warning(f"[Record {record_id}] Max iterations reached. Final leaked: {meta['final_leaked_attributes']}")
     return current_anonymized_response, meta
 
-# [MODIFIED] 添加了 protect_attribute 参数
 def process_record(pipe, data: Dict[str, Any], max_iterations: int, record_id: int, terminator_ids: List[int], protect_attribute: Optional[str]) -> Dict[str, Any]:
     """处理单条记录。"""
     logging.info(f"[Record {record_id}] Starting processing.")
@@ -313,14 +304,13 @@ def process_record(pipe, data: Dict[str, Any], max_iterations: int, record_id: i
         terminator_ids=terminator_ids,
         max_iterations=max_iterations,
         record_id=record_id,
-        protect_attribute=protect_attribute # <-- [MODIFIED] 传递参数
+        protect_attribute=protect_attribute
     )
     data["anonymized_response"] = anonymized_response
     data["anonymization_meta"] = meta
     logging.info(f"[Record {record_id}] Finished processing. Status: {meta.get('status')}")
     return data
 
-# [MODIFIED] 添加了 --protect_attribute 参数
 def main():
     parser = argparse.ArgumentParser(description="使用本地 Hugging Face 模型对 JSONL 中的回答进行匿名化")
     parser.add_argument("--model_name", type=str, default="/root/autodl-tmp/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/8afb486c1db24fe5011ec46dfbe5b5dccdb575c2", help="Hugging Face 模型名")
@@ -331,16 +321,13 @@ def main():
     parser.add_argument("--output_file", type=str, required=True, help="输出 JSONL 路径")
     parser.add_argument("--success_file", type=str, default=None, help="仅成功记录输出路径")
     parser.add_argument("--failed_file", type=str, default=None, help="失败记录输出路径")
-    parser.add_argument("--max_iterations", type=int, default=5, help="每条记录最大对抗轮数")
+    parser.add_argument("--max_iterations", type=int, default=3, help="每条记录最大对抗轮数")
     parser.add_argument("--limit", type=int, default=None, help="仅处理前 N 条")
     parser.add_argument("--max_new_tokens", type=int, default=1024, help="生成的最大新 token 数（全局）")
     parser.add_argument("--log_file", type=str, default="anonymizer_local.log", help="日志文件路径")
     parser.add_argument("--log_level", type=str, default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR"], help="日志级别")
-    
-    # --- [MODIFICATION START] ---
     parser.add_argument("--protect_attribute", type=str, default=None, 
                         help="可选：指定要保护的单个属性（例如 'age', 'sex'）。如果未设置，则保护所有8个属性。")
-    # --- [MODIFICATION END] ---
     
     args = parser.parse_args()
 
@@ -369,21 +356,17 @@ def main():
     terminator_ids = [tokenizer.eos_token_id] + [tid for tid in [tokenizer.convert_tokens_to_ids(tok) for tok in ["<|eot_id|>", "<|end_of_text|>", "<|im_end|>"]] if tid is not None and not isinstance(tid, list)]
     logging.info(f"Using terminators: {terminator_ids}")
 
-    # --- [MODIFICATION START] ---
     if args.protect_attribute:
         logging.info(f"*** SINGLE ATTRIBUTE MODE: Protecting ONLY '{args.protect_attribute}' ***")
     else:
         logging.info(f"*** FULL PROTECTION MODE: Protecting all 8 PII attributes ***")
-    # --- [MODIFICATION END] ---
 
     # --- 串行处理 ---
     logging.info(f"Starting sequential processing for {len(records_to_process)} records with model {args.model_name} ...")
     results = []
-    # [MODIFIED] 添加了 'skipped_invalid_attribute'
     counters = {"success": 0, "success_on_original": 0, "max_iterations_reached": 0, "api_error": 0, "skipped_data_read_error": 0, "skipped_incomplete_data": 0, "skipped_invalid_personality": 0, "skipped_invalid_attribute": 0, "unknown_fail": 0}
     
     def _task(rec_idx: int, rec: Dict[str, Any]):
-        # [MODIFIED] 传递 args.protect_attribute
         return process_record(gen_pipe, rec, args.max_iterations, rec_idx, terminator_ids, args.protect_attribute)
     
     for i, rec in enumerate(tqdm(records_to_process, desc="Anonymizing profiles")):
