@@ -450,7 +450,7 @@ def adversarial_anonymization(
     执行 "Attacker -> Python Judge -> LLM Filter -> Anonymizer" 架构
     """
     # 定义所有可能的有效属性
-    CORE_PII_ATTRIBUTES_ALL = {"age", "sex", "current_city_country", "birth_city_country", "education", "occupation", "income_level", "relationship_status"}
+    CORE_PII_ATTRIBUTES_ALL = {"age", "sex", "current_city_country", "birth_city_country", "education", "occupation", "income_level", "relationship_status", "health_issue"}
     
     attributes_to_protect: List[str]
     CORE_PII_ATTRIBUTES: set # 这个变量在日志中使用
@@ -501,7 +501,8 @@ def adversarial_anonymization(
         validated_items: List[Dict[str, Any]] = []
         for item in arbitration_results:
             validity = str(item.get("validity_level", "")).lower()
-            if validity in ("high", "medium"):
+            # if validity in ("high", "medium"):
+            if validity in ("high"):
                 validated_items.append(item)
         
         if not validated_items:

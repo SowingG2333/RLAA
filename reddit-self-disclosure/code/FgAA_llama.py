@@ -241,7 +241,7 @@ def compare_profiles(
                 if true_val.strip().lower() == guess_val.strip().lower(): 
                     leaked_attributes.append(_log(key, guess_val, true_val))
         
-        # 适用于所有其他字符串类型（city, occupation, education, income）
+        # 适用于所有其他字符串类型
         else: 
             if isinstance(true_val, str) and isinstance(guess_val, str) and true_val and guess_val:
                 true_s = true_val.strip().lower(); guess_s = guess_val.strip().lower()
@@ -274,7 +274,7 @@ def adversarial_anonymization(
     """执行对抗性匿名化过程，返回最终的匿名化响应和元数据。"""
 
     # 定义所有可能的有效属性
-    CORE_PII_ATTRIBUTES_ALL = {"age", "sex", "city_country", "birth_city_country", "education", "occupation", "income_level", "relationship_status"}
+    CORE_PII_ATTRIBUTES_ALL = {"age", "sex", "city_country", "birth_city_country", "education", "occupation", "income_level", "relationship_status", "health_issue"}
     
     attributes_to_protect: List[str]
 
@@ -289,7 +289,7 @@ def adversarial_anonymization(
             meta = {"status": "skipped_invalid_attribute", "error": f"Invalid --protect_attribute: {protect_attribute}"}
             return original_response, meta
     else:
-        # 默认行为：保护所有8个属性
+        # 默认行为：保护所有属性
         attributes_to_protect = sorted(list(CORE_PII_ATTRIBUTES_ALL))
         logging.info(f"[Record {record_id}] Full attribute protection enabled for: {attributes_to_protect}")
 
@@ -326,7 +326,7 @@ def adversarial_anonymization(
     if not leaked:
         logging.info(f"[Record {record_id}] Success on original text (0 iterations). No leaks found.")
         meta["status"] = "success_on_original"
-        return current_anonymized_response, meta
+        # return current_anonymized_response, meta
     logging.info(f"[Record {record_id}] Initial attack leaked: {leaked}")
 
     # --- 循环 ---

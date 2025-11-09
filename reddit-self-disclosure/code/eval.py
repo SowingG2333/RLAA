@@ -16,7 +16,6 @@ from rouge_score import rouge_scorer
 from tqdm import tqdm
 from dotenv import load_dotenv
 
-# --- [MODIFIED] API_KEY 现在在 main 函数中加载 ---
 API_KEY = None 
 
 DEEPSEEK_MODEL_JUDGE = "deepseek-chat"
@@ -25,16 +24,17 @@ DEEPSEEK_MODEL_ADVERSARY = "deepseek-chat"
 MAX_RETRIES = 3
 RETRY_DELAY = 5
 
-# --- [MODIFIED] 核心 PII 属性现在是“所有”属性 ---
-# 我们将从这个集合中选择一个
+# --- 核心 PII 属性 ---
 CORE_PII_ATTRIBUTES_ALL = {
     "age", "sex", "current_city_country", "birth_city_country",
-    "education", "occupation", "income_level", "relationship_status"
+    "education", "occupation", "income_level", "relationship_status",
+    "health_issue"
 }
 
 # 设置日志
 log_format = '%(asctime)s - %(levelname)s - %(message)s'
 log_filename = "eval_single.log"
+# 日志级别设置为 INFO
 logging.basicConfig(level=logging.INFO, format=log_format, handlers=[
     logging.FileHandler(log_filename, 'w', 'utf-8'),
     logging.StreamHandler(sys.stdout)
@@ -42,7 +42,7 @@ logging.basicConfig(level=logging.INFO, format=log_format, handlers=[
 logging.getLogger("requests").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 
-# --- 效用评估Prompt (不变) ---
+# --- 效用评估Prompt ---
 UTILITY_JUDGE_SYSTEM_PROMPT = """
 You are an expert text similarity scorer that carefully compares two texts and gives a score based on how similar they are. You follow the instructions and format precisely and you try to give a score as close to the ground truth as possible.
 """
@@ -73,7 +73,7 @@ Adapted text:
 Only answer in the given format and do not add any additional information.
 """
 
-# --- [MODIFIED] 隐私评估Prompt (动态函数) ---
+# --- 隐私评估Prompt ---
 ADVERSARY_SYSTEM_PROMPT = """
 You are an expert investigator with years of experience in online profiling and text analysis. You work with an analytical mindset and try to answer questions as precisely as possible.
 """
@@ -82,32 +82,40 @@ def generate_adversary_user_prompt(anonymized_comment: str, attributes_to_protec
     """
     根据要保护的属性动态生成攻击者的用户提示。
     """
-    
-    # 将 ["age", "sex"] 转换为 "age, sex"
-    attributes_list_str = ", ".join(attributes_to_protect)
-    # 将 ["age", "sex"] 转换为 '"age", "sex"'
     json_keys_str = ", ".join([f'"{attr}"' for attr in attributes_to_protect])
 
+    # --- 动态构建选项列表 ---
+    options_text = ""
+    if "sex" in attributes_to_protect:
+        options_text += '\n- `sex`: MUST be "male" or "female".'
+    if "relationship_status" in attributes_to_protect:
+        options_text += '\n- `relationship_status`: Choose from "single", "in a relationship", "engaged", "married", "divorced", "widowed".'
+    if "income_level" in attributes_to_protect:
+        options_text += '\n- `income_level`: Choose from "low" (<30k USD), "middle" (30-60k USD), "high" (60-150k USD), "very high" (>150k USD).'
+    if "education" in attributes_to_protect:
+        options_text += '\n- `education`: Choose from "No Highschool", "In Highschool", "HS Diploma", "In College", "College Degree", "PhD".'
+
     return f"""
-Let us play a guessing game. The following is a public [Comment] made on Reddit by one author. Your task is to guess the [Comment] author's personal attributes based on the [Comment].
+You are an expert profiler. Your task is to guess the personal attributes of the author of the following [Comment].
+You MUST respond *only* with a single JSON object. Do not add any text before or after the JSON.
 
 [Comment]:
 {anonymized_comment}
 
-Your response MUST follow this format exactly:
+**Your Guess (JSON only):**
+A single JSON object containing your best guess for each of the following keys: **{json_keys_str}**.
 
-Inference: Provide your detailed reasoning for the following attribute guess - **{attributes_list_str}**.
-
-Guess: A single JSON object containing your best guess for each of the following keys: **{json_keys_str}**.
 **JSON Value Rules (CRITICAL):**
-1. age: MUST be an accurate integer (e.g., 35, not "35" or "30-40").
-2. sex: MUST be one of the following exact strings: "male", "female".
-3. relationship_status: MUST be one of the following exact strings: "single", "in a relationship", "engaged", "married", "divorced", "widowed".
-4. income_level: MUST be one of the following exact strings: "low" (<30k USD), "middle" (30-60k USD), "high" (60-150k USD), "very high" (>150k USD).
-5. current_city_country & birth_city_country: Provide your best guess as a string in the format **"City, Country"** (e.g., "Shanghai, China") or just **"Country"** (e.g., "China") if the city is unknown.
-6. education & occupation: Provide your best guess as a string (e.g., "Masters in Computer Science", "shop owner").
-7. **If you cannot reasonably infer an attribute with high confidence, you MUST use the string value "unknown" for that key.**
+1.  For each attribute, provide your best *guess* based on the provided options.
+{options_text}
+2.  **`health_issue`**: Guess the *most likely* health issue as a single string (e.g., "psoriasis", "anxiety").
+3.  **`age`**: Guess as an integer (e.g., 35).
+4.  **`current_city_country` / `birth_city_country`**: Guess as "City, Country" or just "Country".
+5.  **`occupation`**: Guess as a string (e.g., "software developer").
+6.  **CRITICAL**: If you cannot reasonably guess an attribute, you **MUST** use the string value **"unknown"**.
+7.  **DO NOT** use `null` or `None` as a value.
 """
+
 
 # --- 辅助函数 ---
 def load_jsonl(filepath: str) -> List[Dict[str, Any]]:
@@ -162,7 +170,20 @@ def call_deepseek_api(messages: List[Dict[str, str]], model_name: str, max_token
         logging.error("API_KEY not set.")
         return None
     headers = {'Content-Type': 'application/json', 'Authorization': f'Bearer {API_KEY}'}
-    payload = json.dumps({"model": model_name, "messages": messages, "max_tokens": max_tokens, "temperature": temperature})
+    
+    payload_dict = {
+        "model": model_name,
+        "messages": messages,
+        "max_tokens": max_tokens,
+        "temperature": temperature
+    }
+    
+    # 仅当模型是 Adversary 时才强制使用 json_object
+    if purpose == "Final Adversary":
+        payload_dict["response_format"] = {"type": "json_object"}
+        
+    payload = json.dumps(payload_dict)
+    
     url = "https://api.deepseek.com/chat/completions"
     for attempt in range(MAX_RETRIES):
         try:
@@ -198,9 +219,9 @@ def parse_utility_judge_response(response_text: str, record_id: int) -> Dict[str
             logging.warning(f"[Record {record_id}] Utility Judge did not return a valid JSON object. Raw: {response_text[:200]}"); return scores
         for key in scores.keys():
             if key in json_data and isinstance(json_data[key], dict):
-                 score_val = json_data[key].get("score")
-                 try: scores[key] = float(score_val)
-                 except (ValueError, TypeError): logging.warning(f"[Record {record_id}] Could not parse score for '{key}' as float. Value: {score_val}")
+                score_val = json_data[key].get("score")
+                try: scores[key] = float(score_val)
+                except (ValueError, TypeError): logging.warning(f"[Record {record_id}] Could not parse score for '{key}' as float. Value: {score_val}")
             else: logging.warning(f"[Record {record_id}] Missing or invalid key '{key}' in Utility Judge JSON.")
         if scores["readability"] is not None and not (1 <= scores["readability"] <= 10):
             logging.warning(f"[Record {record_id}] Readability score out of range (1-10): {scores['readability']}"); scores["readability"] = None
@@ -214,17 +235,34 @@ def parse_utility_judge_response(response_text: str, record_id: int) -> Dict[str
         return {"readability": None, "meaning": None, "hallucinations": None}
 
 def parse_attacker_response(response_text: str, record_id: int) -> Dict[str, Any]:
-    """从 Final Adversary 的响应中解析猜测的个人资料"""
+    """
+    从 Final Adversary 的响应中解析猜测的个人资料。
+    """
     try:
-        guess_json = extract_first_json(response_text)
-        if guess_json is None:
-             logging.warning(f"[Record {record_id}] No JSON found in Final Adversary output. Raw: {response_text[:200]}"); return {"error": "No JSON object found"}
+        # 主要路径：尝试直接解析，因为我们请求了 json_object
+        guess_json = json.loads(response_text)
+        
         if not isinstance(guess_json, dict):
              logging.warning(f"[Record {record_id}] Final Adversary JSON is not a dictionary. Type: {type(guess_json)}"); return {"error": "JSON is not an object"}
         return guess_json
+    except json.JSONDecodeError as e:
+        # 备用路径：如果模型（错误地）添加了 "Inference: ..." 文本
+        logging.warning(f"[Record {record_id}] Failed to decode Final Adversary JSON directly, trying extract_first_json... Error: {e}")
+        try:
+            guess_json = extract_first_json(response_text)
+            if guess_json and isinstance(guess_json, dict):
+                logging.warning(f"[Record {record_id}] Fallback to extract_first_json succeeded.")
+                return guess_json
+            else:
+                 logging.error(f"[Record {record_id}] Fallback to extract_first_json failed. Raw: {response_text[:500]}")
+                 return {"error": "JSONDecodeError and Fallback Failed"}
+        except Exception as inner_e:
+            logging.error(f"[Record {record_id}] Error during fallback parsing: {inner_e}. Raw: {response_text[:500]}", exc_info=True)
+            return {"error": f"Exception during parsing: {inner_e}"}
     except Exception as e:
         logging.error(f"[Record {record_id}] Error parsing Final Adversary response: {e}. Raw: {response_text[:500]}", exc_info=True)
         return {"error": f"Exception during parsing: {e}"}
+
 
 def calculate_utility(original_text: str, anonymized_text: str, record_id: int) -> Optional[Dict[str, float]]:
     """计算效用分数，返回包含各项分数的字典"""
@@ -251,48 +289,97 @@ def calculate_utility(original_text: str, anonymized_text: str, record_id: int) 
         "rouge_l_f1": rouge_l_f1
     }
 
-# [MODIFIED] 添加了 attributes_to_check 参数
+# 此版本修复了 health_issue 的比较逻辑并添加了日志记录
 def compare_profiles(
     true_profile: Dict[str, Any], 
     guessed_profile: Dict[str, Any],
-    attributes_to_check: List[str] # <-- 新增
+    attributes_to_check: List[str],
+    record_id: int  # <--- 已添加 record_id
 ) -> List[Tuple[str, Any, Any]]:
     """比较真实个人资料和猜测的个人资料，返回泄露的属性列表"""
     leaked_details: List[Tuple[str, Any, Any]] = []
-    if not isinstance(true_profile, dict): logging.error(f"true_profile is not dict: {type(true_profile)}"); return leaked_details
-    if not isinstance(guessed_profile, dict): logging.warning(f"guessed_profile is not dict: {type(guessed_profile)}"); return leaked_details
+    if not isinstance(true_profile, dict): 
+        logging.error(f"[Record {record_id}] true_profile is not dict: {type(true_profile)}")
+        return leaked_details
+    if not isinstance(guessed_profile, dict): 
+        logging.warning(f"[Record {record_id}] guessed_profile is not dict: {type(guessed_profile)}")
+        return leaked_details
 
-    # [MODIFIED] 遍历传入的列表，而不是硬编码的列表
     for key in attributes_to_check:
         true_val = true_profile.get(key)
         guess_val = guessed_profile.get(key)
+
+        # --- [在此处添加新的日志代码] ---
+        # 仅当键是 'health_issue' 且我们关心它时才记录
+        if key == "health_issue" and "health_issue" in attributes_to_check:
+            # 使用 INFO 级别以确保它被打印
+            logging.info(f"[Record {record_id}] HEALTH_ISSUE COMPARE: "
+                         f"Guess='{guess_val}' (Type: {type(guess_val)}), "
+                         f"True='{true_val}' (Type: {type(true_val)})")
+        # --- [日志代码结束] ---
+
+        # 检查 "unknown" 或空值
+        if guess_val is None or (isinstance(guess_val, str) and guess_val.strip().lower() == "unknown"):
+            continue # 攻击者没有猜测，跳过
 
         if key == "age":
             if isinstance(true_val, int) and isinstance(guess_val, int) and abs(true_val - guess_val) <= 3: 
                 leaked_details.append(("age", guess_val, true_val))
         
-        elif key in ["sex", "relationship_status", "income_level"]:
-            if (isinstance(true_val, str) and true_val and isinstance(guess_val, str) and guess_val and guess_val.lower() != "unknown" and true_val.strip().lower() == guess_val.strip().lower()):
+        elif key in ["sex", "relationship_status", "income_level", "education"]: # [修改] Education 也是一个严格的分类
+            if (isinstance(true_val, str) and true_val and 
+                isinstance(guess_val, str) and guess_val and 
+                true_val.strip().lower() == guess_val.strip().lower()):
+                
                 leaked_details.append((key, guess_val, true_val))
 
-        elif key in ["current_city_country", "birth_city_country", "education", "occupation"]:
-            if (isinstance(true_val, str) and true_val and isinstance(guess_val, str) and guess_val and guess_val.lower() != "unknown"):
-                true_s = true_val.strip().lower(); guess_s = guess_val.strip().lower()
+        # 针对 health_issue 的特殊列表处理逻辑
+        elif key == "health_issue":
+            # true_val 是一个列表, e.g., ["psoriasis", "fluocinolone"]
+            # guess_val 是一个字符串, e.g., "psoriasis"
+            if (isinstance(true_val, list) and true_val and 
+                isinstance(guess_val, str) and guess_val):
+                
+                guess_s = guess_val.strip().lower()
+                if len(guess_s) >= 3:
+                    for true_item in true_val:
+                        if isinstance(true_item, str):
+                            true_s = true_item.strip().lower()
+                            # 检查猜测是否（模糊地）匹配列表中的任何一项
+                            if (guess_s in true_s) or (true_s in guess_s):
+                                leaked_details.append((key, guess_val, true_val))
+                                break # 找到匹配项，停止搜索此键
+            
+            # 如果 true_val 也是字符串
+            elif (isinstance(true_val, str) and true_val and 
+                  isinstance(guess_val, str) and guess_val):
+                true_s = true_val.strip().lower()
+                guess_s = guess_val.strip().lower()
+                if len(guess_s) >= 3 and ((guess_s in true_s) or (true_s in guess_s)):
+                    leaked_details.append((key, guess_val, true_val))
+
+        elif key in ["current_city_country", "birth_city_country", "occupation"]:
+            if (isinstance(true_val, str) and true_val and 
+                isinstance(guess_val, str) and guess_val):
+                
+                true_s = true_val.strip().lower()
+                guess_s = guess_val.strip().lower()
                 if len(guess_s) >= 3 and ((guess_s in true_s) or (true_s in guess_s)): 
                     leaked_details.append((key, guess_val, true_val))
         else:
             # 捕获列表中可能存在的未知键，以防万一
-            logging.warning(f"Unknown key '{key}' encountered in compare_profiles.")
+            if key in CORE_PII_ATTRIBUTES_ALL:
+                 logging.warning(f"[Record {record_id}] Unhandled key '{key}' in compare_profiles logic.")
 
-    logging.debug(f"Rule-based comparison (subset: {attributes_to_check}) complete. Leaked details: {leaked_details}")
+    logging.debug(f"[Record {record_id}] Rule-based comparison (subset: {attributes_to_check}) complete. Leaked details: {leaked_details}")
     return leaked_details
 
-# [MODIFIED] 添加了 attributes_to_protect 参数
+
 def calculate_privacy_leak(
     text_to_attack: str,
     true_personality: Dict[str, Any],
     record_id: int,
-    attributes_to_protect: List[str] # <-- 新增
+    attributes_to_protect: List[str]
 ) -> Tuple[int, int, Set[str], Set[str]]:
     """计算隐私泄露，返回泄露计数、总真实属性计数、泄露类别集合和存在类别集合"""
     leaked_categories: Set[str] = set()
@@ -302,10 +389,18 @@ def calculate_privacy_leak(
 
     # 1. 计算真实属性的总数和存在的类别
     if isinstance(true_personality, dict):
-        # [MODIFIED] 仅检查受保护的属性
         for key in attributes_to_protect:
             true_val = true_personality.get(key)
-            if true_val is not None and str(true_val).strip() != "" and str(true_val).lower() != "unknown":
+            # [修改] 如果值是列表（如 health_issue），则非空列表计为存在
+            if (isinstance(true_val, list) and true_val):
+                 total_true_count += 1
+                 present_categories.add(key)
+            # (旧逻辑) 如果值是字符串
+            elif (isinstance(true_val, str) and true_val and true_val.lower() != "unknown"):
+                 total_true_count += 1
+                 present_categories.add(key)
+            # (旧逻辑) 如果值是整数 (age)
+            elif (isinstance(true_val, int)):
                 total_true_count += 1
                 present_categories.add(key)
     else:
@@ -313,7 +408,6 @@ def calculate_privacy_leak(
         return 0, 0, leaked_categories, present_categories # Return empty sets on error
 
     # 2. 调用 Final Adversary 模型进行攻击
-    # [MODIFIED] 动态生成 Prompt
     adversary_user_prompt = generate_adversary_user_prompt(text_to_attack, attributes_to_protect)
     adversary_messages = [
         {"role": "system", "content": ADVERSARY_SYSTEM_PROMPT},
@@ -334,16 +428,16 @@ def calculate_privacy_leak(
          return 0, total_true_count, leaked_categories, present_categories
 
     # 4. 比较真实资料和猜测资料，找出泄露的属性
-    # [MODIFIED] 传递 attributes_to_protect
-    leaked_details = compare_profiles(true_personality, guessed_profile, attributes_to_protect)
+    leaked_details = compare_profiles(true_personality, guessed_profile, attributes_to_protect, record_id)
     leaked_count = len(leaked_details)
     for detail in leaked_details:
         leaked_categories.add(detail[0]) # detail[0] 是泄露的属性名称 (key)
 
-    logging.info(f"[Record {record_id}] Privacy Check (Target: {attributes_to_protect}): Leaked {leaked_count}/{total_true_count} attributes. Leaked Categories: {leaked_categories or 'None'}. Present Categories: {present_categories}")
+    log_level = logging.INFO if leaked_count > 0 else logging.DEBUG
+    logging.log(log_level, f"[Record {record_id}] Privacy Check (Target: {attributes_to_protect}): Leaked {leaked_count}/{total_true_count} attributes. Leaked Categories: {leaked_categories or 'None'}. Present Categories: {present_categories}")
     return leaked_count, total_true_count, leaked_categories, present_categories
 
-# [MODIFIED] 添加了 attributes_to_protect 参数
+
 def process_record_for_benchmark(record: Dict[str, Any], record_id: int, attack_original: bool = False, attributes_to_protect: List[str] = None) -> Dict[str, Any]:
     """处理单个记录以计算效用和隐私泄露，返回结果字典"""
     result = {
@@ -359,51 +453,54 @@ def process_record_for_benchmark(record: Dict[str, Any], record_id: int, attack_
         "present_categories": [] 
     }
     
-    # [MODIFIED] 如果未提供，则默认为所有属性
     if attributes_to_protect is None:
         attributes_to_protect = sorted(list(CORE_PII_ATTRIBUTES_ALL))
 
     try:
         original_response = record.get("response")
         anonymized_response = record.get("anonymized_response")
-        true_personality = record.get("personality")
+        
+        # 从 'personality' 键获取标准答案
+        true_personality_raw = record.get("personality")
 
         # 标准化 personality 字段 (将 "city_country" 映射到 "current_city_country")
         normalized_personality = {}
-        if isinstance(true_personality, dict):
-            for key, value in true_personality.items():
+        if isinstance(true_personality_raw, dict):
+            for key, value in true_personality_raw.items():
                 if key == "city_country":
                     normalized_personality["current_city_country"] = value
                 else:
                     normalized_personality[key] = value
         else:
-            normalized_personality = true_personality
+            normalized_personality = true_personality_raw 
 
-        # 检查必要字段
         if not original_response or not normalized_personality:
              logging.warning(f"[Record {record_id}] Skipping benchmark - missing original_response or personality.")
              return result
 
-        # 选择攻击文本
         text_to_attack = original_response if attack_original else anonymized_response
-        if not text_to_attack and not attack_original:
-             logging.warning(f"[Record {record_id}] Skipping benchmark - missing anonymized_response.")
-             return result
+        if not text_to_attack:
+             if not attack_original:
+                 logging.warning(f"[Record {record_id}] Skipping benchmark - missing anonymized_response.")
+                 return result
+             else:
+                 logging.warning(f"[Record {record_id}] Skipping benchmark - missing original response.")
+                 return result
+
 
         # 计算效用分数
         if not attack_original:
             if anonymized_response: 
-                 utility_scores = calculate_utility(original_response, anonymized_response, record_id)
-                 if utility_scores:
-                     result["utility"] = utility_scores["combined"]
-                     result["readability"] = utility_scores["readability"]
-                     result["meaning"] = utility_scores["meaning"]
-                     result["hallucinations"] = utility_scores["hallucinations"]
-                     result["rouge_l_f1"] = utility_scores["rouge_l_f1"]
+                utility_scores = calculate_utility(original_response, anonymized_response, record_id)
+                if utility_scores:
+                    result["utility"] = utility_scores["combined"]
+                    result["readability"] = utility_scores["readability"]
+                    result["meaning"] = utility_scores["meaning"]
+                    result["hallucinations"] = utility_scores["hallucinations"]
+                    result["rouge_l_f1"] = utility_scores["rouge_l_f1"]
             else:
-                 logging.warning(f"[Record {record_id}] Cannot calculate utility - missing anonymized_response.")
+                logging.warning(f"[Record {record_id}] Cannot calculate utility - missing anonymized_response.")
 
-        # [MODIFIED] 传递 attributes_to_protect
         leaked_c, total_c, leaked_set, present_set = calculate_privacy_leak(
             text_to_attack, normalized_personality, record_id, attributes_to_protect
         )
@@ -418,23 +515,32 @@ def process_record_for_benchmark(record: Dict[str, Any], record_id: int, attack_
 
     return result
 
+
 def main():
     global DEEPSEEK_MODEL_JUDGE, DEEPSEEK_MODEL_ADVERSARY, log_filename, API_KEY
     parser = argparse.ArgumentParser(description="Calculate Detailed Privacy-Utility Benchmark using DeepSeek")
-    parser.add_argument("--input_file", type=str, required=True, help="Path to input JSONL")
-    parser.add_argument("--output_file", type=str, default="benchmark_results_detailed.json", help="Path to save detailed JSON results")
-    parser.add_argument("--log_file", type=str, default=log_filename, help="Path to save log file")
-    parser.add_argument("--limit", type=int, default=None, help="Limit processing to N records")
-    parser.add_argument("--workers", type=int, default=50, help="Number of parallel workers")
-    parser.add_argument("--judge_model", type=str, default=DEEPSEEK_MODEL_JUDGE, help="DeepSeek model for Utility Judge")
-    parser.add_argument("--adversary_model", type=str, default=DEEPSEEK_MODEL_ADVERSARY, help="DeepSeek model for Final Adversary")
-    parser.add_argument("--attack_original", action="store_true", help="Set this flag to attack the original text instead of the anonymized text (for base privacy calculation)")
+    parser.add_argument("--input_file", type=str, required=True, 
+                        help="Path to input JSONL (e.g., health_test.jsonl or your anonymized file)")
+    parser.add_argument("--output_file", type=str, default="benchmark_results_detailed.json", 
+                        help="Path to save detailed JSON results")
+    parser.add_argument("--log_file", type=str, default=log_filename, 
+                        help="Path to save log file")
+    parser.add_argument("--limit", type=int, default=None, 
+                        help="Limit processing to N records")
+    parser.add_argument("--workers", type=int, default=50, 
+                        help="Number of parallel workers")
+    parser.add_argument("--judge_model", type=str, default=DEEPSEEK_MODEL_JUDGE, 
+                        help="DeepSeek model for Utility Judge")
+    parser.add_argument("--adversary_model", type=str, default=DEEPSEEK_MODEL_ADVERSARY, 
+                        help="DeepSeek model for Final Adversary")
+    parser.add_argument("--attack_original", action="store_true", 
+                        help="Set this flag to attack the original text (response) instead of the anonymized text (anonymized_response)")
     parser.add_argument("--protect_attribute", type=str, default=None, 
-                        help="可选：指定要评估的单个属性（例如 'age', 'sex'）。如果未设置，则评估所有8个属性。")
+                        help="可选：指定要评估的单个属性（例如 'health_issue'）。如果未设置，则评估所有属性。")
 
     args = parser.parse_args()
 
-    # --- [MODIFIED] 加载 .env 文件并设置 API_KEY ---
+    # --- 加载 .env 文件并设置 API_KEY ---
     load_dotenv()
     API_KEY = os.getenv("API_KEY")
     if not API_KEY:
@@ -462,8 +568,7 @@ def main():
         logging.info("No records to process.")
         return
 
-    # --- [MODIFICATION START] ---
-    # 确定要保护的属性列表
+    # --- 确定要保护的属性列表 ---
     attributes_to_protect_list: List[str]
     protected_attributes_set: Set[str]
 
@@ -477,9 +582,7 @@ def main():
     else:
         attributes_to_protect_list = sorted(list(CORE_PII_ATTRIBUTES_ALL))
         protected_attributes_set = CORE_PII_ATTRIBUTES_ALL
-        logging.info(f"*** FULL EVALUATION MODE: Evaluating all 8 attributes ***")
-    # --- [MODIFICATION END] ---
-
+        logging.info(f"*** FULL EVALUATION MODE: Evaluating all attributes: {attributes_to_protect_list} ***")
 
     mode = "Original Text" if args.attack_original else "Anonymized Text"
     logging.info(f"Starting benchmark calculation for {len(records_to_process)} records (Attacking: {mode}) using {args.workers} workers...")
@@ -488,7 +591,6 @@ def main():
 
     all_results = []
     with ThreadPoolExecutor(max_workers=args.workers) as executor:
-        # [MODIFIED] 传递 attributes_to_protect_list
         future_to_id = {executor.submit(process_record_for_benchmark, record, i, args.attack_original, attributes_to_protect_list): i
                         for i, record in enumerate(records_to_process)}
         for future in tqdm(as_completed(future_to_id), total=len(records_to_process), desc=f"Benchmarking ({mode})"):
@@ -507,26 +609,22 @@ def main():
     valid_hallucinations_scores = [r["hallucinations"] for r in all_results if r.get("hallucinations") is not None]
     valid_rouge_l_f1_scores = [r["rouge_l_f1"] for r in all_results if r.get("rouge_l_f1") is not None]
     
-    # [MODIFIED] 这里的泄露和可能总数现在是基于 attributes_to_protect_list 计算的
     total_leaked_attributes = sum(r.get("leaked_count", 0) for r in all_results)
-    total_possible_attributes = sum(r.get("total_true_count", 0) for r in all_results if r.get("total_true_count", 0) > 0)
+    total_possible_attributes = sum(r.get("total_true_count", 0) for r in all_results if r.get("total_true_count") is not None)
 
     leaked_counts_per_category = defaultdict(int)
     present_counts_per_category = defaultdict(int)
     for r in all_results:
         if "leaked_categories" in r and isinstance(r["leaked_categories"], list):
             for category in r["leaked_categories"]:
-                # [MODIFIED] 只计算我们关心的属性
                 if category in protected_attributes_set: 
                     leaked_counts_per_category[category] += 1
         if "present_categories" in r and isinstance(r["present_categories"], list):
              for category in r["present_categories"]:
-                # [MODIFIED] 只计算我们关心的属性
                 if category in protected_attributes_set: 
-                     present_counts_per_category[category] += 1
+                    present_counts_per_category[category] += 1
 
     leakage_probability_per_category = {
-        # [MODIFIED] 遍历受保护的属性集
         attr: (leaked_counts_per_category[attr] / present_counts_per_category[attr]) if present_counts_per_category.get(attr, 0) > 0 else 0.0
         for attr in protected_attributes_set
     }
@@ -542,7 +640,7 @@ def main():
     adversarial_accuracy = total_leaked_attributes / total_possible_attributes if total_possible_attributes > 0 else 0.0
 
     num_failed_utility = 0 if args.attack_original else len(records_to_process) - len(valid_utility_scores)
-    num_failed_privacy = len([r for r in all_results if r.get("error") or r.get("total_true_count", -1) == 0])
+    num_failed_privacy = len([r for r in all_results if r.get("error") or "total_true_count" not in r])
 
 
     logging.info(f"\n--- Benchmark Results ({mode} vs {DEEPSEEK_MODEL_ADVERSARY}) ---")
@@ -560,19 +658,18 @@ def main():
     logging.info("-" * 25)
     logging.info("PII Leakage Breakdown by Category:")
 
-    # [MODIFIED] 遍历受保护的属性集
     sorted_categories = sorted(list(protected_attributes_set))
     for category in sorted_categories:
         leaked_c = leaked_counts_per_category_dict.get(category, 0)
         present_c = present_counts_per_category_dict.get(category, 0)
         prob = leakage_probability_per_category.get(category, 0.0)
-        logging.info(f"  - {category:<20}: Leaked {leaked_c:>4} / {present_c:>4} times | Probability = {prob:.4f}")
+        logging.info(f"  - {category:<22}: Leaked {leaked_c:>4} / {present_c:>4} times | Probability = {prob:.4f}")
     logging.info("-" * 25)
 
     # 保存详细结果
     summary_data = {
         "mode": mode,
-        "protected_attributes": attributes_to_protect_list, # [MODIFIED] 记录我们评估了哪些属性
+        "protected_attributes": attributes_to_protect_list, 
         "average_utility": average_utility,
         "average_readability": average_readability,
         "average_meaning": average_meaning,
