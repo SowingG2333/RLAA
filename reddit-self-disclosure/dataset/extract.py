@@ -70,7 +70,7 @@ def extract_by_label_attribute(input_filepath, attribute_key):
 
 def main():
     # 1. 定义你的输入文件 (上一步生成的)
-    input_file = '/home/sowingg/coding/LLM/reddit-self-disclosure/merged_data.jsonl'
+    input_file = '/root/autodl-tmp/RLAA/reddit-self-disclosure/dataset/output/filter/merged_output.jsonl'
     
     # 2. 交互式地询问用户要查找哪个属性
     # .strip() 用于删除用户可能不小心输入的
