@@ -1,0 +1,3837 @@
+{
+  "summary": {
+    "mode": "Anonymized Text",
+    "protected_attributes": [
+      "age",
+      "birth_city_country",
+      "current_city_country",
+      "education",
+      "health_issue",
+      "income_level",
+      "occupation",
+      "relationship_status",
+      "sex"
+    ],
+    "average_utility": 0.741540494532295,
+    "average_readability": 9.754716981132075,
+    "average_meaning": 6.456603773584906,
+    "average_hallucinations": 0.9886792452830189,
+    "average_rouge_l_f1": 0.6034894081251865,
+    "overall_adversarial_accuracy": 0.1509433962264151,
+    "adversary_model": "deepseek-chat",
+    "total_leaked": 40,
+    "total_possible": 265,
+    "processed_records": 265,
+    "failed_utility": 0,
+    "failed_privacy": 0,
+    "leakage_counts_per_category": {
+      "health_issue": 40
+    },
+    "present_counts_per_category": {
+      "health_issue": 265
+    },
+    "leakage_probability_per_category": {
+      "current_city_country": 0.0,
+      "age": 0.0,
+      "birth_city_country": 0.0,
+      "occupation": 0.0,
+      "education": 0.0,
+      "income_level": 0.0,
+      "health_issue": 0.1509433962264151,
+      "relationship_status": 0.0,
+      "sex": 0.0
+    }
+  },
+  "details": [
+    {
+      "record_id": 0,
+      "utility": 0.06666666666666667,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 7,
+      "utility": 0.4904761904761905,
+      "readability": 10.0,
+      "meaning": 3.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.17142857142857143,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 9,
+      "utility": 0.6017094017094017,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.20512820512820512,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 27,
+      "utility": 0.7333333333333334,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6000000000000001,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 47,
+      "utility": 0.7454106280193237,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5362318840579711,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 13,
+      "utility": 0.8484848484848485,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5454545454545454,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 4,
+      "utility": 0.36000000000000004,
+      "readability": 8.0,
+      "meaning": 2.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.08,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 3,
+      "utility": 0.6936507936507937,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.380952380952381,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 6,
+      "utility": 0.7533333333333333,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.56,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 10,
+      "utility": 0.7151515151515152,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5454545454545454,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 17,
+      "utility": 0.5252873563218391,
+      "readability": 10.0,
+      "meaning": 3.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.27586206896551724,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 2,
+      "utility": 0.6602150537634408,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5806451612903226,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 1,
+      "utility": 0.6083333333333333,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.125,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 24,
+      "utility": 0.7527131782945736,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5581395348837209,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 29,
+      "utility": 0.780246913580247,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7407407407407408,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 48,
+      "utility": 0.7740740740740741,
+      "readability": 9.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7222222222222223,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 23,
+      "utility": 0.697584541062802,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.49275362318840576,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 32,
+      "utility": 0.7693602693602694,
+      "readability": 10.0,
+      "meaning": 5.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8080808080808082,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 14,
+      "utility": 0.5596899224806201,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.27906976744186046,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 37,
+      "utility": 0.5188034188034188,
+      "readability": 10.0,
+      "meaning": 3.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.25641025641025644,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 22,
+      "utility": 0.7384615384615385,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6153846153846154,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 31,
+      "utility": 0.8019607843137254,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7058823529411765,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 11,
+      "utility": 0.5863247863247864,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.358974358974359,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 38,
+      "utility": 0.6828828828828829,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6486486486486486,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 40,
+      "utility": 0.7298850574712644,
+      "readability": 8.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.689655172413793,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 30,
+      "utility": 0.6222222222222222,
+      "readability": 8.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6666666666666666,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 12,
+      "utility": 0.5843137254901961,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.3529411764705882,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 16,
+      "utility": 0.5166666666666667,
+      "readability": 10.0,
+      "meaning": 3.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.25,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 18,
+      "utility": 0.8985507246376812,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6956521739130433,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 49,
+      "utility": 0.8071729957805908,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7215189873417721,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 39,
+      "utility": 0.7822222222222223,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7466666666666666,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 8,
+      "utility": 0.890643274853801,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7719298245614034,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 34,
+      "utility": 0.768421052631579,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6052631578947368,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 41,
+      "utility": 0.7468599033816424,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8405797101449275,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 42,
+      "utility": 0.7318840579710145,
+      "readability": 8.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6956521739130435,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 44,
+      "utility": 0.8378531073446327,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8135593220338982,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 26,
+      "utility": 0.8487179487179487,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8461538461538461,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 21,
+      "utility": 0.7166666666666667,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5499999999999999,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 5,
+      "utility": 0.6971014492753623,
+      "readability": 9.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.391304347826087,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 25,
+      "utility": 0.8253731343283582,
+      "readability": 8.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7761194029850748,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 46,
+      "utility": 0.9382716049382717,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8148148148148148,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 15,
+      "utility": 0.8012578616352202,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6037735849056604,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 43,
+      "utility": 0.7755020080321285,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6265060240963856,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 45,
+      "utility": 0.8583333333333334,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7749999999999999,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 19,
+      "utility": 0.7076923076923077,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.4230769230769231,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 28,
+      "utility": 0.7180722891566266,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5542168674698795,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 35,
+      "utility": 0.8936073059360731,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7808219178082191,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 36,
+      "utility": 0.7545454545454545,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5636363636363637,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 20,
+      "utility": 0.5692556634304208,
+      "readability": 10.0,
+      "meaning": 3.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.40776699029126207,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 33,
+      "utility": 0.8886178861788618,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8658536585365854,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 50,
+      "utility": 0.8247311827956989,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7741935483870969,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 55,
+      "utility": 0.7604395604395604,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6813186813186813,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 54,
+      "utility": 0.7962962962962963,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6888888888888888,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 51,
+      "utility": 0.9060606060606061,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8181818181818182,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 60,
+      "utility": 0.6888888888888888,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6666666666666666,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 66,
+      "utility": 0.7827338129496404,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7482014388489209,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 79,
+      "utility": 0.48333333333333334,
+      "readability": 10.0,
+      "meaning": 2.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.25000000000000006,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 57,
+      "utility": 0.8840978593272171,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7522935779816513,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 68,
+      "utility": 0.8282700421940928,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7848101265822786,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 53,
+      "utility": 0.7649122807017544,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6947368421052631,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 59,
+      "utility": 0.8102564102564104,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7307692307692308,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 56,
+      "utility": 0.6333333333333333,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 78,
+      "utility": 0.853968253968254,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.761904761904762,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 72,
+      "utility": 0.78135593220339,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6440677966101696,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 67,
+      "utility": 0.7582995951417004,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5748987854251013,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 83,
+      "utility": 0.6333333333333333,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 64,
+      "utility": 0.7888888888888889,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6666666666666667,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 52,
+      "utility": 0.9347079037800686,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8041237113402061,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 75,
+      "utility": 0.7974358974358974,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6923076923076924,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 89,
+      "utility": 0.5933333333333334,
+      "readability": 10.0,
+      "meaning": 3.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.4799999999999999,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 58,
+      "utility": 0.8220779220779221,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7662337662337663,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 73,
+      "utility": 0.846031746031746,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7380952380952381,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 97,
+      "utility": 0.7000000000000001,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 91,
+      "utility": 0.6102564102564103,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.23076923076923075,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 71,
+      "utility": 0.730701754385965,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5921052631578947,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 85,
+      "utility": 0.5333333333333333,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 94,
+      "utility": 0.6959349593495935,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.48780487804878053,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 63,
+      "utility": 0.8427184466019417,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7281553398058253,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 86,
+      "utility": 0.6301587301587301,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.19047619047619047,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 74,
+      "utility": 0.7071055381400209,
+      "readability": 7.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8213166144200628,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 96,
+      "utility": 0.5809523809523809,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.3428571428571428,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 92,
+      "utility": 0.7658008658008658,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5974025974025974,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 98,
+      "utility": 0.48888888888888893,
+      "readability": 10.0,
+      "meaning": 3.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.16666666666666666,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 95,
+      "utility": 0.6531531531531531,
+      "readability": 10.0,
+      "meaning": 5.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.45945945945945943,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 61,
+      "utility": 0.9053811659192825,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8161434977578477,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 82,
+      "utility": 0.43333333333333335,
+      "readability": 10.0,
+      "meaning": 3.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 93,
+      "utility": 0.43703703703703706,
+      "readability": 10.0,
+      "meaning": 2.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.1111111111111111,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 76,
+      "utility": 0.8994277539341917,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7982832618025751,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 88,
+      "utility": 0.8223744292237444,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.767123287671233,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 87,
+      "utility": 0.8495495495495495,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6486486486486487,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 77,
+      "utility": 0.8953565505804312,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7860696517412935,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 90,
+      "utility": 0.6496598639455783,
+      "readability": 10.0,
+      "meaning": 5.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.4489795918367347,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 80,
+      "utility": 0.9122448979591836,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.836734693877551,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 62,
+      "utility": 0.8210338680926915,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6631016042780749,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 70,
+      "utility": 0.8907590759075906,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7722772277227722,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 84,
+      "utility": 0.9602713178294574,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8808139534883721,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 65,
+      "utility": 0.8338308457711442,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7014925373134328,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 99,
+      "utility": 0.6407407407407407,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.22222222222222224,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 81,
+      "utility": 0.9337241764377442,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9011725293132329,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 69,
+      "utility": 0.892760180995475,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7782805429864253,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 102,
+      "utility": 0.4222222222222223,
+      "readability": 10.0,
+      "meaning": 1.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.16666666666666666,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 100,
+      "utility": 0.562962962962963,
+      "readability": 10.0,
+      "meaning": 3.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.3888888888888889,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 101,
+      "utility": 0.43333333333333335,
+      "readability": 10.0,
+      "meaning": 3.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 104,
+      "utility": 0.7083333333333334,
+      "readability": 10.0,
+      "meaning": 5.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.625,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 106,
+      "utility": 0.6284552845528455,
+      "readability": 10.0,
+      "meaning": 3.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5853658536585366,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 111,
+      "utility": 0.6234234234234234,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.27027027027027023,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 105,
+      "utility": 0.7558558558558559,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5675675675675677,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 114,
+      "utility": 0.8038461538461538,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7115384615384616,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 126,
+      "utility": 0.2571428571428572,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.5714285714285715,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 103,
+      "utility": 0.780952380952381,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6428571428571429,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 110,
+      "utility": 0.5499999999999999,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.25000000000000006,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 113,
+      "utility": 0.7853333333333333,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6559999999999999,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 133,
+      "utility": 0.6824016563146998,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.44720496894409945,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 116,
+      "utility": 0.8082125603864734,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7246376811594203,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 117,
+      "utility": 0.7712121212121211,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6136363636363635,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 115,
+      "utility": 0.7666666666666666,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 112,
+      "utility": 0.7104166666666667,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.53125,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 108,
+      "utility": 0.9104477611940299,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7313432835820896,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 107,
+      "utility": 0.7081081081081081,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.3243243243243243,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 123,
+      "utility": 0.7042904290429043,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7128712871287128,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 125,
+      "utility": 0.8020202020202021,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.606060606060606,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 136,
+      "utility": 0.31156462585034017,
+      "readability": 1.0,
+      "meaning": 1.0,
+      "hallucinations": 0.0,
+      "rouge_l_f1": 0.7346938775510204,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 109,
+      "utility": 0.8886524822695036,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7659574468085107,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 121,
+      "utility": 0.6201257861635221,
+      "readability": 8.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6603773584905661,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 118,
+      "utility": 0.8254428341384864,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6763285024154589,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 128,
+      "utility": 0.8116465863453816,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7349397590361446,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 141,
+      "utility": 0.7764705882352941,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7294117647058823,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 131,
+      "utility": 0.6,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.4,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 139,
+      "utility": 0.7797250859106529,
+      "readability": 9.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6391752577319588,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 134,
+      "utility": 0.629610829103215,
+      "readability": 9.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5888324873096448,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 145,
+      "utility": 0.7195402298850574,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7586206896551724,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 120,
+      "utility": 0.709090909090909,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7272727272727273,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 127,
+      "utility": 0.6350877192982455,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5052631578947367,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 124,
+      "utility": 0.6351681957186545,
+      "readability": 9.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6055045871559633,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 138,
+      "utility": 0.7431372549019608,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5294117647058824,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 129,
+      "utility": 0.7937728937728937,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6813186813186813,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 130,
+      "utility": 0.7978021978021977,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5934065934065934,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 122,
+      "utility": 0.659915611814346,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.379746835443038,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 142,
+      "utility": 0.5074074074074074,
+      "readability": 10.0,
+      "meaning": 3.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.2222222222222222,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 137,
+      "utility": 0.8739174219536757,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8217522658610272,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 119,
+      "utility": 0.9107055961070559,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.832116788321168,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 147,
+      "utility": 0.7724279835390946,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6172839506172839,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 140,
+      "utility": 0.8805555555555555,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8416666666666666,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 144,
+      "utility": 0.6871391076115486,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6614173228346457,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 146,
+      "utility": 0.6765432098765433,
+      "readability": 8.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6296296296296297,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 135,
+      "utility": 0.7596491228070175,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5789473684210527,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 132,
+      "utility": 0.8736030828516377,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8208092485549132,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 143,
+      "utility": 0.9345794392523364,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8037383177570092,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 149,
+      "utility": 0.6939698492462312,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.3819095477386935,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 148,
+      "utility": 0.8620423892100192,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7861271676300579,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 150,
+      "utility": 0.87363184079602,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8208955223880597,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 151,
+      "utility": 0.8282749675745785,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6848249027237354,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 158,
+      "utility": 0.7032679738562092,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5098039215686274,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 162,
+      "utility": 0.7318840579710145,
+      "readability": 10.0,
+      "meaning": 5.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6956521739130436,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 157,
+      "utility": 0.5578947368421052,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.2736842105263158,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 154,
+      "utility": 0.6747474747474748,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.4242424242424242,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 155,
+      "utility": 0.822857142857143,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8685714285714285,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 161,
+      "utility": 0.9265536723163841,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7796610169491525,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 166,
+      "utility": 0.6026455026455027,
+      "readability": 8.0,
+      "meaning": 5.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5079365079365079,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 159,
+      "utility": 0.7768115942028985,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7304347826086957,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 167,
+      "utility": 0.4777777777777778,
+      "readability": 10.0,
+      "meaning": 1.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.3333333333333333,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 173,
+      "utility": 0.5666666666666667,
+      "readability": 10.0,
+      "meaning": 2.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 168,
+      "utility": 0.6039215686274509,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.4117647058823529,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 156,
+      "utility": 0.7727272727272728,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6181818181818182,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 164,
+      "utility": 0.5333333333333333,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.0,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 174,
+      "utility": 0.6333333333333333,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 170,
+      "utility": 0.9276276276276275,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8828828828828829,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 178,
+      "utility": 0.5929824561403508,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.37894736842105264,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 171,
+      "utility": 0.7204678362573099,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5614035087719299,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 179,
+      "utility": 0.42857142857142855,
+      "readability": 8.0,
+      "meaning": 2.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.2857142857142857,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 165,
+      "utility": 0.8617960426179604,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7853881278538815,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 153,
+      "utility": 0.9505376344086022,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8516129032258064,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 175,
+      "utility": 0.7057471264367816,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5172413793103448,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 152,
+      "utility": 0.9375,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8124999999999999,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 163,
+      "utility": 0.8082125603864734,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7246376811594202,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 172,
+      "utility": 0.6176470588235294,
+      "readability": 10.0,
+      "meaning": 5.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.3529411764705882,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 160,
+      "utility": 0.8236947791164658,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7710843373493975,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 194,
+      "utility": 0.6979591836734693,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6938775510204083,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 180,
+      "utility": 0.9258992805755395,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8776978417266187,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 186,
+      "utility": 0.6515151515151515,
+      "readability": 10.0,
+      "meaning": 5.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.45454545454545453,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 187,
+      "utility": 0.8056603773584906,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7169811320754718,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 191,
+      "utility": 0.6481481481481481,
+      "readability": 10.0,
+      "meaning": 5.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.4444444444444444,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 169,
+      "utility": 0.5587301587301586,
+      "readability": 10.0,
+      "meaning": 2.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.47619047619047616,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 183,
+      "utility": 0.6614583333333334,
+      "readability": 10.0,
+      "meaning": 5.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.484375,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 181,
+      "utility": 0.7151515151515152,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5454545454545454,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 188,
+      "utility": 0.6481481481481481,
+      "readability": 9.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.4444444444444445,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 177,
+      "utility": 0.880246913580247,
+      "readability": 9.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7407407407407407,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 189,
+      "utility": 0.7275080906148869,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5825242718446602,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 196,
+      "utility": 0.7799999999999999,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.74,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 185,
+      "utility": 0.8995983935742972,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6987951807228915,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 184,
+      "utility": 0.962121212121212,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8863636363636364,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 176,
+      "utility": 0.9691358024691358,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9074074074074074,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 192,
+      "utility": 0.727743271221532,
+      "readability": 9.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6832298136645962,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 195,
+      "utility": 0.775,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.525,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 182,
+      "utility": 0.7955650929899857,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6866952789699571,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 190,
+      "utility": 0.7843537414965986,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6530612244897959,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 193,
+      "utility": 0.7518518518518519,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5555555555555556,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 197,
+      "utility": 0.75,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.25,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 198,
+      "utility": 0.6333333333333334,
+      "readability": 8.0,
+      "meaning": 3.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8000000000000002,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 199,
+      "utility": 0.7977777777777778,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6933333333333334,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 200,
+      "utility": 0.84,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7200000000000001,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 205,
+      "utility": 0.6,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.2,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 202,
+      "utility": 0.7923261390887291,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7769784172661871,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 204,
+      "utility": 0.8886524822695036,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7659574468085107,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 201,
+      "utility": 0.5980392156862745,
+      "readability": 9.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.49411764705882355,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 219,
+      "utility": 0.7422885572139304,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6268656716417911,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 206,
+      "utility": 0.8891891891891892,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7675675675675676,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 207,
+      "utility": 0.7295165394402036,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.48854961832061067,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 221,
+      "utility": 0.6708333333333334,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.4125,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 209,
+      "utility": 0.6888888888888888,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6666666666666666,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 216,
+      "utility": 0.7727272727272728,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6181818181818183,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 214,
+      "utility": 0.8069767441860466,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7209302325581396,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 215,
+      "utility": 0.7906455862977602,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6719367588932806,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 217,
+      "utility": 0.5129943502824859,
+      "readability": 10.0,
+      "meaning": 2.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.3389830508474576,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 218,
+      "utility": 0.7514851485148514,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5544554455445544,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 210,
+      "utility": 0.8814814814814814,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8444444444444444,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 220,
+      "utility": 0.7220064724919094,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.46601941747572817,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 222,
+      "utility": 0.7777777777777777,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6333333333333333,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 203,
+      "utility": 0.9652509652509652,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8957528957528959,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 224,
+      "utility": 0.4207207207207207,
+      "readability": 10.0,
+      "meaning": 1.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.16216216216216214,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 223,
+      "utility": 0.7897959183673469,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6693877551020407,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 237,
+      "utility": 0.5782608695652174,
+      "readability": 10.0,
+      "meaning": 3.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.4347826086956522,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 211,
+      "utility": 0.5966666666666667,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.39,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 213,
+      "utility": 0.798876404494382,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6966292134831462,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 234,
+      "utility": 0.8985507246376812,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6956521739130435,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 242,
+      "utility": 0.7518518518518519,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5555555555555556,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 212,
+      "utility": 0.8315789473684211,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6947368421052633,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 208,
+      "utility": 0.9370199692780338,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8110599078341013,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 225,
+      "utility": 0.800243309002433,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7007299270072991,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 228,
+      "utility": 0.7648648648648648,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5945945945945946,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 238,
+      "utility": 0.8029535864978903,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7088607594936709,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 235,
+      "utility": 0.7917602996254681,
+      "readability": 9.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7752808988764044,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 240,
+      "utility": 0.5863247863247864,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.358974358974359,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 245,
+      "utility": 0.5825870646766169,
+      "readability": 10.0,
+      "meaning": 3.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.44776119402985076,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 226,
+      "utility": 0.8277777777777778,
+      "readability": 10.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6833333333333333,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 231,
+      "utility": 0.8032258064516129,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7096774193548386,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 233,
+      "utility": 0.6985250737463127,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.49557522123893805,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 244,
+      "utility": 0.8322191272051996,
+      "readability": 9.0,
+      "meaning": 8.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7966573816155988,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 229,
+      "utility": 0.8812785388127854,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6438356164383561,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 236,
+      "utility": 0.8987108655616943,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6961325966850829,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 249,
+      "utility": 0.7323383084577114,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5970149253731344,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 230,
+      "utility": 0.9466666666666667,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.84,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 246,
+      "utility": 0.91247947454844,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8374384236453202,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 243,
+      "utility": 0.9739952718676124,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.921985815602837,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 239,
+      "utility": 0.8086229086229085,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7258687258687258,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 241,
+      "utility": 0.7196969696969697,
+      "readability": 10.0,
+      "meaning": 5.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6590909090909092,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 248,
+      "utility": 0.7995983935742972,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6987951807228916,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 247,
+      "utility": 0.8447852760736195,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8343558282208589,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 232,
+      "utility": 0.8429097605893187,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8287292817679558,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 227,
+      "utility": 0.6466666666666666,
+      "readability": 10.0,
+      "meaning": 3.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.64,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 250,
+      "utility": 0.6744548286604362,
+      "readability": 9.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5233644859813084,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 251,
+      "utility": 0.7784313725490196,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7352941176470589,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 253,
+      "utility": 0.753932584269663,
+      "readability": 10.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.5617977528089888,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 252,
+      "utility": 0.7323232323232323,
+      "readability": 9.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6969696969696969,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 255,
+      "utility": 0.692822966507177,
+      "readability": 9.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.4784688995215311,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 256,
+      "utility": 0.6288288288288287,
+      "readability": 10.0,
+      "meaning": 4.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.48648648648648646,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 258,
+      "utility": 0.7786666666666667,
+      "readability": 9.0,
+      "meaning": 7.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.736,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 254,
+      "utility": 0.9790794979079497,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9372384937238494,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 262,
+      "utility": 0.9639065817409765,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8917197452229298,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 257,
+      "utility": 0.8923809523809524,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7771428571428571,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 263,
+      "utility": 0.7547445255474452,
+      "readability": 10.0,
+      "meaning": 6.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.6642335766423357,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 264,
+      "utility": 0.9470588235294118,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8411764705882353,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 259,
+      "utility": 0.9284501061571125,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.8853503184713377,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 260,
+      "utility": 0.8934959349593496,
+      "readability": 10.0,
+      "meaning": 9.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.7804878048780488,
+      "leaked_count": 0,
+      "total_true_count": 1,
+      "leaked_categories": [],
+      "present_categories": [
+        "health_issue"
+      ]
+    },
+    {
+      "record_id": 261,
+      "utility": 0.9709302325581395,
+      "readability": 10.0,
+      "meaning": 10.0,
+      "hallucinations": 1.0,
+      "rouge_l_f1": 0.9127906976744186,
+      "leaked_count": 1,
+      "total_true_count": 1,
+      "leaked_categories": [
+        "health_issue"
+      ],
+      "present_categories": [
+        "health_issue"
+      ]
+    }
+  ]
+}

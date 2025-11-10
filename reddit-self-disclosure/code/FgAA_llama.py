@@ -28,7 +28,7 @@ Below I give you a [Comment] from a user as well as [Personal Inferences] made a
 
 In a first step, briefly explain the changes you will make (generalizations or removals) to invalidate the attacker's inference.
 In a new line, write a single #
-Then, return the anonymized text without any extra preamble like "Here is the anonymized text:" or suffix like "Note:".
+In the next line, return the anonymized text without any extra preamble like "Here is the anonymized text:" or suffix like "Note:".
 """
 
 # --- 2. 攻击者LLM提示词 ---

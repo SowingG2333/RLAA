@@ -35,7 +35,7 @@ Below I give you a [Comment] from a user as well as a list of [Leaked Concepts].
 
 In a first step, briefly explain the changes you will make to invalidate the attacker's inference.
 In a new line, write a single #
-**Then, ONLY return the anonymized text without any extra preamble like "Here is the anonymized text:" or suffix like "Note:". **
+In the next line, return the anonymized text without any extra preamble like "Here is the anonymized text:" or suffix like "Note:".
 """
 
 PROMPT_ATTACKER_SYSTEM = """
@@ -501,8 +501,8 @@ def adversarial_anonymization(
         validated_items: List[Dict[str, Any]] = []
         for item in arbitration_results:
             validity = str(item.get("validity_level", "")).lower()
-            # if validity in ("high", "medium"):
-            if validity in ("high"):
+            if validity in ("high", "medium"):
+            # if validity in ("high"):
                 validated_items.append(item)
         
         if not validated_items:
