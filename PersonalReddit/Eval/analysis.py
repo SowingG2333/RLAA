@@ -1,41 +1,41 @@
-import matplotlib.pyplot as plt
-import numpy as np
+# import matplotlib.pyplot as plt
+# import numpy as np
 
-num_iteration = [1, 3, 5]
+# num_iteration = [1, 3, 5]
 
-utility_original = [1.0000, 1.0000, 1.0000]
-utility_fgaa_ds = [0.9617, 0.9094, 0.8858]
-utility_fgaa_lm = [0.8999, 0.7916, 0.6922] 
-utility_fgaa_sft_lm = [0.9649, 0.9502, 0.9454]
-utility_icognitext_lm = [0.4844, 0.3492, 0.3058]
-utility_dp_bart_pr = [0.2074, 0.1445, 0.1443]
-utility_rlaa_lm = [0.9437, 0.8695, 0.7952]
+# utility_original = [1.0000, 1.0000, 1.0000]
+# utility_fgaa_ds = [0.9617, 0.9094, 0.8858]
+# utility_fgaa_lm = [0.8999, 0.7916, 0.6922] 
+# utility_fgaa_sft_lm = [0.9649, 0.9502, 0.9454]
+# utility_icognitext_lm = [0.4844, 0.3492, 0.3058]
+# utility_dp_bart_pr = [0.2074, 0.1445, 0.1443]
+# utility_rlaa_lm = [0.9437, 0.8695, 0.7952]
 
-privacy_original = [0.4452, 0.4452, 0.4452]
-privacy_fgaa_ds = [0.3016, 0.2520, 0.2427]
-privacy_fgaa_lm = [0.3041, 0.2384, 0.2150]
-privacy_fgaa_sft_lm = [0.3471, 0.3305, 0.3171]
-privacy_icognitext_lm = [0.1663, 0.1164, 0.1146]
-privacy_dp_bart_pr = [0.2634, 0.2231, 0.2086]
-privacy_rlaa_lm = [0.3140, 0.2614, 0.2324]
+# privacy_original = [0.4452, 0.4452, 0.4452]
+# privacy_fgaa_ds = [0.3016, 0.2520, 0.2427]
+# privacy_fgaa_lm = [0.3041, 0.2384, 0.2150]
+# privacy_fgaa_sft_lm = [0.3471, 0.3305, 0.3171]
+# privacy_icognitext_lm = [0.1663, 0.1164, 0.1146]
+# privacy_dp_bart_pr = [0.2634, 0.2231, 0.2086]
+# privacy_rlaa_lm = [0.3140, 0.2614, 0.2324]
 
-# 绘制隐私-效用曲线
-plt.figure(figsize=(10, 6))
-plt.plot(privacy_original, utility_original, marker='o', label='Original Data', color='blue', markersize=4)
-plt.plot(privacy_fgaa_ds, utility_fgaa_ds, marker='o', label='FGAA-DeepSeek-V3.2-Exp', color='orange', markersize=4)
-plt.plot(privacy_fgaa_lm, utility_fgaa_lm, marker='o', label='FGAA-Llama3-8b', color='green', markersize=4)
-plt.plot(privacy_fgaa_sft_lm, utility_fgaa_sft_lm, marker='o', label='FGAA-SFT-Llama3-8b', color='red', markersize=4)
-plt.plot(privacy_icognitext_lm, utility_icognitext_lm, marker='o', label='IncogniText-Llama3-8b', color='brown', markersize=4)
-plt.plot(privacy_dp_bart_pr, utility_dp_bart_pr, marker='o', label='DP-BART-PR', color='gray', markersize=4)
-plt.plot(privacy_rlaa_lm, utility_rlaa_lm, marker='o', label='RLAA-Llama3-8b', color='purple')
+# # 绘制隐私-效用曲线
+# plt.figure(figsize=(10, 6))
+# plt.plot(privacy_original, utility_original, marker='o', label='Original Data', color='blue', markersize=4)
+# plt.plot(privacy_fgaa_ds, utility_fgaa_ds, marker='o', label='FGAA-DeepSeek-V3.2-Exp', color='orange', markersize=4)
+# plt.plot(privacy_fgaa_lm, utility_fgaa_lm, marker='o', label='FGAA-Llama3-8b', color='green', markersize=4)
+# plt.plot(privacy_fgaa_sft_lm, utility_fgaa_sft_lm, marker='o', label='FGAA-SFT-Llama3-8b', color='red', markersize=4)
+# plt.plot(privacy_icognitext_lm, utility_icognitext_lm, marker='o', label='IncogniText-Llama3-8b', color='brown', markersize=4)
+# plt.plot(privacy_dp_bart_pr, utility_dp_bart_pr, marker='o', label='DP-BART-PR', color='gray', markersize=4)
+# plt.plot(privacy_rlaa_lm, utility_rlaa_lm, marker='o', label='RLAA-Llama3-8b', color='purple')
 
-plt.title('Privacy-Utility Trade-off Curve')
-plt.xlabel('Privacy (Lower is Better)')
-plt.ylabel('Utility (Higher is Better)')
-plt.legend()
-plt.grid()
-# 保存为pdf
-plt.savefig('privacy_utility_curve.pdf')
+# plt.title('Privacy-Utility Trade-off Curve')
+# plt.xlabel('Privacy (Lower is Better)')
+# plt.ylabel('Utility (Higher is Better)')
+# plt.legend()
+# plt.grid()
+# # 保存为pdf
+# plt.savefig('privacy_utility_curve.pdf')
 
 # ----------------------------------------
 

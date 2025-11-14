@@ -1,0 +1,9 @@
+python /root/autodl-tmp/RLAA/reddit-self-disclosure/code/SFT/run_16bf.py \
+--base_model_path /root/autodl-tmp/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/8afb486c1db24fe5011ec46dfbe5b5dccdb575c2 \
+--attacker_model_path /root/autodl-tmp/RLAA/reddit-self-disclosure/code/SFT/ckpt/atk/checkpoint-310 \
+--anonymizer_model_path /root/autodl-tmp/RLAA/reddit-self-disclosure/code/SFT/ckpt/ano/checkpoint-310 \
+--input_file /root/autodl-tmp/RLAA/reddit-self-disclosure/dataset/processed/health_test.jsonl \
+--output_file /root/autodl-tmp/RLAA/reddit-self-disclosure/code/SFT/heath_anony.jsonl \
+--log_file /root/autodl-tmp/RLAA/reddit-self-disclosure/code/SFT/log/health.log \
+--log_level DEBUG \
+--protect_attribute health_issue \
