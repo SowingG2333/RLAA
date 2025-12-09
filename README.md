@@ -1,1 +1,2 @@
 [ArXiv2025] Look Twice before You Leap: A Rational Agent Framework for Localized Adversarial Anonymization
+[![arXiv](https://upload.wikimedia.org/wikipedia/commons/e/ee/ArXiv_logo_2022.svg)](https://arxiv.org/abs/2512.06713)
