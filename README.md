@@ -56,7 +56,7 @@ bash script/run_fgaa_sft.sh
 
 ### 3. Evaluation
 
-The evaluation process measures both Privacy (Attack Success Rate) and Utility (Semantic Preservation). It typically requires a powerful external model (e.g., DeepSeek-V3) as an adversary/judge:
+The evaluation process measures both Privacy (Attack Success Rate) and Utility (Semantic Preservation). It typically requires a powerful external model (e.g., DeepSeek-V3.2-Exp) as an adversary/judge:
 
 ```bash
 export API_KEY="your_api_key_here"
@@ -69,8 +69,7 @@ bash script/eval.sh
 ```text
 .
 ├── assets/                   # Project diagrams and PDF documentation
-│   ├── RLAA.jpg
-│   └── RLAA_framework.pdf
+│   └── RLAA.jpg  
 ├── PersonalReddit/           # Task directory for synthetic Reddit dataset
 │   ├── data/                 # Training and test JSONL files
 │   ├── script/               # Runner scripts for RLAA, Baselines, and Eval
