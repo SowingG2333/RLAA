@@ -53,13 +53,13 @@ JSON Value Rules:
 """
 
 def process_single_record(record, model_name):
-    """为单条记录生成 Teacher Data (Attacker Inference + Anonymizer Output)"""
+    """Generate teacher data for one record (attacker reasoning + anonymizer output)."""
     original_text = record.get("response")
     if not original_text: return None
 
     sft_record = {"original_comment": original_text}
 
-    # 1. Teacher Attacker: 生成推理
+    # 1. Teacher attacker: generate reasoning
     msgs_att = [{"role": "system", "content": PROMPT_ATTACKER_SYSTEM},
                 {"role": "user", "content": PROMPT_ATTACKER_USER.format(user_response=original_text)}]
     
@@ -68,13 +68,13 @@ def process_single_record(record, model_name):
     
     sft_record["attacker_output_teacher"] = att_output
     
-    # 提取推理部分用于下一步
+    # Extract the inference block for the next step
     import re
     match = re.search(r"Inference:(.*?)(Guess:|$)", att_output, re.DOTALL | re.IGNORECASE)
     inference = match.group(1).strip() if match else "No inference found."
     sft_record["attacker_inference_teacher"] = inference
 
-    # 2. Teacher Anonymizer: 生成匿名化文本
+    # 2. Teacher anonymizer: generate anonymized text
     msgs_anon = [{"role": "system", "content": PROMPT_ANONYMIZER_SYSTEM},
                  {"role": "user", "content": PROMPT_ANONYMIZER_USER.format(user_response=original_text, feedback=inference)}]
     
@@ -83,7 +83,7 @@ def process_single_record(record, model_name):
     
     sft_record["anonymizer_output_teacher"] = anon_output
 
-    # 提取纯文本用于下游 SFT
+    # Extract plain text for downstream SFT
     parts = anon_output.split('#', 1)
     clean_anon = parts[1].strip() if len(parts) > 1 else anon_output.strip()
     sft_record["anonymizer_text_clean"] = clean_anon
@@ -110,7 +110,7 @@ def main():
             res = future.result()
             if res: results.append(res)
             
-    # 保存结果
+    # Save results
     try:
         with open(args.output_file, 'w', encoding='utf-8') as f:
             for item in results:

@@ -12,31 +12,6 @@ from utils import (
 )
 
 # Prompts
-PROMPT_ANONYMIZER_SYSTEM = """
-You are an expert anonymizer that carefully adapts small parts of the text to make it anonymous. You follow the instructions and format precisely and you try to change as little as possible, keeping the original text in tact as much as possible. Only generalize information and do not invent new information.
-
-Example: 'my husband and I' -> 'my partner and I' is valid, but 'my husband and I' -> 'my wife and I' is not.
-Example: 'my husband and I have a dog' -> 'my partner and I have a dog' is valid, but 'my husband and I have a dog' -> 'my partner and I have a cat' is not.
-Example: 'my husband and I' -> 'I' is also valid as it only removes information.
-"""
-PROMPT_ANONYMIZER_USER = """
-Below I give you a [Comment] from a user as well as a list of [Leaked Concepts]. Your task is to edit the [Comment] to neutralize these concepts, while keeping the rest of the text intact.
-
-How to Neutralize:
-1. If a concept has "Validity: high", it's likely a direct leak (e.g., specific name, location). Focus on **generalizing** the specific word(s) identified in `reasoning_evidence` (e.g., "Paris" -> "a major city").
-2. If a concept has "Validity: medium", it might be a leak based on style, tone, or topic choice (e.g., implying gender, age). Focus on **rephrasing** the phrase(s) in `reasoning_evidence` to be more neutral or generic. **Crucially, ensure the core meaning and intent of the original phrase are preserved** after rephrasing.
-3. Try to address them with a minimal change if possible. Prioritize addressing concepts with "high" validity.
-
-[Comment]:
-{user_response}
-
-[Leaked Concepts]:
-{feedback}
-
-In a first step, briefly explain the changes you will make to invalidate the attacker's inference.
-In a new line, write a single #
-In the next line, return the anonymized text without any extra preamble like "Here is the anonymized text:" or suffix like "Note:". 
-"""
 PROMPT_ATTACKER_SYSTEM = """
 You are an expert investigator with years of experience in online profiling and text analysis. You work with an analytical mindset and try to answer questions as precisely as possible.
 """
@@ -55,11 +30,38 @@ Guess: A single JSON object containing your best guess for each of the following
 JSON Value Rules:
 1. age: must be an accurate integer (e.g., 35, not "35" or "30-40").
 2. sex: must be one of the following exact strings: "male" or "female".
-3. relationship_status: must be one of the following exact strings: "single", "in a relationship", "engaged", "married", "divorced", "widowed".
+3. relationship_status: must be one of the following exact strings: "single", "in a relationship", "engaged", "married", "divorced" or "widowed".
 4. income_level: must be one of the following exact strings: "low", "middle", "high" or "very high".
 5. current_city_country & birth_city_country: Provide your best guess as a string in the format "City, Country" (e.g., "Shanghai, China") or just "Country" (e.g., "China").
 6. education & occupation: Provide your best guess as a string (e.g., "Masters in Computer Science", "shop owner").
 """
+
+PROMPT_ANONYMIZER_SYSTEM = """
+You are an expert anonymizer that carefully adapts small parts of the text to make it anonymous. You follow the instructions and format precisely and you try to change as little as possible, keeping the original text in tact as much as possible. Only generalize information and do not invent new information.
+
+Example: 'my husband and I' -> 'my partner and I' is valid, but 'my husband and I' -> 'my wife and I' is not.
+Example: 'my husband and I have a dog' -> 'my partner and I have a dog' is valid, but 'my husband and I have a dog' -> 'my partner and I have a cat' is not.
+Example: 'my husband and I' -> 'I' is also valid as it only removes information.
+"""
+PROMPT_ANONYMIZER_USER = """
+Below I give you a [Comment] from a user as well as a list of [Leaked Concepts]. Your task is to edit the [Comment] to neutralize these concepts, while keeping the rest of the text intact.
+
+How to Neutralize:
+1. If a concept has "validity_level: high", it's likely a direct leak (e.g., specific name, location). Focus on generalizing the specific word(s) identified in "reasoning_evidence" (e.g., "Paris" -> "a major city").
+2. If a concept has "validity_level: medium", it might be a leak based on style, tone, or topic choice (e.g., implying gender, age). Focus on rephrasing the phrase(s) in "reasoning_evidence" to be more neutral or generic. Crucially, ensure the core meaning and intent of the original phrase are preserved after rephrasing.
+3. Try to address them with a minimal change if possible. Prioritize addressing concepts with "high" validity.
+
+[Comment]:
+{user_response}
+
+[Leaked Concepts]:
+{feedback}
+
+In a first step, briefly explain the changes you will make to invalidate the attacker's inference.
+In a new line, write a single #
+Then, return the anonymized text without any extra preamble like "Here is the anonymized text:" or suffix like "Note:".
+"""
+
 PROMPT_ARBITRATOR_SYSTEM = """
 You are an expert Arbitrator. Your job is to validate an Attacker's reasoning and extract the core concepts behind valid leaks. You must output a single, valid JSON list.
 """
@@ -69,14 +71,14 @@ Below is an [Attacker Reasoning] block, a [Attributes to protect] and the [Comme
 Your task is to analyze each attribute and determine the validity level of the Attacker's reasoning for it.
 A reasoning's validity level is defined as:
 1. "high": Reasoning is based on a direct statement or an undeniable logical deduction from the [Comment] (e.g., [Comment] says "I live in Paris", Attacker guesses "Paris, France").
-2. "medium": Reasoning is based on a strong stylistic cue, specific topic or strong pattern (e.g., "use of specific slang like 'mate'", "detailed discussion of fashion design", "use of specific engineering jargon").
-3. "low": Reasoning is based on a vague stereotype or weak association (e.g., "polite tone implies female", "using 'ahaha' implies young").
+2. "medium": Reasoning is based on a strong stylistic cue, specific topic, or strong pattern (e.g., "use of specific slang like 'mate'", "detailed discussion of fashion design", "use of specific engineering jargon"). Use this for gender/occupation cues that are based on specific text rather than vague feelings.
+3. "low": Reasoning is based on a vague stereotype or weak association (e.g., "polite tone implies female", "using 'ahaha' implies young"). These are generally invalid.
 4. "invalid": Reasoning is based on information not found in the [Comment] or is a clear hallucination.
 
-For each leaked attribute, provide a JSON object with the following fields:
+For EACH leaked attribute, provide a JSON object with the following fields:
 - "attribute": The name of the leaked attribute (e.g., "age").
 - "validity_level": The validity level as a string: "high", "medium", "low", or "invalid".
-- "reasoning_evidence": A **JSON list of strings**, where each string is a specific phrase(s) from the [Comment] that the Attacker used (e.g., `["phrase1", "phrase2"]`). If no evidence, use an empty list `[]`.
+- "reasoning_evidence": The specific phrase(s) from the [Comment] that the Attacker used.
 - "leaked_concept": If validity is "high" or "medium", describe the concept that needs to be neutralized (e.g., "Author works in fashion industry" or "Author lives in Paris" or "Author uses male-coded slang").
 - "validation_notes": Explain why you chose that validity level (e.g., "Medium: Based on specific stylistic cues 'mate' and 'reckon' which are statistically correlated." or "Low: Vague guess based on tone.").
 
@@ -94,7 +96,55 @@ Return only a single JSON list containing these objects.
 [Arbitrator's JSON Output]:
 """
 
-# 业务逻辑
+def is_sanity_check_failed(new_comment: str, old_comment: str, min_len: int = 20):
+    if not new_comment or len(new_comment.strip()) < min_len:
+        return f"catastrophic_anonymizer_failure: output too short (len={len((new_comment or '').strip())})"
+    if new_comment.strip() == old_comment.strip():
+        return "anonymizer_stuck: output identical to previous iteration"
+    return None
+
+
+def filter_actionable_leaks(validated_leaks):
+    if not validated_leaks:
+        return []
+    if isinstance(validated_leaks, dict):
+        validated_leaks = [validated_leaks]
+    if not isinstance(validated_leaks, list):
+        return []
+
+    actionable = []
+    for item in validated_leaks:
+        if not isinstance(item, dict):
+            continue
+        validity = str(item.get("validity_level", "")).lower()
+        if validity in ("high", "medium"):
+            actionable.append(item)
+    return actionable
+
+
+def format_feedback_for_anonymizer(actionable_leaks):
+    """Return a JSON string containing leaked_concept + evidence for the anonymizer."""
+    normalized = []
+    for item in actionable_leaks or []:
+        evidence = item.get("reasoning_evidence", [])
+        if evidence is None:
+            evidence = []
+        if isinstance(evidence, str):
+            evidence = [evidence]
+
+        normalized.append(
+            {
+                "attribute": item.get("attribute"),
+                "validity_level": item.get("validity_level"),
+                "leaked_concept": item.get("leaked_concept"),
+                "evidence": evidence,
+                "reasoning_evidence": evidence,
+                "validation_notes": item.get("validation_notes"),
+            }
+        )
+    return json.dumps(normalized, ensure_ascii=False, indent=2)
+
+# Core logic
 def get_attacker_guess(model, text):
     messages = [
         {"role": "system", "content": PROMPT_ATTACKER_SYSTEM},
@@ -134,17 +184,19 @@ def process_single_record(model, record, max_iterations):
     
     attack_res = get_attacker_guess(model, current_text)
     
-    # Arbitrator 过滤逻辑
+    # Arbitrator filtering logic
     attributes_to_protect = ["age", "education", "income_level", "current_city_country", "birth_city_country", "occupation", "relationship_status", "sex"]
     validated_leaks = get_arbitrator_validation(model, current_text, attack_res["inference"], attributes_to_protect)
-    
-    has_leaks = len([x for x in validated_leaks if x.get("validity_level") in ["high", "medium"]]) > 0
+
+    actionable_leaks = filter_actionable_leaks(validated_leaks)
+    has_leaks = len(actionable_leaks) > 0
     
     meta["iteration_history"].append({
         "iteration": 0,
         "text": current_text,
         "attacker": attack_res,
-        "leaks": validated_leaks
+        "leaks": validated_leaks,
+        "actionable_leaks": actionable_leaks
     })
 
     if not has_leaks:
@@ -152,29 +204,64 @@ def process_single_record(model, record, max_iterations):
 
     # Iteration Loop
     for i in range(max_iterations):
-        feedback = "\n".join([f"- {x['leaked_concept']}" for x in validated_leaks if x.get("validity_level") in ["high", "medium"]])
+        feedback = format_feedback_for_anonymizer(actionable_leaks)
         
         # 1. Anonymize
+        previous_text = current_text
         current_text = run_anonymizer(model, current_text, feedback)
+
+        sanity_fail_reason = is_sanity_check_failed(current_text, previous_text)
+        if sanity_fail_reason:
+            return {
+                **record,
+                "anonymized_response": previous_text,
+                "meta": {
+                    **meta,
+                    "status": "model_error",
+                    "error": sanity_fail_reason,
+                    "final_attacker_guess": attack_res.get("guess_json"),
+                },
+            }
         
         # 2. Attack
         attack_res = get_attacker_guess(model, current_text)
         
         # 3. Arbitrate
         validated_leaks = get_arbitrator_validation(model, current_text, attack_res["inference"], attributes_to_protect)
-        has_leaks = len([x for x in validated_leaks if x.get("validity_level") in ["high", "medium"]]) > 0
+        actionable_leaks = filter_actionable_leaks(validated_leaks)
+        has_leaks = len(actionable_leaks) > 0
         
         meta["iteration_history"].append({
             "iteration": i + 1,
             "text": current_text,
             "attacker": attack_res,
-            "leaks": validated_leaks
+            "leaks": validated_leaks,
+            "actionable_leaks": actionable_leaks
         })
         
         if not has_leaks:
-            return {**record, "anonymized_response": current_text, "meta": {**meta, "status": "success"}}
+            return {
+                **record,
+                "anonymized_response": current_text,
+                "meta": {
+                    **meta,
+                    "status": "success",
+                    "final_attacker_guess": attack_res.get("guess_json"),
+                    "final_leaked_attributes": [
+                        f"{x.get('attribute')} ({x.get('validity_level')})" for x in actionable_leaks
+                    ],
+                },
+            }
 
-    return {**record, "anonymized_response": current_text, "meta": meta}
+    return {
+        **record,
+        "anonymized_response": current_text,
+        "meta": {
+            **meta,
+            "final_attacker_guess": attack_res.get("guess_json"),
+            "final_leaked_attributes": [f"{x.get('attribute')} ({x.get('validity_level')})" for x in actionable_leaks],
+        },
+    }
 
 def main():
     parser = argparse.ArgumentParser()

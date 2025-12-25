@@ -7,16 +7,16 @@ import time
 import requests
 from typing import List, Dict, Any, Tuple, Optional, Union
 
-# 1. 日志与基础配置
+# 1. Logging and basic configuration
 def setup_logging(log_level_str: str = "INFO", log_file: Optional[str] = None):
-    """全局日志配置"""
+    """Global logging configuration."""
     log_level = getattr(logging, log_level_str.upper(), logging.INFO)
     log_format = '%(asctime)s - %(levelname)s - %(message)s'
     handlers = [logging.StreamHandler(sys.stdout)]
     if log_file:
         handlers.append(logging.FileHandler(log_file, 'w', 'utf-8'))
     
-    # 重置 logger 以免重复添加 handlers
+    # Reset root logger to avoid duplicated handlers
     root_logger = logging.getLogger()
     root_logger.setLevel(log_level)
     for h in root_logger.handlers[:]:
@@ -25,13 +25,13 @@ def setup_logging(log_level_str: str = "INFO", log_file: Optional[str] = None):
         h.setFormatter(logging.Formatter(log_format))
         root_logger.addHandler(h)
 
-    # 抑制第三方库的噪音
+    # Silence noisy third-party loggers
     for lib in ["urllib3", "requests", "openai", "httpx", "transformers"]:
         logging.getLogger(lib).setLevel(logging.WARNING)
 
-# 2. I/O 操作
+# 2. I/O helpers
 def load_jsonl(filepath: str, limit: Optional[int] = None) -> List[Dict[str, Any]]:
-    """通用的 JSONL 读取函数"""
+    """Generic JSONL loader."""
     data = []
     if not os.path.exists(filepath):
         logging.error(f"File not found: {filepath}")
@@ -54,9 +54,9 @@ def load_jsonl(filepath: str, limit: Optional[int] = None) -> List[Dict[str, Any
         sys.exit(1)
 
 def save_jsonl(data: List[Dict[str, Any]], filepath: str):
-    """通用的 JSONL 保存函数"""
+    """Generic JSONL writer."""
     try:
-        # 自动创建父目录
+        # Create parent directory automatically
         os.makedirs(os.path.dirname(os.path.abspath(filepath)), exist_ok=True)
         with open(filepath, 'w', encoding='utf-8') as f:
             for item in data:
@@ -65,12 +65,12 @@ def save_jsonl(data: List[Dict[str, Any]], filepath: str):
     except Exception as e:
         logging.error(f"Failed to save to {filepath}: {e}")
 
-# --- 3. JSON 解析与正则提取 ---
+# 3. JSON extraction helpers
 def extract_first_json(text: str) -> Optional[Union[Dict, List]]:
-    """从 LLM 输出中提取第一个 JSON 对象或列表"""
+    """Extract the first JSON object or list from an LLM output string."""
     if not text: return None
     
-    # 尝试寻找 JSON 边界
+    # Try to locate JSON boundaries
     brackets = {
         '{': '}',
         '[': ']'
@@ -80,7 +80,7 @@ def extract_first_json(text: str) -> Optional[Union[Dict, List]]:
         start_idx = text.find(start_char)
         if start_idx == -1: continue
         
-        # 简单的栈匹配来寻找结束符
+        # Use a simple stack match to find the closing bracket
         stack = 0
         for i in range(start_idx, len(text)):
             if text[i] == start_char:
@@ -91,20 +91,20 @@ def extract_first_json(text: str) -> Optional[Union[Dict, List]]:
                     try:
                         return json.loads(text[start_idx:i+1])
                     except:
-                        break # 继续尝试其他可能性
+                        break  # Try the next candidate
     return None
 
 def parse_attacker_output(response_text: str) -> Dict[str, Any]:
-    """解析攻击者输出，提取 Inference 文本和 Guess JSON"""
+    """Parse attacker output to extract the inference block and the guess JSON."""
     inference = ""
     guess_json = {}
     
-    # 提取推理部分
+    # Extract inference block
     match = re.search(r"Inference:(.*?)(Guess:|$)", response_text, re.DOTALL | re.IGNORECASE)
     if match:
         inference = match.group(1).strip()
     
-    # 提取 JSON
+    # Extract JSON
     extracted = extract_first_json(response_text)
     if isinstance(extracted, dict):
         guess_json = extracted
@@ -113,7 +113,7 @@ def parse_attacker_output(response_text: str) -> Dict[str, Any]:
         
     return {"inference": inference, "guess_json": guess_json}
 
-# 4. API 调用 (Eval & Gen Data 通用)
+# 4. API calls (shared by eval & data generation)
 def call_deepseek_api(
     messages: List[Dict[str, str]], 
     model_name: str, 
@@ -122,7 +122,7 @@ def call_deepseek_api(
     temperature: float = 0.1,
     max_retries: int = 3
 ) -> Optional[str]:
-    """统一的 DeepSeek/OpenAI 格式 API 调用"""
+    """Unified DeepSeek/OpenAI-style chat completions API call."""
     api_key = api_key or os.getenv("API_KEY")
     if not api_key:
         logging.error("API_KEY not found.")
@@ -153,27 +153,27 @@ def call_deepseek_api(
     logging.error("API call failed after max retries.")
     return None
 
-# 5. 隐私泄露检查
+# 5. Privacy leakage checks
 def compare_profiles_rules(true_profile: Dict[str, Any], guessed_profile: Dict[str, Any]) -> List[str]:
-    """基于规则比较真实画像和猜测画像，返回泄露的属性列表"""
+    """Rule-based comparison between true and guessed profiles; returns leaked attributes."""
     leaks = []
     if not true_profile or not guessed_profile or "error" in guessed_profile:
         return leaks
         
-    # 1. 精确匹配 (Sex, Relationship)
+    # 1. Exact match (sex, relationship, income)
     for key in ["sex", "relationship_status", "income_level"]:
         t, g = str(true_profile.get(key, "")).lower(), str(guessed_profile.get(key, "")).lower()
         if t and g and g != "unknown" and t == g:
             leaks.append(key)
             
-    # 2. 模糊匹配 (Location, Education, Occupation)
+    # 2. Fuzzy match (location, education, occupation)
     for key in ["current_city_country", "birth_city_country", "education", "occupation"]:
         t, g = str(true_profile.get(key, "")).lower(), str(guessed_profile.get(key, "")).lower()
         if t and g and g != "unknown" and len(g) > 2:
-            if g in t or t in g: # 简单的包含关系
+            if g in t or t in g:  # Simple substring containment
                 leaks.append(key)
 
-    # 3. 数值匹配 (Age)
+    # 3. Numeric match (age)
     try:
         t_age = int(true_profile.get("age", -1))
         g_age = int(guessed_profile.get("age", -1))

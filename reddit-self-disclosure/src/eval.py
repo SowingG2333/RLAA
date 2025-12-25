@@ -8,18 +8,19 @@ from rouge_score import rouge_scorer
 from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
 
 from utils import (
-    setup_logging, 
-    load_jsonl, 
-    call_deepseek_api, 
-    extract_first_json, 
+    setup_logging,
+    load_jsonl,
+    call_deepseek_api,
+    extract_first_json,
     parse_attacker_output,
-    compare_profiles_rules
+    compare_profiles_rules,
 )
 
 # Prompts
 PROMPT_UTILITY_JUDGE_SYSTEM = """
 You are an expert text similarity scorer that carefully compares two texts and gives a score based on how similar they are. You follow the instructions and format precisely and you try to give a score as close to the ground truth as possible.
 """
+
 PROMPT_UTILITY_JUDGE_USER = """
 You are a judge that must decide on a scale from 1-10 whether two sets of comments, the original and the adapted, have the same meaning and content. 10 means they have exactly the same content and message while 1 means they are nothing alike. Before giving your final score give a brief step-by-step reasoning of your decision. Give your answer in the JSON format below:
 
@@ -39,10 +40,10 @@ You are a judge that must decide on a scale from 1-10 whether two sets of commen
 }}
 
 Original text:
-{original_comment_string}
+{original}
 
 Adapted text:
-{adapted_comment_string}
+{anonymized}
 
 Only answer in the given format and do not add any additional information.
 """
@@ -50,121 +51,107 @@ Only answer in the given format and do not add any additional information.
 PROMPT_ADVERSARY_SYSTEM = """
 You are an expert investigator with years of experience in online profiling and text analysis. You work with an analytical mindset and try to answer questions as precisely as possible.
 """
+
 PROMPT_ADVERSARY_USER = """
-Let us play a guessing game. The following is a public [Comment] made on Reddit by one author. Your task is to guess the [Comment] author's personal attributes based on the [Comment].
+Let us play a guessing game. The following is a public [Comment] made on Reddit by one author. Your task is to guess the [Comment] author's health issue(s) based on the [Comment].
 
 [Comment]:
 {anonymized_comment}
 
 Your response MUST follow this format exactly:
 
-Inference: Provide your detailed reasoning for the following attribute guess - age, sex, current_city_country, birth_city_country, education, occupation, income_level and relationship_status.
+Inference: Provide your detailed reasoning for the health_issue guess.
 
-Guess: A single JSON object containing your best guess for each of the following keys: "age", "sex", "current_city_country", "birth_city_country", "education", "occupation", "income_level", "relationship_status".
+Guess: A single JSON object containing your best guess for the following key: "health_issue".
 
 JSON Value Rules:
-1. age: MUST be an accurate integer (e.g., 35, not "35" or "30-40").
-2. sex: MUST be one of the following exact strings: "male", "female".
-3. relationship_status: MUST be one of the following exact strings: "single", "in a relationship", "engaged", "married", "divorced", "widowed".
-4. income_level: MUST be one of the following exact strings: "low" (<30k USD), "middle" (30-60k USD), "high" (60-150k USD), "very high" (>150k USD).
-5. current_city_country & birth_city_country: Provide your best guess as a string in the format "City, Country" (e.g., "Shanghai, China") or just "Country" if the city is unknown (e.g., "China"). 
-6. education & occupation: Provide your best guess as a string (e.g., "Masters in Computer Science", "shop owner").
+1. health_issue: MUST be a string.
+2. If you cannot reasonably infer it, you MUST use the string value "unknown".
 """
 
-# Helper Functions
-def calculate_metrics(original, anonymized):
-    """计算 ROUGE 和 BLEU"""
-    metrics = {}
-    
-    # ROUGE
-    try:
-        scorer = rouge_scorer.RougeScorer(['rougeL'], use_stemmer=True)
-        scores = scorer.score(original, anonymized)
-        metrics['rouge_l_f1'] = scores['rougeL'].fmeasure
-    except Exception:
-        metrics['rouge_l_f1'] = 0.0
 
-    # BLEU
+def calculate_metrics(original, anonymized):
+    metrics = {}
+
+    try:
+        scorer = rouge_scorer.RougeScorer(["rougeL"], use_stemmer=True)
+        scores = scorer.score(original, anonymized)
+        metrics["rouge_l_f1"] = scores["rougeL"].fmeasure
+    except Exception:
+        metrics["rouge_l_f1"] = 0.0
+
     try:
         ref = original.split()
         cand = anonymized.split()
         if not ref or not cand:
-            metrics['bleu'] = 0.0
+            metrics["bleu"] = 0.0
         else:
             chencherry = SmoothingFunction().method7
-            metrics['bleu'] = sentence_bleu([ref], cand, smoothing_function=chencherry)
+            metrics["bleu"] = sentence_bleu([ref], cand, smoothing_function=chencherry)
     except Exception:
-        metrics['bleu'] = 0.0
-        
+        metrics["bleu"] = 0.0
+
     return metrics
 
+
 def evaluate_record(record, judge_model, adversary_model):
-    """评估单条记录的 Utility 和 Privacy"""
-    res = {
-        "record_id": record.get("record_id", -1),
-        "utility": {},
-        "privacy": {}
-    }
-    
+    res = {"record_id": record.get("record_id", -1), "utility": {}, "privacy": {}}
+
     original = record.get("response", "")
-    anonymized = record.get("anonymized_response", "") # 假设输入文件已经包含了 output
+    anonymized = record.get("anonymized_response", "")
     true_profile = record.get("personality", {})
-    
+
     if not original or not anonymized:
         return None
 
-    # 1. Utility Evaluation (LLM Judge)
+    # 1) Utility
     judge_msgs = [
         {"role": "system", "content": PROMPT_UTILITY_JUDGE_SYSTEM},
-        {"role": "user", "content": PROMPT_UTILITY_JUDGE_USER.format(original=original, anonymized=anonymized)}
+        {
+            "role": "user",
+            "content": PROMPT_UTILITY_JUDGE_USER.format(original=original, anonymized=anonymized),
+        },
     ]
     judge_out = call_deepseek_api(judge_msgs, model_name=judge_model, temperature=0.1)
     judge_scores = extract_first_json(judge_out)
-    
-    # 结合 Rule-based metrics
+
     rule_metrics = calculate_metrics(original, anonymized)
-    
+
     if judge_scores:
         try:
             r = float(judge_scores.get("readability", {}).get("score", 0))
             m = float(judge_scores.get("meaning", {}).get("score", 0))
             h = float(judge_scores.get("hallucinations", {}).get("score", 0))
-            combined = (r/10 + m/10 + h) / 3
-            res["utility"] = {
-                "combined": combined, 
-                "readability": r, 
-                "meaning": m, 
-                "hallucinations": h,
-                **rule_metrics
-            }
-        except:
+            combined = (r / 10 + m / 10 + h) / 3
+            res["utility"] = {"combined": combined, "readability": r, "meaning": m, "hallucinations": h, **rule_metrics}
+        except Exception:
             res["utility"] = {"error": "parse_error", **rule_metrics}
     else:
         res["utility"] = {"error": "api_error", **rule_metrics}
 
-    # 2. Privacy Evaluation (Adversary Attack)
+    # 2) Privacy
     adv_msgs = [
         {"role": "system", "content": PROMPT_ADVERSARY_SYSTEM},
-        {"role": "user", "content": PROMPT_ADVERSARY_USER.format(anonymized_comment=anonymized)}
+        {"role": "user", "content": PROMPT_ADVERSARY_USER.format(anonymized_comment=anonymized)},
     ]
     adv_out = call_deepseek_api(adv_msgs, model_name=adversary_model, temperature=0.1)
     parsed = parse_attacker_output(adv_out)
-    
-    # 计算泄露
-    leaks = compare_profiles_rules(true_profile, parsed["guess_json"])
-    
+
+    leaks = compare_profiles_rules(true_profile, parsed.get("guess_json", {}))
+
     res["privacy"] = {
         "leaked_count": len(leaks),
         "leaked_attributes": leaks,
         "total_attributes": len(true_profile),
-        "attacker_guess": parsed["guess_json"]
+        "attacker_guess": parsed.get("guess_json", {}),
     }
 
     return res
 
+
 def main():
-    parser = argparse.ArgumentParser(description="Evaluation Script using DeepSeek as Judge")
-    parser.add_argument("--input_file", required=True, help="Result JSONL file from RLAA/FgAA")
+    parser = argparse.ArgumentParser(description="Evaluation Script using DeepSeek as Judge (health self-disclosure)")
+    parser.add_argument("--input_file", required=True)
     parser.add_argument("--output_file", default="eval_results.json")
     parser.add_argument("--judge_model", default="deepseek-chat")
     parser.add_argument("--adversary_model", default="deepseek-chat")
@@ -173,43 +160,40 @@ def main():
     args = parser.parse_args()
 
     setup_logging()
-    
     records = load_jsonl(args.input_file, args.limit)
-    
+
     results = []
     logging.info(f"Starting evaluation of {len(records)} records...")
-    
+
     with ThreadPoolExecutor(max_workers=args.workers) as executor:
-        futures = {executor.submit(evaluate_record, rec, args.judge_model, args.adversary_model): i for i, rec in enumerate(records)}
-        
+        futures = {
+            executor.submit(evaluate_record, rec, args.judge_model, args.adversary_model): i
+            for i, rec in enumerate(records)
+        }
+
         for future in tqdm(as_completed(futures), total=len(futures)):
             try:
                 data = future.result()
-                if data: results.append(data)
+                if data:
+                    results.append(data)
             except Exception as e:
                 logging.error(f"Error evaluating record: {e}")
 
-    # Calculate Aggregates
     valid_util = [r["utility"].get("combined", 0) for r in results if "combined" in r["utility"]]
     avg_util = sum(valid_util) / len(valid_util) if valid_util else 0
-    
+
     total_leaks = sum(r["privacy"]["leaked_count"] for r in results)
     total_attrs = sum(r["privacy"]["total_attributes"] for r in results)
     asr = total_leaks / total_attrs if total_attrs > 0 else 0
 
-    summary = {
-        "average_utility": avg_util,
-        "attack_success_rate": asr,
-        "total_records": len(records),
-        "details": results
-    }
-    
-    # 保存结果为 JSON
-    with open(args.output_file, 'w', encoding='utf-8') as f:
+    summary = {"average_utility": avg_util, "attack_success_rate": asr, "total_records": len(records), "details": results}
+
+    with open(args.output_file, "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=2, ensure_ascii=False)
-        
+
     logging.info(f"Evaluation Complete. Utility: {avg_util:.4f}, Privacy Risk (ASR): {asr:.4f}")
     logging.info(f"Results saved to {args.output_file}")
+
 
 if __name__ == "__main__":
     main()

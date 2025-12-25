@@ -53,9 +53,9 @@ JSON Value Rules:
 
 def process_record(attacker_model, anonymizer_model, record, max_iterations):
     """
-    通用处理逻辑。
-    - 在 Naive 模式下，attacker_model 和 anonymizer_model 指向同一个对象。
-    - 在 SFT 模式下，指向不同的对象。
+    Shared processing logic.
+    - In Naive mode, attacker_model and anonymizer_model point to the same instance.
+    - In SFT mode, they are separate instances.
     """
     original_text = record.get("response", "")
     if not original_text:
@@ -63,7 +63,7 @@ def process_record(attacker_model, anonymizer_model, record, max_iterations):
 
     current_text = original_text
     
-    # 辅助函数：判断是否安全 (所有属性猜测均为 unknown)
+    # Helper: treat as safe if all guessed attributes are "unknown"
     def is_safe(guess_json):
         if not guess_json or "error" in guess_json: return False
         return all(str(v).lower() == "unknown" for v in guess_json.values())
@@ -86,7 +86,7 @@ def process_record(attacker_model, anonymizer_model, record, max_iterations):
                      {"role": "user", "content": PROMPT_ANONYMIZER_USER.format(user_response=current_text, feedback=feedback)}]
         raw_anon = anonymizer_model.generate(msgs_anon, temperature=0.5)
         
-        # 提取逻辑：取 # 之后的内容
+        # Extraction rule: take the part after '#'
         parts = raw_anon.split('#', 1)
         current_text = parts[1].strip() if len(parts) > 1 else raw_anon.strip()
         
@@ -116,7 +116,7 @@ def main():
     args = parser.parse_args()
     setup_logging()
 
-    # 模型加载
+    # Model loading
     if args.model_path:
         logging.info(f"Running in NAIVE mode (Shared Model: {args.model_path})")
         shared_model = LocalModelHandler(args.model_path, load_in_4bit=True)
@@ -137,7 +137,7 @@ def main():
         logging.error("  2. --attacker_model_path AND --anonymizer_model_path (for SFT mode)")
         sys.exit(1)
 
-    # 处理数据
+    # Process data
     records = load_jsonl(args.input_file)
     results = []
     
@@ -145,7 +145,7 @@ def main():
     for rec in tqdm(records):
         results.append(process_record(attacker_model, anonymizer_model, rec, args.max_iterations))
         
-        # 定期保存
+        # Periodic checkpoint save
         if len(results) % 10 == 0: 
             save_jsonl(results, args.output_file)
             

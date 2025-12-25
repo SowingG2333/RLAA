@@ -1,100 +1,87 @@
 # RLAA: Rational Localized Adversarial Anonymization
 
-This repository contains the official PyTorch implementation for the paper **"Look Twice before You Leap: A Rational Agent Framework for Localized Adversarial Anonymization"**.
+This repository provides a reference implementation of RLAA (Rational Localized Adversarial Anonymization).
 
-## 🚀 Overview
+RLAA is a fully-localized, training-free anonymization framework designed to avoid the “privacy paradox”, where users would otherwise need to send raw sensitive text to third-party APIs.
 
-**RLAA** is a fully localized, training-free framework designed to resolve the "Privacy Paradox" in text anonymization—where users must disclose sensitive data to untrusted third-party APIs for protection.
+## Repository Structure (Up-to-date)
 
-Unlike naive adversarial strategies that suffer from severe **utility collapse** (over-editing) when migrated to local small models (LSMs), RLAA introduces a novel **Attacker-Arbitrator-Anonymizer (A-A-A)** architecture.
-
-### Key Features
-* **Rationality Gatekeeper**: An Arbitrator module that validates attacker inferences, filtering out "ghost leaks" (hallucinations) and negligible privacy gains.
-* **Economic Efficiency**: Prevents the "diminishing returns" problem by enforcing a rational stopping criterion, modeled via Marginal Rate of Substitution (MRS).
-* **Fully Localized**: Optimized for consumer-grade GPUs (e.g., RTX 3090/4090/5090) using quantized 8B/7B models (Llama-3, Qwen-2.5), eliminating API-based privacy risks.
-
-## 📂 Project Structure
+The repo is organized by dataset/task. Each subdirectory is self-contained with its own `data/`, `script/`, and `src/`:
 
 ```text
 .
-├── data/               # Dataset files
-├── script/             # Shell scripts for running experiments
-├── src/                # Source code (Python)
-├── requirements.txt    # Dependencies
+├── PersonalReddit/
+│   ├── data/                 # Example jsonl files
+│   ├── script/               # Runner scripts (RLAA / FgAA / SFT / eval / gen_data)
+│   └── src/                  # Main code entrypoints
+├── reddit-self-disclosure/
+│   ├── data/                 # Important: no redistribution (see data/README.md)
+│   ├── script/
+│   └── src/
+├── requirements.txt
 └── README.md
-
 ```
 
-## 📦 Requirements
+## Installation
 
-* python >= 3.8
-* pytorch >= 2.0.0
-* transformers >= 4.30.0
-* Install dependencies:
+Python 3.8+ is recommended.
+
 ```bash
 pip install -r requirements.txt
-
 ```
 
-## 📊 Data Preparation
+## Quick Start (Run from a Subdirectory)
 
-This repository currently includes the **PersonalReddit** dataset for immediate reproduction of our results.
+All commands below should be executed inside a task directory (e.g., `PersonalReddit/` or `reddit-self-disclosure/`).
 
-### Note on `reddit-self-disclosure` Dataset
-
-The **reddit-self-disclosure** dataset used in the paper is not included in this repository due to licensing restrictions which prohibit direct redistribution without author permission.
-
-> **Update Plan:** We are preparing the data processing scripts and related code to allow users to construct the dataset from the source. These will be released in a future update.
-
-## ⚡ Quick Start
-
-### 1. Environment Setup
-
-Set up your API key (only required for using DeepSeek as the *Evaluator* or for *Data Generation*; the core RLAA framework runs locally).
+### 1) Run RLAA (Main Method)
 
 ```bash
-export API_KEY="your_api_key_here"
+cd PersonalReddit
 
+# Optional: override defaults via environment variables
+export MODEL_PATH="meta-llama/Meta-Llama-3-8B-Instruct"
+export INPUT_FILE="data/test.jsonl"
+export OUTPUT_FILE="results/rlaa_output.jsonl"
+export MAX_ITERATIONS=10
+
+bash script/run_rlaa.sh
 ```
 
-### 2. Run Baselines (FgAA)
-
-Reproduce the baseline results (Naive Migration and SFT variants):
+### 2) Run Baselines (FgAA)
 
 ```bash
-# Naive Mode (Shared Model, creates utility collapse)
+cd PersonalReddit
+
+# Naive migration baseline
 bash script/run_fgaa_naive.sh
 
-# SFT Mode (Separate Attacker/Anonymizer)
+# SFT baseline (may trigger training/finetuning scripts)
 bash script/run_fgaa_sft.sh
-
 ```
 
-### 3. Run RLAA (Main Method)
+### 3) Evaluation (Usually Requires API_KEY)
 
-Run the proposed Rational Agent Framework:
-
-```bash
-bash script/run_rlaa.sh
-
-```
-
-### 4. Evaluation
-
-Evaluate the utility (readability, meaning preservation) and privacy risk (attacker success rate) of the generated outputs:
+The evaluation script typically uses hosted API models (e.g., `deepseek-chat`) as the judge/adversary, so you need to export `API_KEY` first:
 
 ```bash
+cd PersonalReddit
+
+export API_KEY="your_api_key_here"
+
+# You may override: INPUT_FILE / OUTPUT_FILE / JUDGE_MODEL / ADVERSARY_MODEL / WORKERS / LIMIT
 bash script/eval.sh
-
 ```
 
-## 🧪 Experiments & Training
+## Data Notes
 
-If you wish to train the Attacker or Anonymizer components from scratch (e.g., for the SFT baseline comparison), use the provided training script:
+- `PersonalReddit/data/`: example jsonl files are included for quick reproduction.
+- `reddit-self-disclosure/data/`: redistribution is restricted by the dataset authors. Please read `data/README.md` in that directory.
 
-```bash
-bash script/sft.sh
+## Entry Points (Per Subdirectory)
 
-```
+Key scripts live under each task directory:
 
-*Note: RLAA itself is a training-free framework and does not require this step for inference.*
+- `src/run_rlaa.py`: RLAA inference entry
+- `src/eval.py`: evaluation entry (often API-based)
+- `script/run_rlaa.sh` / `script/eval.sh`: recommended reproducible runner scripts (support env-var overrides)

@@ -1,5 +1,5 @@
 MODEL_PATH="meta-llama/Meta-Llama-3-8B-Instruct"
-INPUT="data/test.jsonl"
+INPUT="RLAA/data/test.jsonl"
 OUTPUT="results/fgaa_naive_output.jsonl"
 
 mkdir -p $(dirname "$OUTPUT")
