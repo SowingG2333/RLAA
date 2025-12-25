@@ -68,7 +68,7 @@ bash script/eval.sh
 
 ```text
 .
-├── assets/                   # Project diagrams and PDF documentation
+├── assets/                   # Project documentation
 │   └── RLAA.jpg  
 ├── PersonalReddit/           # Task directory for synthetic Reddit dataset
 │   ├── data/                 # Training and test JSONL files
