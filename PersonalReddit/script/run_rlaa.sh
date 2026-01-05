@@ -1,11 +1,16 @@
-MODEL_PATH="meta-llama/Meta-Llama-3-8B-Instruct"
-INPUT="data/test.jsonl"
-OUTPUT="results/rlaa_output.jsonl"
+#!/usr/bin/env bash
+# Run RLAA pipeline for PersonalReddit
+# Usage: bash PersonalReddit/script/run_rlaa.sh
 
-mkdir -p $(dirname "$OUTPUT")
+MODEL_PATH="${MODEL_PATH:-paths/to/your/model}"
+INPUT="PersonalReddit/data/test.jsonl"
+OUTPUT="PersonalReddit/results/rlaa_output.jsonl"
+MAX_ITERATIONS="${MAX_ITERATIONS:-10}"
 
-python src/run_rlaa.py \
+mkdir -p "$(dirname "$OUTPUT")"
+
+python PersonalReddit/src/run_rlaa.py \
     --model_path "$MODEL_PATH" \
     --input_file "$INPUT" \
     --output_file "$OUTPUT" \
-    --max_iterations 10
+    --max_iterations "$MAX_ITERATIONS"

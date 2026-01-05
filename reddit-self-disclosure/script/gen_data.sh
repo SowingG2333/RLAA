@@ -1,33 +1,21 @@
 #!/usr/bin/env bash
-set -euo pipefail
+# Generate SFT training data for reddit-self-disclosure
+# Usage: API_KEY="your_key" bash reddit-self-disclosure/script/gen_data.sh
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cd "$ROOT_DIR"
+export API_KEY="${API_KEY:-your_key_here}"
 
-if [[ -z "${API_KEY:-}" ]]; then
-    echo "ERROR: API_KEY is not set. Export API_KEY first." >&2
-    exit 1
-fi
-
-INPUT_FILE="${INPUT_FILE:-data/train.jsonl}"
-OUTPUT_FILE="${OUTPUT_FILE:-data/sft_teacher_data.jsonl}"
-TEACHER_MODEL="${TEACHER_MODEL:-deepseek-chat}"
+INPUT="reddit-self-disclosure/data/train.jsonl"
+OUTPUT="reddit-self-disclosure/data/sft_teacher_data.jsonl"
+MODEL="${MODEL:-deepseek-chat}"
 WORKERS="${WORKERS:-10}"
-LIMIT="${LIMIT:-}"
 
-mkdir -p "$(dirname "$OUTPUT_FILE")"
+mkdir -p "$(dirname "$OUTPUT")"
 
-echo "Generating SFT teacher data..."
-
-ARGS=(
-    --input_file "$INPUT_FILE"
-    --output_file "$OUTPUT_FILE"
-    --teacher_model "$TEACHER_MODEL"
+echo "Generating SFT data..."
+python reddit-self-disclosure/src/gen_data.py \
+    --input_file "$INPUT" \
+    --output_file "$OUTPUT" \
+    --model "$MODEL" \
     --workers "$WORKERS"
-)
 
-if [[ -n "$LIMIT" ]]; then
-    ARGS+=(--limit "$LIMIT")
-fi
-
-python src/gen_data.py "${ARGS[@]}"
+echo "Done. SFT data saved to $OUTPUT"

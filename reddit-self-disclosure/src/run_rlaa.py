@@ -1,20 +1,48 @@
+"""
+RLAA (Reinforcement Learning Adversarial Anonymization) main script.
+
+This script implements the iterative anonymization loop for health self-disclosure:
+1. Attacker: Attempts to infer health issues from text
+2. Arbitrator: Validates the attacker's reasoning
+3. Anonymizer: Modifies text to prevent valid leaks
+
+Usage:
+    python reddit-self-disclosure/src/run_rlaa.py \
+        --model_path /path/to/model \
+        --input_file reddit-self-disclosure/data/test.jsonl \
+        --output_file reddit-self-disclosure/results/rlaa_output.jsonl
+"""
+
 import argparse
 import json
+import logging
 from tqdm import tqdm
 
 from local_llm import LocalModelHandler
 from utils import (
-    setup_logging, 
-    load_jsonl, 
-    save_jsonl, 
-    parse_attacker_output, 
-    extract_first_json
+    setup_logging,
+    load_jsonl,
+    save_jsonl,
+    parse_attacker_output,
+    extract_first_json,
+    make_context_tag,
+    log_full_messages,
+    log_io_block,
+    is_sanity_check_failed,
+    filter_actionable_leaks,
+    format_feedback_for_anonymizer,
 )
 
-# Prompts
+logger = logging.getLogger(__name__)
+
+# =============================================================================
+# Prompt Templates
+# =============================================================================
+
 PROMPT_ATTACKER_SYSTEM = """
 You are an expert investigator with years of experience in online profiling and text analysis. You work with an analytical mindset and try to answer questions as precisely as possible.
 """
+
 PROMPT_ATTACKER_USER = """
 Let us play a guessing game. The following is a public [Comment] made on Reddit by one author. Your task is to infer the author's likely health issue(s) based on the [Comment].
 
@@ -35,6 +63,7 @@ Example: 'I have psoriasis' -> 'I have a skin condition' is valid.
 Example: removing specific medication names is valid.
 Example: If feedback indicates 'ya know' implies a certain age group, changing 'ya know' is valid neutral rephrasing. Rewriting the entire sentence with a completely different style is NOT desired.
 """
+
 PROMPT_ANONYMIZER_USER = """
 Below I give you a [Comment] from a user as well as a list of [Leaked Concepts]. Your task is to edit the [Comment] to neutralize these concepts, while keeping the rest of the text intact.
 
@@ -49,18 +78,20 @@ How to Neutralize:
 [Leaked Concepts]:
 {feedback}
 
-In a first step, briefly explain the changes you will make to invalidate the attacker's inference.
-In a new line, write a single #
-In the next line, return the anonymized text without any extra preamble like "Here is the anonymized text:" or suffix like "Note:".
+In a first line, briefly explain the changes you will make to invalidate the attacker's inference.
+In the next line, write a single #
+In the last line, return the anonymized text without any extra preamble like "Here is the anonymized text:" or suffix like "Note:".
 """
 
 PROMPT_ARBITRATOR_SYSTEM = """
 You are an expert Arbitrator. Your job is to validate an Attacker's reasoning and extract the core concepts behind valid leaks. You must output a single, valid JSON list.
 """
+
 PROMPT_ARBITRATOR_USER = """
 Below is an [Attacker Reasoning] block, a [Attributes to protect] and the [Comment] text.
 
 Your task is to analyze each attribute and determine the validity level of the Attacker's reasoning for it.
+
 A reasoning's validity level is defined as:
 1. "high": Reasoning is based on a direct statement or an undeniable logical deduction from the [Comment] (e.g., [Comment] says "I live in Paris", Attacker guesses "Paris, France").
 2. "medium": Reasoning is based on a strong stylistic cue, specific topic, or strong pattern (e.g., "use of specific slang like 'mate'", "detailed discussion of fashion design", "use of specific engineering jargon"). Use this for gender/occupation cues that are based on specific text rather than vague feelings.
@@ -88,64 +119,60 @@ Return only a single JSON list containing these objects.
 [Arbitrator's JSON Output]:
 """
 
-def is_sanity_check_failed(new_comment: str, old_comment: str, min_len: int = 20):
-    if not new_comment or len(new_comment.strip()) < min_len:
-        return f"catastrophic_anonymizer_failure: output too short (len={len((new_comment or '').strip())})"
-    if new_comment.strip() == old_comment.strip():
-        return "anonymizer_stuck: output identical to previous iteration"
-    return None
+# =============================================================================
+# Core Processing Functions
+# =============================================================================
 
+def get_attacker_guess(model, text, record_index=None, iteration=None):
+    """
+    Generate attacker's guess for health issues.
+    
+    Args:
+        model: The LLM handler.
+        text: Input comment text.
+        record_index: Current record index for logging.
+        iteration: Current iteration number for logging.
+        
+    Returns:
+        Dictionary with 'inference' and 'guess_json' keys.
+    """
+    tag = f"{make_context_tag(record_index, iteration)}[attacker]"
+    log_io_block(tag, "INPUT_TEXT", text or "")
 
-def filter_actionable_leaks(validated_leaks):
-    if not validated_leaks:
-        return []
-    if isinstance(validated_leaks, dict):
-        validated_leaks = [validated_leaks]
-    if not isinstance(validated_leaks, list):
-        return []
-
-    actionable = []
-    for item in validated_leaks:
-        if not isinstance(item, dict):
-            continue
-        validity = str(item.get("validity_level", "")).lower()
-        if validity in ("high"):
-            actionable.append(item)
-    return actionable
-
-
-def format_feedback_for_anonymizer(actionable_leaks):
-    normalized = []
-    for item in actionable_leaks or []:
-        evidence = item.get("reasoning_evidence", [])
-        if evidence is None:
-            evidence = []
-        if isinstance(evidence, str):
-            evidence = [evidence]
-
-        normalized.append(
-            {
-                "attribute": item.get("attribute"),
-                "validity_level": item.get("validity_level"),
-                "leaked_concept": item.get("leaked_concept"),
-                "evidence": evidence,
-                "reasoning_evidence": evidence,
-                "validation_notes": item.get("validation_notes"),
-            }
-        )
-    return json.dumps(normalized, ensure_ascii=False, indent=2)
-
-def get_attacker_guess(model, text: str):
     messages = [
         {"role": "system", "content": PROMPT_ATTACKER_SYSTEM},
         {"role": "user", "content": PROMPT_ATTACKER_USER.format(user_response=text)},
     ]
+    log_full_messages(tag, messages)
     response = model.generate(messages, temperature=0.1)
+    log_io_block(tag, "OUTPUT_RAW", response or "")
+    
     return parse_attacker_output(response)
 
-def get_arbitrator_validation(model, text: str, inference: str, attributes):
+
+def get_arbitrator_validation(model, text, inference, attributes, record_index=None, iteration=None):
+    """
+    Validate attacker's reasoning using the arbitrator.
+    
+    Args:
+        model: The LLM handler.
+        text: Current comment text.
+        inference: Attacker's inference block.
+        attributes: List of attributes to protect.
+        record_index: Current record index for logging.
+        iteration: Current iteration number for logging.
+        
+    Returns:
+        List of validated leak dictionaries.
+    """
     if not attributes:
         return []
+
+    tag = f"{make_context_tag(record_index, iteration)}[arbitrator]"
+    log_io_block(tag, "INPUT_COMMENT", text or "")
+    log_io_block(tag, "INPUT_INFERENCE", inference or "")
+    log_io_block(tag, "INPUT_ATTRIBUTES_JSON", json.dumps(attributes, ensure_ascii=False, indent=2))
+
     messages = [
         {"role": "system", "content": PROMPT_ARBITRATOR_SYSTEM},
         {
@@ -157,54 +184,115 @@ def get_arbitrator_validation(model, text: str, inference: str, attributes):
             ),
         },
     ]
+    log_full_messages(tag, messages)
     response = model.generate(messages, temperature=0.0)
+    log_io_block(tag, "OUTPUT_RAW", response or "")
+    
     return extract_first_json(response) or []
 
-def run_anonymizer(model, text: str, feedback: str):
+
+def run_anonymizer(model, text, feedback, record_index=None, iteration=None):
+    """
+    Run the anonymizer to neutralize leaked concepts.
+    
+    Args:
+        model: The LLM handler.
+        text: Current comment text.
+        feedback: JSON string of leaked concepts.
+        record_index: Current record index for logging.
+        iteration: Current iteration number for logging.
+        
+    Returns:
+        Anonymized text.
+    """
+    tag = f"{make_context_tag(record_index, iteration)}[anonymizer]"
+    log_io_block(tag, "INPUT_COMMENT", text or "")
+    log_io_block(tag, "INPUT_FEEDBACK", feedback or "")
+
     messages = [
         {"role": "system", "content": PROMPT_ANONYMIZER_SYSTEM},
-        {"role": "user", "content": PROMPT_ANONYMIZER_USER.format(user_response=text, feedback=feedback)},
+        {
+            "role": "user",
+            "content": PROMPT_ANONYMIZER_USER.format(user_response=text, feedback=feedback),
+        },
     ]
+    log_full_messages(tag, messages)
     response = model.generate(messages, temperature=0.5)
+    log_io_block(tag, "OUTPUT_RAW", response or "")
+    
+    # Extract anonymized text after the '#' separator
     parts = response.split("#", 1)
-    return parts[1].strip() if len(parts) > 1 else response.strip()
+    anonymized = parts[1].strip() if len(parts) > 1 else response.strip()
+    log_io_block(tag, "OUTPUT_ANONYMIZED_TEXT", anonymized or "")
+    
+    return anonymized
 
-def process_single_record(model, record, max_iterations: int):
+
+def process_single_record(model, record, max_iterations, record_index=None):
+    """
+    Process a single record through the RLAA pipeline.
+    
+    Args:
+        model: The LLM handler.
+        record: Input record dictionary.
+        max_iterations: Maximum anonymization iterations.
+        record_index: Current record index for logging.
+        
+    Returns:
+        Processed record with anonymized response and metadata.
+    """
     original_text = record.get("response", "")
     if not original_text:
         return {**record, "status": "skipped"}
 
-    attributes_to_protect = ["health_issue"]
-
     current_text = original_text
     meta = {"iteration_history": [], "status": "max_iterations"}
 
-    attack_res = get_attacker_guess(model, current_text)
-    validated_leaks = get_arbitrator_validation(model, current_text, attack_res.get("inference", ""), attributes_to_protect)
+    # Attributes to protect (health self-disclosure)
+    attributes_to_protect = ["health_issue"]
 
-    actionable_leaks = filter_actionable_leaks(validated_leaks)
+    # Initial attack
+    attack_res = get_attacker_guess(model, current_text, record_index=record_index, iteration=0)
 
-    has_leaks = len(actionable_leaks) > 0 and str(attack_res.get("guess_json", {}).get("health_issue", "unknown")).lower() != "unknown"
-
-    meta["iteration_history"].append(
-        {
-            "iteration": 0,
-            "text": current_text,
-            "attacker": attack_res,
-            "leaks": validated_leaks,
-            "actionable_leaks": actionable_leaks,
-        }
+    # Validate attack
+    validated_leaks = get_arbitrator_validation(
+        model, current_text, attack_res.get("inference", ""),
+        attributes_to_protect, record_index=record_index, iteration=0,
     )
 
-    if not has_leaks:
-        return {**record, "anonymized_response": current_text, "meta": {**meta, "status": "success_original"}}
+    actionable_leaks = filter_actionable_leaks(validated_leaks)
+    has_leaks = (
+        len(actionable_leaks) > 0
+        and str(attack_res.get("guess_json", {}).get("health_issue", "unknown")).lower() != "unknown"
+    )
 
+    meta["iteration_history"].append({
+        "iteration": 0,
+        "text": current_text,
+        "attacker": attack_res,
+        "leaks": validated_leaks,
+        "actionable_leaks": actionable_leaks,
+    })
+
+    # If no leaks, return original
+    if not has_leaks:
+        return {
+            **record,
+            "anonymized_response": current_text,
+            "meta": {**meta, "status": "success_original"},
+        }
+
+    # Iterative anonymization loop
     for i in range(max_iterations):
         feedback = format_feedback_for_anonymizer(actionable_leaks)
 
+        # Anonymize
         previous_text = current_text
-        current_text = run_anonymizer(model, current_text, feedback)
+        current_text = run_anonymizer(
+            model, current_text, feedback, record_index=record_index, iteration=i + 1
+        )
 
+        # Sanity check
         sanity_fail_reason = is_sanity_check_failed(current_text, previous_text)
         if sanity_fail_reason:
             return {
@@ -218,21 +306,31 @@ def process_single_record(model, record, max_iterations: int):
                 },
             }
 
-        attack_res = get_attacker_guess(model, current_text)
-        validated_leaks = get_arbitrator_validation(model, current_text, attack_res.get("inference", ""), attributes_to_protect)
-        actionable_leaks = filter_actionable_leaks(validated_leaks)
-        has_leaks = len(actionable_leaks) > 0 and str(attack_res.get("guess_json", {}).get("health_issue", "unknown")).lower() != "unknown"
-
-        meta["iteration_history"].append(
-            {
-                "iteration": i + 1,
-                "text": current_text,
-                "attacker": attack_res,
-                "leaks": validated_leaks,
-                "actionable_leaks": actionable_leaks,
-            }
+        # Attack again
+        attack_res = get_attacker_guess(
+            model, current_text, record_index=record_index, iteration=i + 1
         )
 
+        # Validate again
+        validated_leaks = get_arbitrator_validation(
+            model, current_text, attack_res.get("inference", ""),
+            attributes_to_protect, record_index=record_index, iteration=i + 1,
+        )
+        actionable_leaks = filter_actionable_leaks(validated_leaks)
+        has_leaks = (
+            len(actionable_leaks) > 0
+            and str(attack_res.get("guess_json", {}).get("health_issue", "unknown")).lower() != "unknown"
+        )
+
+        meta["iteration_history"].append({
+            "iteration": i + 1,
+            "text": current_text,
+            "attacker": attack_res,
+            "leaks": validated_leaks,
+            "actionable_leaks": actionable_leaks,
+        })
+
+        # Check if anonymization succeeded
         if not has_leaks:
             return {
                 **record,
@@ -242,41 +340,51 @@ def process_single_record(model, record, max_iterations: int):
                     "status": "success",
                     "final_attacker_guess": attack_res.get("guess_json"),
                     "final_leaked_attributes": [
-                        f"{x.get('attribute')} ({x.get('validity_level')})" for x in actionable_leaks
+                        f"{x.get('attribute')} ({x.get('validity_level')})"
+                        for x in actionable_leaks
                     ],
                 },
             }
 
+    # Max iterations reached
     return {
         **record,
         "anonymized_response": current_text,
         "meta": {
             **meta,
             "final_attacker_guess": attack_res.get("guess_json"),
-            "final_leaked_attributes": [f"{x.get('attribute')} ({x.get('validity_level')})" for x in actionable_leaks],
+            "final_leaked_attributes": [
+                f"{x.get('attribute')} ({x.get('validity_level')})" for x in actionable_leaks
+            ],
         },
     }
 
+
 def main():
+    """Main entry point for RLAA script."""
     parser = argparse.ArgumentParser(description="Run RLAA (health self-disclosure)")
-    parser.add_argument("--model_path", required=True)
-    parser.add_argument("--input_file", required=True)
-    parser.add_argument("--output_file", required=True)
-    parser.add_argument("--max_iterations", type=int, default=10)
+    parser.add_argument("--model_path", required=True, help="Path to the local model")
+    parser.add_argument("--input_file", required=True, help="Input JSONL file")
+    parser.add_argument("--output_file", required=True, help="Output JSONL file")
+    parser.add_argument("--max_iterations", type=int, default=10, help="Max anonymization iterations")
+    parser.add_argument("--log_level", type=str, default="INFO", help="Logging level")
+    parser.add_argument("--log_file", type=str, default="run_rlaa.log", help="Log file path")
     args = parser.parse_args()
 
-    setup_logging()
+    setup_logging(log_level_str=args.log_level, log_file=args.log_file)
     model = LocalModelHandler(args.model_path, load_in_4bit=True)
     records = load_jsonl(args.input_file)
 
     results = []
-    for record in tqdm(records):
-        res = process_single_record(model, record, args.max_iterations)
+    for idx, record in enumerate(tqdm(records)):
+        res = process_single_record(model, record, args.max_iterations, record_index=idx)
         results.append(res)
+        # Periodic checkpoint save
         if len(results) % 10 == 0:
             save_jsonl(results, args.output_file)
 
     save_jsonl(results, args.output_file)
+
 
 if __name__ == "__main__":
     main()

@@ -1,131 +1,123 @@
+"""
+Data generation script for creating SFT training data (Health Self-Disclosure).
+
+Generates anonymized versions of text using DeepSeek API for supervised fine-tuning.
+
+Usage:
+    python reddit-self-disclosure/src/gen_data.py \
+        --input_file reddit-self-disclosure/data/train.jsonl \
+        --output_file reddit-self-disclosure/data/sft_train.jsonl
+"""
+
 import argparse
 import logging
 import json
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from tqdm import tqdm
 
-from utils import setup_logging, load_jsonl, call_deepseek_api
+from utils import (
+    setup_logging,
+    load_jsonl,
+    call_deepseek_api,
+    make_context_tag,
+)
 
-# Prompts (health self-disclosure)
+# =============================================================================
+# Prompt Templates
+# =============================================================================
+
 PROMPT_ANONYMIZER_SYSTEM = """
-You are an expert anonymizer that carefully adapts small parts of the text to make it anonymous. You follow the instructions and format precisely and you try to change as little as possible, keeping the original text in tact as much as possible. Only generalize information and do not invent new information.
-Example: 'I have psoriasis' -> 'I have a skin condition' is valid.
-Example: removing specific medication names is valid.
+You are a privacy-preserving text rewriter. Your task is to rewrite comments to remove or obscure health-related personal information while maintaining the original meaning and readability.
 """
 
 PROMPT_ANONYMIZER_USER = """
-Below I give you a [Comment] from a user as well as [Personal Inferences] made about the user that can be made from the [Comment]. Your task is to anonymize the [Comment] to prevent these [Personal Inferences], while keeping the rest of the text intact.
+Please rewrite the following Reddit comment to protect the author's health privacy. Remove or generalize any information that could reveal specific health conditions, medical diagnoses, or treatments.
 
-[Comment]:
-{user_response}
+{context}
 
-[Personal Inferences]:
-{feedback}
+Original comment:
+{comment}
 
-In a first step, briefly explain the changes you will make (generalizations or removals) to invalidate the attacker's inference.
-In a new line, write a single #
-In the next line, return the anonymized text without any extra preamble like "Here is the anonymized text:" or suffix like "Note:".
-"""
+Requirements:
+1. Maintain the core message and intent
+2. Keep the text natural and readable
+3. Remove or generalize specific health-related details
+4. Do not add new information not present in the original
 
-PROMPT_ATTACKER_SYSTEM = """
-You are an expert investigator with years of experience in online profiling and text analysis. You work with an analytical mindset and try to answer questions as precisely as possible.
-"""
-
-PROMPT_ATTACKER_USER = """
-Let us play a guessing game. The following is a public [Comment] made on Reddit by one author. Your task is to infer the author's likely health issue(s) based on the [Comment].
-
-[Comment]:
-{user_response}
-
-Your response MUST follow this format exactly:
-
-Inference: Provide your detailed reasoning for the health_issue guess.
-
-Guess: A single JSON object containing your best guess for the following key: "health_issue".
-
-JSON Value Rules:
-1. health_issue: MUST be a string (e.g., "psoriasis", "diabetes").
-2. If you cannot reasonably infer it, you MUST use the string value "unknown".
+Rewritten comment:
 """
 
 
-def process_single_record(record, model_name):
-    """Generate teacher data for one record."""
-    original_text = record.get("response")
-    if not original_text:
+def generate_anonymized_data(record, model_name):
+    """
+    Generate anonymized version of a record.
+    
+    Args:
+        record: Input record with original text.
+        model_name: DeepSeek model name.
+        
+    Returns:
+        Record with anonymized_response field.
+    """
+    original = record.get("response", "")
+    if not original:
         return None
 
-    sft_record = {"original_comment": original_text}
+    context = make_context_tag(record.get("context", ""))
 
-    # 1) Teacher attacker
-    msgs_att = [
-        {"role": "system", "content": PROMPT_ATTACKER_SYSTEM},
-        {"role": "user", "content": PROMPT_ATTACKER_USER.format(user_response=original_text)},
-    ]
-    att_output = call_deepseek_api(msgs_att, model_name=model_name, temperature=0.1)
-    if not att_output:
-        return None
-
-    sft_record["attacker_output_teacher"] = att_output
-
-    # Extract inference text for anonymizer feedback
-    import re
-
-    match = re.search(r"Inference:(.*?)(Guess:|$)", att_output, re.DOTALL | re.IGNORECASE)
-    inference = match.group(1).strip() if match else "No inference found."
-    sft_record["attacker_inference_teacher"] = inference
-
-    # 2) Teacher anonymizer
-    msgs_anon = [
+    messages = [
         {"role": "system", "content": PROMPT_ANONYMIZER_SYSTEM},
-        {
-            "role": "user",
-            "content": PROMPT_ANONYMIZER_USER.format(user_response=original_text, feedback=inference),
-        },
+        {"role": "user", "content": PROMPT_ANONYMIZER_USER.format(
+            context=context, comment=original
+        )},
     ]
-    anon_output = call_deepseek_api(msgs_anon, model_name=model_name, temperature=0.5)
-    if not anon_output:
-        return None
 
-    sft_record["anonymizer_output_teacher"] = anon_output
+    anonymized = call_deepseek_api(messages, model_name=model_name, temperature=0.7)
 
-    parts = anon_output.split("#", 1)
-    clean_anon = parts[1].strip() if len(parts) > 1 else anon_output.strip()
-    sft_record["anonymizer_text_clean"] = clean_anon
+    if anonymized:
+        result = record.copy()
+        result["anonymized_response"] = anonymized.strip()
+        return result
 
-    return sft_record
+    return None
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Generate SFT teacher data (health self-disclosure)")
-    parser.add_argument("--input_file", required=True)
-    parser.add_argument("--output_file", required=True)
-    parser.add_argument("--teacher_model", default="deepseek-chat")
-    parser.add_argument("--limit", type=int, default=None)
-    parser.add_argument("--workers", type=int, default=20)
+    """Main entry point for data generation script."""
+    parser = argparse.ArgumentParser(description="Generate SFT training data")
+    parser.add_argument("--input_file", required=True, help="Input JSONL file")
+    parser.add_argument("--output_file", required=True, help="Output JSONL file")
+    parser.add_argument("--model", default="deepseek-chat", help="DeepSeek model name")
+    parser.add_argument("--workers", type=int, default=10, help="Number of parallel workers")
+    parser.add_argument("--limit", type=int, default=None, help="Limit number of records")
     args = parser.parse_args()
 
     setup_logging()
     records = load_jsonl(args.input_file, args.limit)
 
     results = []
+    logging.info(f"Generating anonymized data for {len(records)} records...")
+
     with ThreadPoolExecutor(max_workers=args.workers) as executor:
         futures = {
-            executor.submit(process_single_record, rec, args.teacher_model): i
+            executor.submit(generate_anonymized_data, rec, args.model): i
             for i, rec in enumerate(records)
         }
-        for future in tqdm(as_completed(futures), total=len(futures), desc="Generating SFT Data"):
-            res = future.result()
-            if res:
-                results.append(res)
 
-    try:
-        with open(args.output_file, "w", encoding="utf-8") as f:
-            for item in results:
-                f.write(json.dumps(item, ensure_ascii=False) + "\n")
-        logging.info(f"Saved {len(results)} SFT records to {args.output_file}")
-    except Exception as e:
-        logging.error(f"Save failed: {e}")
+        for future in tqdm(as_completed(futures), total=len(futures)):
+            try:
+                data = future.result()
+                if data:
+                    results.append(data)
+            except Exception as e:
+                logging.error(f"Error generating data: {e}")
+
+    # Save results
+    with open(args.output_file, "w", encoding="utf-8") as f:
+        for r in results:
+            f.write(json.dumps(r, ensure_ascii=False) + "\n")
+
+    logging.info(f"Generated {len(results)} anonymized records. Saved to {args.output_file}")
 
 
 if __name__ == "__main__":

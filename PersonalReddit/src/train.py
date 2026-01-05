@@ -1,210 +1,194 @@
+"""
+SFT Training script using LoRA for privacy-preserving text rewriting.
+
+Fine-tunes a language model on anonymized data using parameter-efficient training.
+
+Usage:
+    python PersonalReddit/src/train.py \
+        --model_name Qwen/Qwen2.5-7B-Instruct \
+        --train_file PersonalReddit/data/sft_train.jsonl \
+        --output_dir PersonalReddit/models/sft_lora
+"""
+
 import argparse
 import logging
-import torch
 import json
 import os
+
+import torch
 from datasets import Dataset
 from transformers import (
     AutoModelForCausalLM,
     AutoTokenizer,
     TrainingArguments,
-    BitsAndBytesConfig
+    Trainer,
+    DataCollatorForLanguageModeling,
 )
-from trl import SFTTrainer
-from peft import LoraConfig, prepare_model_for_kbit_training
+from peft import LoraConfig, get_peft_model, TaskType
 
-# Logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+from utils import setup_logging
 
-# Prompts
-PROMPT_ANONYMIZER_SYSTEM = """
-You are an expert anonymizer that carefully adapts small parts of the text to make it anonymous. You follow the instructions and format precisely and you try to change as little as possible, keeping the original text in tact as much as possible. Only generalize information and do not invent new information.
-Example: 'my husband and I' -> 'my partner and I' is valid, but 'my husband and I' -> 'my wife and I' is not. 
-Example: 'my husband and I have a dog' -> 'my partner and I have a dog' is valid, but 'my husband and I have a dog' -> 'my partner and I have a cat' is not. 
-Example: 'my husband and I' -> 'I' is also valid as it only removes information.
-"""
-PROMPT_ANONYMIZER_USER = """
-Below I give you a [Comment] from a user as well as [Personal Inferences] made about the user that can be made from the [Comment]. Your task is to anonymize the [Comment] to prevent these [Personal Inferences], while keeping the rest of the text intact.
+# =============================================================================
+# Configuration
+# =============================================================================
 
-[Comment]:
-{user_response}
+DEFAULT_LORA_CONFIG = {
+    "r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "target_modules": ["q_proj", "k_proj", "v_proj", "o_proj"],
+}
 
-[Personal Inferences]:
-{feedback}
+PROMPT_TEMPLATE = """You are a privacy-preserving text rewriter. Rewrite the following text to protect personal information while maintaining the original meaning.
 
-In a first step, briefly explain the changes you will make (generalizations or removals) to invalidate the attacker's inference.
-In a new line, write a single #
-In the next line, return the anonymized text without any extra preamble like "Here is the anonymized text:" or suffix like "Note:".
-"""
+{context}
 
-PROMPT_ATTACKER_SYSTEM = """
-You are an expert investigator with years of experience in online profiling and text analysis. You work with an analytical mindset and try to answer questions as precisely as possible.
-"""
-PROMPT_ATTACKER_USER = """
-Let us play a guessing game. The following is a public [Comment] made on Reddit by one author. Your task is to guess the [Comment] author's personal attributes based on the [Comment].
+Original text:
+{original}
 
-[Comment]:
-{user_response}
+Rewritten text:
+{anonymized}"""
 
-Your response MUST follow this format exactly:
 
-Inference: Provide your detailed reasoning for the following attribute guess - age, sex, city_country, birth_city_country, education, occupation, income_level and relationship_status.
-
-Guess: A single JSON object containing your best guess for each of the following keys: "age", "sex", "city_country", "birth_city_country", "education", "occupation", "income_level", "relationship_status".
-
-JSON Value Rules:
-1. age: MUST be an accurate integer (e.g., 35, not "35" or "30-40").
-2. sex: MUST be one of the following exact strings: "male" or "female".
-3. relationship_status: MUST be one of the following exact strings: "single", "in a relationship", "engaged", "married", "divorced" or "widowed".
-4. income_level: MUST be one of the following exact strings: "low", "middle", "high" or "very high".
-5. city_country & birth_city_country: Provide your best guess as a string in the format "City, Country" (e.g., "Shanghai, China") or just "Country" (e.g., "China").
-6. education & occupation: Provide your best guess as a string (e.g., "Masters in Computer Science", "shop owner").
-7. If you cannot reasonably infer an attribute, you MUST use the string value "unknown" instead of randomly guessing an answer.
-"""
-
-def format_dataset(data_path, task, tokenizer):
-    """Load generated JSONL and format it using the model chat template."""
-    data = []
-    try:
-        with open(data_path, 'r', encoding='utf-8') as f:
-            for line in f:
-                if line.strip(): data.append(json.loads(line))
-    except FileNotFoundError:
-        logging.error(f"Data file not found: {data_path}")
-        exit(1)
-            
-    formatted = []
-    for rec in data:
-        messages = []
-        if task == "attacker":
-            if "original_comment" not in rec or "attacker_output_teacher" not in rec: continue
-            messages = [
-                {"role": "system", "content": PROMPT_ATTACKER_SYSTEM},
-                {"role": "user", "content": PROMPT_ATTACKER_USER.format(user_response=rec["original_comment"])},
-                {"role": "assistant", "content": rec["attacker_output_teacher"]}
-            ]
-        elif task == "anonymizer":
-            if "original_comment" not in rec or "attacker_inference_teacher" not in rec: continue
-            messages = [
-                {"role": "system", "content": PROMPT_ANONYMIZER_SYSTEM},
-                {"role": "user", "content": PROMPT_ANONYMIZER_USER.format(
-                    user_response=rec["original_comment"], 
-                    feedback=rec["attacker_inference_teacher"]
-                )},
-                {"role": "assistant", "content": rec["anonymizer_output_teacher"]}
-            ]
-            
-        # Apply chat template
-        try:
-            text = tokenizer.apply_chat_template(messages, tokenize=False)
-            formatted.append({"text": text})
-        except Exception as e:
-            logging.warning(f"Skipping record due to formatting error: {e}")
+def load_training_data(file_path, limit=None):
+    """
+    Load and prepare training data.
+    
+    Args:
+        file_path: Path to JSONL training file.
+        limit: Maximum number of records to load.
         
-    return Dataset.from_list(formatted)
+    Returns:
+        List of training examples.
+    """
+    data = []
+    with open(file_path, "r", encoding="utf-8") as f:
+        for i, line in enumerate(f):
+            if limit and i >= limit:
+                break
+            record = json.loads(line)
+            if "response" in record and "anonymized_response" in record:
+                context = record.get("context", "")
+                context_str = f"Context: {context}" if context else ""
+                
+                text = PROMPT_TEMPLATE.format(
+                    context=context_str,
+                    original=record["response"],
+                    anonymized=record["anonymized_response"],
+                )
+                data.append({"text": text})
+    return data
+
+
+def create_dataset(data, tokenizer, max_length=512):
+    """
+    Create tokenized dataset.
+    
+    Args:
+        data: List of training examples.
+        tokenizer: HuggingFace tokenizer.
+        max_length: Maximum sequence length.
+        
+    Returns:
+        Tokenized Dataset object.
+    """
+    dataset = Dataset.from_list(data)
+    
+    def tokenize_function(examples):
+        return tokenizer(
+            examples["text"],
+            truncation=True,
+            max_length=max_length,
+            padding="max_length",
+        )
+    
+    tokenized_dataset = dataset.map(tokenize_function, batched=True, remove_columns=["text"])
+    return tokenized_dataset
+
 
 def main():
-    parser = argparse.ArgumentParser(description="Fine-tune Llama 3 for Attacker/Anonymizer tasks")
-    parser.add_argument("--task", required=True, choices=["attacker", "anonymizer"], help="Task type")
-    parser.add_argument("--base_model", default="meta-llama/Meta-Llama-3-8B-Instruct", help="Base model path")
-    parser.add_argument("--data_path", required=True, help="Path to input jsonl data")
-    parser.add_argument("--output_dir", required=True, help="Directory to save checkpoints")
-    parser.add_argument("--use_qlora", action="store_true", help="Enable 4-bit QLoRA training")
+    """Main entry point for training script."""
+    parser = argparse.ArgumentParser(description="LoRA SFT Training")
+    parser.add_argument("--model_name", required=True, help="Base model name/path")
+    parser.add_argument("--train_file", required=True, help="Training JSONL file")
+    parser.add_argument("--output_dir", required=True, help="Output directory for LoRA weights")
     parser.add_argument("--epochs", type=int, default=3, help="Number of training epochs")
-    parser.add_argument("--batch_size", type=int, default=4, help="Per device train batch size")
-    parser.add_argument("--grad_accum_steps", type=int, default=4, help="Gradient accumulation steps")
+    parser.add_argument("--batch_size", type=int, default=4, help="Training batch size")
     parser.add_argument("--learning_rate", type=float, default=2e-4, help="Learning rate")
-    parser.add_argument("--max_seq_length", type=int, default=2048, help="Max sequence length")
-    parser.add_argument("--logging_steps", type=int, default=10, help="Log every N steps")
-    parser.add_argument("--save_total_limit", type=int, default=1, help="Limit total amount of checkpoints")
-    parser.add_argument("--warmup_ratio", type=float, default=0.03, help="Warmup ratio")
-    parser.add_argument("--lora_r", type=int, default=16, help="LoRA r value")
-    parser.add_argument("--lora_alpha", type=int, default=32, help="LoRA alpha value")
-    parser.add_argument("--lora_dropout", type=float, default=0.05, help="LoRA dropout value")
-
+    parser.add_argument("--max_length", type=int, default=512, help="Maximum sequence length")
+    parser.add_argument("--lora_r", type=int, default=16, help="LoRA rank")
+    parser.add_argument("--lora_alpha", type=int, default=32, help="LoRA alpha")
+    parser.add_argument("--limit", type=int, default=None, help="Limit training samples")
     args = parser.parse_args()
 
-    # 1. Tokenizer
-    logging.info(f"Loading tokenizer from {args.base_model}...")
-    tokenizer = AutoTokenizer.from_pretrained(args.base_model, trust_remote_code=True)
-    if not tokenizer.pad_token: 
+    setup_logging()
+    logging.info(f"Loading model: {args.model_name}")
+
+    # Load tokenizer and model
+    tokenizer = AutoTokenizer.from_pretrained(args.model_name, trust_remote_code=True)
+    if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
-        tokenizer.padding_side = "right"
 
-    # 2. Model & Quantization
-    bnb_config = None
-    if args.use_qlora:
-        logging.info("Using QLoRA configuration...")
-        bnb_config = BitsAndBytesConfig(
-            load_in_4bit=True,
-            bnb_4bit_quant_type="nf4",
-            bnb_4bit_compute_dtype=torch.bfloat16
-        )
-
-    logging.info("Loading model...")
     model = AutoModelForCausalLM.from_pretrained(
-        args.base_model,
-        quantization_config=bnb_config,
+        args.model_name,
+        torch_dtype=torch.bfloat16,
         device_map="auto",
-        trust_remote_code=True
+        trust_remote_code=True,
     )
 
-    # QLoRA Prep
-    peft_config = None
-    if args.use_qlora:
-        model = prepare_model_for_kbit_training(model)
-        peft_config = LoraConfig(
-            r=args.lora_r,
-            lora_alpha=args.lora_alpha,
-            lora_dropout=args.lora_dropout,
-            bias="none", 
-            task_type="CAUSAL_LM",
-            target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
-        )
+    # Configure LoRA
+    lora_config = LoraConfig(
+        task_type=TaskType.CAUSAL_LM,
+        r=args.lora_r,
+        lora_alpha=args.lora_alpha,
+        lora_dropout=DEFAULT_LORA_CONFIG["lora_dropout"],
+        target_modules=DEFAULT_LORA_CONFIG["target_modules"],
+    )
+    model = get_peft_model(model, lora_config)
+    model.print_trainable_parameters()
 
-    # 3. Data
-    logging.info("Formatting dataset...")
-    dataset = format_dataset(args.data_path, args.task, tokenizer)
-    split = dataset.train_test_split(test_size=0.1)
+    # Load and prepare data
+    logging.info(f"Loading training data from: {args.train_file}")
+    data = load_training_data(args.train_file, args.limit)
+    logging.info(f"Loaded {len(data)} training examples")
 
-    # 4. Trainer
-    logging.info("Initializing SFTTrainer...")
-    
-    # Detect bf16 support
-    is_bf16_supported = torch.cuda.is_available() and torch.cuda.is_bf16_supported()
-    
-    trainer = SFTTrainer(
+    dataset = create_dataset(data, tokenizer, args.max_length)
+
+    # Training arguments
+    training_args = TrainingArguments(
+        output_dir=args.output_dir,
+        num_train_epochs=args.epochs,
+        per_device_train_batch_size=args.batch_size,
+        gradient_accumulation_steps=4,
+        learning_rate=args.learning_rate,
+        warmup_ratio=0.1,
+        logging_steps=10,
+        save_steps=500,
+        save_total_limit=2,
+        bf16=True,
+        report_to="none",
+    )
+
+    # Data collator
+    data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)
+
+    # Trainer
+    trainer = Trainer(
         model=model,
-        train_dataset=split["train"],
-        eval_dataset=split["test"],
-        peft_config=peft_config,
-        dataset_text_field="text",
-        max_seq_length=args.max_seq_length,
-        args=TrainingArguments(
-            output_dir=args.output_dir,
-            num_train_epochs=args.epochs,
-            per_device_train_batch_size=args.batch_size,
-            gradient_accumulation_steps=args.grad_accum_steps,
-            learning_rate=args.learning_rate,                 
-            logging_steps=args.logging_steps,                 
-            save_total_limit=args.save_total_limit,           
-            warmup_ratio=args.warmup_ratio,                   
-            fp16=not is_bf16_supported,
-            bf16=is_bf16_supported,
-            evaluation_strategy="epoch",
-            save_strategy="epoch",
-            load_best_model_at_end=True,
-            group_by_length=True,
-        )
+        args=training_args,
+        train_dataset=dataset,
+        data_collator=data_collator,
     )
 
-    logging.info(f"Starting training for {args.task}...")
+    # Train
+    logging.info("Starting training...")
     trainer.train()
-    
-    logging.info(f"Saving model to {args.output_dir}...")
-    trainer.save_model(args.output_dir)
+
+    # Save LoRA weights
+    model.save_pretrained(args.output_dir)
     tokenizer.save_pretrained(args.output_dir)
-    logging.info("Training complete.")
+    logging.info(f"Model saved to: {args.output_dir}")
+
 
 if __name__ == "__main__":
     main()

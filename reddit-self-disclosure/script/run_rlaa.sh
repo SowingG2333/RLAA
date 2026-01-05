@@ -1,18 +1,16 @@
 #!/usr/bin/env bash
-set -euo pipefail
+# Run RLAA pipeline for reddit-self-disclosure
+# Usage: bash reddit-self-disclosure/script/run_rlaa.sh
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cd "$ROOT_DIR"
-
-MODEL_PATH="${MODEL_PATH:-meta-llama/Meta-Llama-3-8B-Instruct}"
-INPUT_FILE="${INPUT_FILE:-data/test.jsonl}"
-OUTPUT_FILE="${OUTPUT_FILE:-results/rlaa_output.jsonl}"
+MODEL_PATH="${MODEL_PATH:-path/to/your/model}"
+INPUT="reddit-self-disclosure/data/test.jsonl"
+OUTPUT="reddit-self-disclosure/results/rlaa_output.jsonl"
 MAX_ITERATIONS="${MAX_ITERATIONS:-10}"
 
-mkdir -p "$(dirname "$OUTPUT_FILE")"
+mkdir -p "$(dirname "$OUTPUT")"
 
-python src/run_rlaa.py \
+python reddit-self-disclosure/src/run_rlaa.py \
     --model_path "$MODEL_PATH" \
-    --input_file "$INPUT_FILE" \
-    --output_file "$OUTPUT_FILE" \
+    --input_file "$INPUT" \
+    --output_file "$OUTPUT" \
     --max_iterations "$MAX_ITERATIONS"

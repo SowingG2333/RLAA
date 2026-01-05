@@ -16,22 +16,23 @@ Unlike traditional greedy adversarial strategies that often lead to utility coll
 
 ```bash
 pip install -r requirements.txt
-
 ```
 
 ## 🚀 Quick Start
 
-All commands should be executed inside a specific task directory (e.g., `PersonalReddit/` or `reddit-self-disclosure/`).
+All commands should be executed from the **project root directory**.
 
 ### 1. Run RLAA (Main Method)
 
 RLAA is training-free and can be deployed locally. To run the main inference:
 
 ```bash
-cd PersonalReddit
-export MODEL_PATH="path/to/llama-3-8b-instruct" # Specify your local model path
-bash script/run_rlaa.sh
+# For PersonalReddit task
+export MODEL_PATH="path/to/llama-3-8b-instruct"
+bash PersonalReddit/script/run_rlaa.sh
 
+# For reddit-self-disclosure task
+bash reddit-self-disclosure/script/run_rlaa.sh
 ```
 
 ### 2. Run Baselines
@@ -42,16 +43,20 @@ We provide several adversarial anonymization baselines for comparison:
 Directly migrating adversarial frameworks to local environments without the arbitrator.
 
 ```bash
-bash script/run_fgaa_naive.sh
-
+bash PersonalReddit/script/run_fgaa_naive.sh
 ```
 
 **FgAA-SFT (Supervised Fine-Tuning):**
 Fine-tuning the local model on teacher trajectories to mimic rational behavior.
 
 ```bash
-bash script/run_fgaa_sft.sh
+# First generate SFT data and train
+export API_KEY="your_api_key_here"
+bash PersonalReddit/script/gen_data.sh
+bash PersonalReddit/script/sft.sh
 
+# Then run inference
+bash PersonalReddit/script/run_fgaa_sft.sh
 ```
 
 ### 3. Evaluation
@@ -60,8 +65,7 @@ The evaluation process measures both Privacy (Attack Success Rate) and Utility (
 
 ```bash
 export API_KEY="your_api_key_here"
-bash script/eval.sh
-
+bash PersonalReddit/script/eval.sh
 ```
 
 ## 📂 Repository Structure
@@ -80,7 +84,6 @@ bash script/eval.sh
 │   └── src/                  # Implementation logic for single-attribute tasks
 ├── requirements.txt          # Python dependencies
 └── README.md                 # Project documentation
-
 ```
 
 ## 📝 Citation (Anonymous)
@@ -92,5 +95,4 @@ bash script/eval.sh
   booktitle={Under Review (ACL 2026)},
   year={2026}
 }
-
 ```

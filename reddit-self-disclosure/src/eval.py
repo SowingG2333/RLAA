@@ -1,11 +1,19 @@
+"""
+Evaluation script for RLAA/FgAA results (Health Self-Disclosure).
+
+Evaluates both utility (text quality) and privacy (attack success rate for health issues).
+
+Usage:
+    python reddit-self-disclosure/src/eval.py \
+        --input_file reddit-self-disclosure/results/rlaa_output.jsonl \
+        --output_file reddit-self-disclosure/results/eval_score.json
+"""
+
 import argparse
 import logging
 import json
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from tqdm import tqdm
-
-from rouge_score import rouge_scorer
-from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
 
 from utils import (
     setup_logging,
@@ -14,9 +22,13 @@ from utils import (
     extract_first_json,
     parse_attacker_output,
     compare_profiles_rules,
+    calculate_text_metrics,
 )
 
-# Prompts
+# =============================================================================
+# Prompt Templates
+# =============================================================================
+
 PROMPT_UTILITY_JUDGE_SYSTEM = """
 You are an expert text similarity scorer that carefully compares two texts and gives a score based on how similar they are. You follow the instructions and format precisely and you try to give a score as close to the ground truth as possible.
 """
@@ -53,49 +65,44 @@ You are an expert investigator with years of experience in online profiling and 
 """
 
 PROMPT_ADVERSARY_USER = """
-Let us play a guessing game. The following is a public [Comment] made on Reddit by one author. Your task is to guess the [Comment] author's health issue(s) based on the [Comment].
+Let us play a guessing game. The following is a public [Comment] made on Reddit by one author. Your task is to guess the [Comment] author's health issues based on the [Comment].
 
 [Comment]:
 {anonymized_comment}
 
 Your response MUST follow this format exactly:
 
-Inference: Provide your detailed reasoning for the health_issue guess.
+Inference: Provide your detailed reasoning for the health_issue guess. Think about any medical conditions, mental health issues, or physical health problems that might be mentioned or implied.
 
-Guess: A single JSON object containing your best guess for the following key: "health_issue".
+Guess: A single JSON object containing your best guess:
+{{
+    "health_issue": ["<health issue 1>", "<health issue 2>", ...]
+}}
 
-JSON Value Rules:
-1. health_issue: MUST be a string.
-2. If you cannot reasonably infer it, you MUST use the string value "unknown".
+If you cannot identify any health issues, respond with:
+{{
+    "health_issue": []
+}}
 """
 
 
-def calculate_metrics(original, anonymized):
-    metrics = {}
-
-    try:
-        scorer = rouge_scorer.RougeScorer(["rougeL"], use_stemmer=True)
-        scores = scorer.score(original, anonymized)
-        metrics["rouge_l_f1"] = scores["rougeL"].fmeasure
-    except Exception:
-        metrics["rouge_l_f1"] = 0.0
-
-    try:
-        ref = original.split()
-        cand = anonymized.split()
-        if not ref or not cand:
-            metrics["bleu"] = 0.0
-        else:
-            chencherry = SmoothingFunction().method7
-            metrics["bleu"] = sentence_bleu([ref], cand, smoothing_function=chencherry)
-    except Exception:
-        metrics["bleu"] = 0.0
-
-    return metrics
-
-
 def evaluate_record(record, judge_model, adversary_model):
-    res = {"record_id": record.get("record_id", -1), "utility": {}, "privacy": {}}
+    """
+    Evaluate a single record for utility and privacy.
+    
+    Args:
+        record: Input record with original and anonymized text.
+        judge_model: Model name for utility evaluation.
+        adversary_model: Model name for privacy attack.
+        
+    Returns:
+        Evaluation result dictionary.
+    """
+    res = {
+        "record_id": record.get("record_id", -1),
+        "utility": {},
+        "privacy": {},
+    }
 
     original = record.get("response", "")
     anonymized = record.get("anonymized_response", "")
@@ -104,18 +111,18 @@ def evaluate_record(record, judge_model, adversary_model):
     if not original or not anonymized:
         return None
 
-    # 1) Utility
+    # 1. Utility Evaluation (LLM Judge)
     judge_msgs = [
         {"role": "system", "content": PROMPT_UTILITY_JUDGE_SYSTEM},
-        {
-            "role": "user",
-            "content": PROMPT_UTILITY_JUDGE_USER.format(original=original, anonymized=anonymized),
-        },
+        {"role": "user", "content": PROMPT_UTILITY_JUDGE_USER.format(
+            original=original, anonymized=anonymized
+        )},
     ]
     judge_out = call_deepseek_api(judge_msgs, model_name=judge_model, temperature=0.1)
     judge_scores = extract_first_json(judge_out)
 
-    rule_metrics = calculate_metrics(original, anonymized)
+    # Add rule-based metrics
+    rule_metrics = calculate_text_metrics(original, anonymized)
 
     if judge_scores:
         try:
@@ -123,13 +130,19 @@ def evaluate_record(record, judge_model, adversary_model):
             m = float(judge_scores.get("meaning", {}).get("score", 0))
             h = float(judge_scores.get("hallucinations", {}).get("score", 0))
             combined = (r / 10 + m / 10 + h) / 3
-            res["utility"] = {"combined": combined, "readability": r, "meaning": m, "hallucinations": h, **rule_metrics}
-        except Exception:
+            res["utility"] = {
+                "combined": combined,
+                "readability": r,
+                "meaning": m,
+                "hallucinations": h,
+                **rule_metrics,
+            }
+        except (TypeError, ValueError):
             res["utility"] = {"error": "parse_error", **rule_metrics}
     else:
         res["utility"] = {"error": "api_error", **rule_metrics}
 
-    # 2) Privacy
+    # 2. Privacy Evaluation (Adversary Attack)
     adv_msgs = [
         {"role": "system", "content": PROMPT_ADVERSARY_SYSTEM},
         {"role": "user", "content": PROMPT_ADVERSARY_USER.format(anonymized_comment=anonymized)},
@@ -137,26 +150,31 @@ def evaluate_record(record, judge_model, adversary_model):
     adv_out = call_deepseek_api(adv_msgs, model_name=adversary_model, temperature=0.1)
     parsed = parse_attacker_output(adv_out)
 
-    leaks = compare_profiles_rules(true_profile, parsed.get("guess_json", {}))
+    # Compute leaked attributes (health_issue specific)
+    leaks = compare_profiles_rules(true_profile, parsed["guess_json"])
+
+    # For health_issue, leaked_count is 1 if any health issue matched
+    leaked_count = 1 if leaks else 0
 
     res["privacy"] = {
-        "leaked_count": len(leaks),
+        "leaked_count": leaked_count,
         "leaked_attributes": leaks,
-        "total_attributes": len(true_profile),
-        "attacker_guess": parsed.get("guess_json", {}),
+        "total_attributes": 1,  # Only health_issue attribute
+        "attacker_guess": parsed["guess_json"],
     }
 
     return res
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Evaluation Script using DeepSeek as Judge (health self-disclosure)")
-    parser.add_argument("--input_file", required=True)
-    parser.add_argument("--output_file", default="eval_results.json")
-    parser.add_argument("--judge_model", default="deepseek-chat")
-    parser.add_argument("--adversary_model", default="deepseek-chat")
-    parser.add_argument("--workers", type=int, default=10)
-    parser.add_argument("--limit", type=int, default=None)
+    """Main entry point for evaluation script."""
+    parser = argparse.ArgumentParser(description="Evaluation Script using DeepSeek as Judge")
+    parser.add_argument("--input_file", required=True, help="Result JSONL file from RLAA/FgAA")
+    parser.add_argument("--output_file", default="eval_results.json", help="Output JSON file")
+    parser.add_argument("--judge_model", default="deepseek-chat", help="Model for utility evaluation")
+    parser.add_argument("--adversary_model", default="deepseek-chat", help="Model for privacy attack")
+    parser.add_argument("--workers", type=int, default=10, help="Number of parallel workers")
+    parser.add_argument("--limit", type=int, default=None, help="Limit number of records")
     args = parser.parse_args()
 
     setup_logging()
@@ -179,6 +197,7 @@ def main():
             except Exception as e:
                 logging.error(f"Error evaluating record: {e}")
 
+    # Calculate Aggregates
     valid_util = [r["utility"].get("combined", 0) for r in results if "combined" in r["utility"]]
     avg_util = sum(valid_util) / len(valid_util) if valid_util else 0
 
@@ -186,8 +205,14 @@ def main():
     total_attrs = sum(r["privacy"]["total_attributes"] for r in results)
     asr = total_leaks / total_attrs if total_attrs > 0 else 0
 
-    summary = {"average_utility": avg_util, "attack_success_rate": asr, "total_records": len(records), "details": results}
+    summary = {
+        "average_utility": avg_util,
+        "attack_success_rate": asr,
+        "total_records": len(records),
+        "details": results,
+    }
 
+    # Save results
     with open(args.output_file, "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=2, ensure_ascii=False)
 

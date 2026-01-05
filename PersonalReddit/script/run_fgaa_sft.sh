@@ -1,15 +1,22 @@
-MODEL_DIR="path/to/model_dir"
-INPUT="data/test.jsonl"
-OUTPUT="results/fgaa_sft_output.jsonl"
+#!/usr/bin/env bash
+# Run FgAA (SFT mode) for PersonalReddit
+# Usage: bash PersonalReddit/script/run_fgaa_sft.sh
 
-mkdir -p $(dirname "$OUTPUT")
+MODEL_DIR="${MODEL_DIR:-PersonalReddit/models}"
+ATTACKER_MODEL_PATH="${ATTACKER_MODEL_PATH:-$MODEL_DIR/sft_attacker_merged}"
+ANONYMIZER_MODEL_PATH="${ANONYMIZER_MODEL_PATH:-$MODEL_DIR/sft_anonymizer_merged}"
+INPUT="PersonalReddit/data/test.jsonl"
+OUTPUT="PersonalReddit/results/fgaa_sft_output.jsonl"
+MAX_ITERATIONS="${MAX_ITERATIONS:-10}"
 
-echo "Running Inference using SFT models..."
-python src/run_fgaa.py \
-    --attacker_model_path "$MODEL_DIR/sft_attacker_merged" \
-    --anonymizer_model_path "$MODEL_DIR/sft_anonymizer_merged" \
+mkdir -p "$(dirname "$OUTPUT")"
+
+echo "Running FgAA (SFT mode)..."
+python PersonalReddit/src/run_fgaa.py \
+    --attacker_model_path "$ATTACKER_MODEL_PATH" \
+    --anonymizer_model_path "$ANONYMIZER_MODEL_PATH" \
     --input_file "$INPUT" \
     --output_file "$OUTPUT" \
-    --max_iterations 10
+    --max_iterations "$MAX_ITERATIONS"
 
 echo "Done. Results saved to $OUTPUT"

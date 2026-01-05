@@ -1,33 +1,20 @@
 #!/usr/bin/env bash
-set -euo pipefail
+# Evaluate RLAA/FgAA results for reddit-self-disclosure
+# Usage: API_KEY="your_key" bash reddit-self-disclosure/script/eval.sh
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cd "$ROOT_DIR"
+export API_KEY="${API_KEY:-your_key_here}"
 
-if [[ -z "${API_KEY:-}" ]]; then
-    echo "ERROR: API_KEY is not set. Export API_KEY first." >&2
-    exit 1
-fi
-
-INPUT_FILE="${INPUT_FILE:-results/rlaa_output.jsonl}"
-OUTPUT_FILE="${OUTPUT_FILE:-results/eval_score.json}"
+INPUT="reddit-self-disclosure/results/rlaa_output.jsonl"
+OUTPUT="reddit-self-disclosure/results/eval_score.json"
 JUDGE_MODEL="${JUDGE_MODEL:-deepseek-chat}"
 ADVERSARY_MODEL="${ADVERSARY_MODEL:-deepseek-chat}"
 WORKERS="${WORKERS:-10}"
-LIMIT="${LIMIT:-}"
 
-mkdir -p "$(dirname "$OUTPUT_FILE")"
+mkdir -p "$(dirname "$OUTPUT")"
 
-ARGS=(
-    --input_file "$INPUT_FILE"
-    --output_file "$OUTPUT_FILE"
-    --judge_model "$JUDGE_MODEL"
-    --adversary_model "$ADVERSARY_MODEL"
+python reddit-self-disclosure/src/eval.py \
+    --input_file "$INPUT" \
+    --output_file "$OUTPUT" \
+    --judge_model "$JUDGE_MODEL" \
+    --adversary_model "$ADVERSARY_MODEL" \
     --workers "$WORKERS"
-)
-
-if [[ -n "$LIMIT" ]]; then
-    ARGS+=(--limit "$LIMIT")
-fi
-
-python src/eval.py "${ARGS[@]}"
