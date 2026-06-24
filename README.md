@@ -1,6 +1,6 @@
 # RLAA: Rational Localized Adversarial Anonymization
 
-[![Paper](https://img.shields.io/badge/Paper-ACL%202026%20Findings-blue)](https://aclanthology.org/PLACEHOLDER)
+[![Paper](https://img.shields.io/badge/Paper-ACL%202026%20Findings-blue)](https://aclanthology.org/2026.findings-acl.274)
 [![arXiv](https://img.shields.io/badge/arXiv-2512.06713-b31b1b)](https://arxiv.org/abs/2512.06713)
 [![Code](https://img.shields.io/badge/Code-GitHub-black)](https://github.com/SowingG2333/RLAA)
 
