@@ -123,7 +123,7 @@ Before running experiments, please make sure that model paths, API keys, and env
 **Look Twice before You Leap: A Rational Framework for Localized Adversarial Anonymization**
 Accepted to **Findings of the Association for Computational Linguistics: ACL 2026**
 
-* Paper: [https://aclanthology.org/PLACEHOLDER](https://aclanthology.org/PLACEHOLDER)
+* Paper: [https://aclanthology.org/2026.findings-acl.274](https://aclanthology.org/2026.findings-acl.274)
 * arXiv: [https://arxiv.org/abs/2512.06713](https://arxiv.org/abs/2512.06713)
 
 ## 📚 Citation
