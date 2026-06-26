@@ -120,7 +120,7 @@ Before running experiments, please make sure that model paths, API keys, and env
 
 ## 📝 Paper
 
-**Look Twice before You Leap: A Rational Framework for Localized Adversarial Anonymization**
+**Look Twice before You Leap: A Rational Framework for Localized Adversarial Text Anonymization**
 Accepted to **Findings of the Association for Computational Linguistics: ACL 2026**
 
 * Paper: [https://aclanthology.org/2026.findings-acl.274](https://aclanthology.org/2026.findings-acl.274)
@@ -130,7 +130,7 @@ Accepted to **Findings of the Association for Computational Linguistics: ACL 202
 
 ```bibtex
 @inproceedings{duan2026look,
-  title = {Look Twice before You Leap: A Rational Framework for Localized Adversarial Anonymization},
+  title = {Look Twice before You Leap: A Rational Framework for Localized Adversarial Text Anonymization},
   author = {Duan, Donghang and Zheng, Xu and He, Yuefeng and Mu, Chong and Cai, Leyi and Zhang, Lizong},
   booktitle = {Findings of the Association for Computational Linguistics: ACL 2026},
   year = {2026}
